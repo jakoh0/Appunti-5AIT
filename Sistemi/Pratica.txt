@@ -1,0 +1,69 @@
+NAT
+
+>SNAT<
+
+>specificare per ogni interfaccia del router se è interna o esterna:
+-interface porta
+-ip nat inside/outside
+
+>creare lista di indirizzi a cui sarà permesso il NAT
+-access-list 1 permit indirizzo rete da nattare e wild mask
+
+>associare il NAT alla lista indicata prima:
+-ip nat inside source list 1 interface fastEthernet 0/0 overload
+
+>DNAT<
+
+-interface port
+
+-ip nat inside/outside
+
+>associare staticamente l'indirizzo e la porta esterna a quelli interni
+-ip nat source static tcp indirizzoIP e porta host indirizzoIP e porta esterni
+
+
+
+SNAT
+Router(config)#interface type port/slot
+Router(config-interface)#ip nat inside
+--oppure
+Router(config-interface)#ip nat outside
+--nel nostro caso:
+R1(config)#interface FastEthernet0/0
+R1(config-if)#ip nat inside
+R1(config-if)#exit
+R1(config)#interface FastEthernet1/0
+R1(config-if)#ip nat outside
+R1(config-if)#exit
+--Creare una lista di indirizzi a cui sarà permesso il NAT
+Router(config)#access-list list_num permit net_addr net_wildcard
+R1(config)#access-list 1 permit 192.168.0.0 0.0.0.255
+Associare il NAT alla lista indicata prima:
+Router(config)#ip nat inside source list list_num interface IFName_out overload
+R1(config)#ip nat inside source list 1 interface FastEthernet1/0 overload
+--I comandi sono da ripetere anche per il router R3
+R3(config)#interface FastEthernet0/0
+R3(config-if)#ip nat inside
+R3(config-if)#exit
+R3(config)#interface FastEthernet1/0
+R3(config-if)#ip nat outside
+R3(config-if)#exit
+R3(config)#access-list 1 permit 192.168.0.0 0.0.0.255
+R3(config)#ip nat inside source list 1 interface FastEthernet1/0 overload
+
+DNAT
+--(dovendo agire su R3, non è necessario rifare i comandi per ip nat inside e ip nat outside)
+Router(config)#ip nat inside source static protocollo IP_int Port_int IP_est Port_est
+R3(config)#ip nat inside source static tcp 192.168.0.100 80 12.0.0.2 80
+R3(config)#ip nat inside source static udp 192.168.0.101 53 12.0.0.2 53
+--Resta da configurare il RIP versione 1
+R1(config)#router rip
+R1(config-router)#version 1
+R1(config-router)#network 11.0.0.0
+R3(config)#router rip
+R3(config-router)#version 1
+R3(config-router)#network 12.0.0.0
+R2(config)#router rip
+R2(config-router)#version 1
+R2(config-router)#network 12.0.0.0
+R2(config-router)#network 11.0.0.0

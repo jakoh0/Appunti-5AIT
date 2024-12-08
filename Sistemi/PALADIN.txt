@@ -1,0 +1,557 @@
+		-------------------ARCHITETTURE-------------------
+
+ISO/OSI															TCP/IP
+
+
+APPLICAZIONE												
+PRESENTAZIONE												APPLICATIVO
+SESSIONE									
+TRASPORTO													TRASPORTO
+RETE														RETE
+DATA LINK											-----	HtN
+FISICO
+
+
+-FISICO
+trasforma la string binaria in segnale logico
+
+-DATA LINK:
+	-LLC
+		controllo di flusso
+	-MAC	
+		identifica la scheda di rete, errori, accesso al mezzo
+		
+-RETE
+controllo congestione, identifica la stazione, internetworking, routing
+
+-TRASPORTO
+controllo di flusso, multiplexin, errori, identifica il servizio
+
+-SESSIONE
+mette in comunicazione mittente e destinatario
+
+-PRESENTAZIONE
+errori, sintattici(protocollo) ed sematici(relativi all'informazione), sicurezza, compressione dati
+
+-APPLICAZIONE
+mette a disposizione i servizi per l'utilizzo della rete
+
+------PROTOCOLLI------
+
+-HtN
+>ppp: Point to Point Protocol
+possiamo conneterci alla rete
+
+>Csma/cd
+>Csma/ca :: controllo accesso al mezzo
+
+>eth 2.0
+permette di confezionare l'info che deve passare per un cavo ethernet
+
+-RETE
+>IPv4-6
+>Arp
+da ip a Mac
+>ICMP amministrare o verificare la rete
+
+-TRASPORTO
+>TCP orientato e confermato
+>UDP nn nn 
+
+-APPLICATIVO
+
+>DNS/SEC ip in nomi logici
+>HTTP/S navigazione
+>TELNET/SSH accesso remoto
+>SMTP/POP/IMAP posta
+
+>TFTP/FTP
+
+>NELLO SPECIFICO<
+
+IPv4
+32 bit
+statici(amministratore)
+dinamici(DHCP)
+
+ip privati(LAN)
+ip pubblici(GAN)
+
+IP= ID net+ Id host
+
+guarda q per ip rete privati range.
+
+SM quanti bit vengono occupati nella parte di rete e quanti nell'host
+
+
+INTESTAZIONE PROTOCOLLO IPv4 
+
+20B(fissi)+0/40B (opzioni), + eventuale padding
+
+SUDDIVISO IN WORD DI 4 B
+
+1 word: 
+>4 bit: version
+identifica la versione del protocollo
+
+>4 bit: HLEN
+lunghezza intestazione misurata in word di 4 B
+
+>1 B: TOS
+descrive come deve essere gestito il pacchetto arrivato, 6bit di QTOS 2 per controllo congestione
+
+>1 B: 
+total lenght numero di B del pacchetto partendo da 0
+
+
+2 word:
+>2 B: IDENTIFICATION  
+numera la SDU che arriva dal Lv soprastante
+
+>3 bit: FLAG
+scopi futuri, DF, MF
+
+>13 bit: OFF SET
+permette di numerare i frammenti in word di 8 B
+
+
+3 word:
+>1 B: TTL  
+salti max che possono fare
+
+>1 B: PROTOCOL
+codifica il protocollo che ha mandato la SDU
+
+>2 B: CHECK SAM
+controllo errori solo dei Byte dell'intestazione, è da ricalcolare ad ogni salto
+
+
+4 word:
+>4 B: MITTENTE
+
+
+5 word:
+>4 B: DESTINATARIO
+
+
+
+		-------------------CONGESTIONE-------------------
+
+> quantità di informazioni che arrivano nel router, e non riesce a gestirla
+
+-prevenire
+usare protocolli TCP, algoritmi di routing
+
+
+-agire
+MILK
+WINE
+
+choke packet
+
+
+		-------------------ROUTING-------------------
+-CONTROLLO
+-INSTRADATI: etichetta mittente e destinatario
+-INSTRADAMENTO: calcolo percorso
+{
+	>ISOLATI: ognuno pensa alla sua gestione
+	>CENTRALIZZATI: router al centro
+	>DISTRIBUITI:
+		-Non adattivo:
+			>amministrativo
+			>flooding
+			
+		-Adattativo
+			>distance vector
+			>link state routing
+	>GERARCHICO		
+}
+-Adattativo
+	>distance vector
+		fase di hello
+		scambio tabelle di routing vicini
+		:) - percorso ottimo
+		:( - convergenza alti, no topologia rete
+		
+		
+		
+	>link state routing
+		fase di hello
+		scambio tabelle di routing flooding e marca temporale
+		:) - topologia, tempo convergenza
+		:( - calcolare percorso ottimo
+
+-GERARCHICO:
+	suddividere la rete in più aree comunicanti(INTERNET back bone)
+	router interni ed esterni
+	EGP 
+	IGP
+	
+	
+		-------------------FLUSSO-------------------
+		
+-informazione inviata e arrivata a destinazione
+
+STOP & WAIT/ FINESTRE SCORREVOLI(GO BACK N - SELECTIVE REPEAT)
+
+io mi adeguo al più lento
+
+1) invia info si ferma e aspetta un ack(acknowledgment) per un quanto di tempo
+
+2){
+	-Go back N:
+		buffer al mittente
+		destinatario può solo ricevere un segmento alla volta
+		
+	-Selective repeat:
+		buffer entrambi
+		ack accumulativo
+}
+
+
+----TCP----
+APERTURA CONNESSIONE
+
+>3 vie
+
+CHIUSURA CONNESSIONE
+
+>3 vie
+>4 vie
+chi non ha chiesto chiusura può inviare info e l'altro solo ack
+
+
+
+		-------------------ARP-------------------
+trasforma gli indirizzi ip in mac
+se non conosco mac faccio richiesta arp per "chiedere il Mac", siccome info deve passare e andare al lv "sotto"(data link(LLC-MAC))
+
+all'interno della rete no problema se deve uscire indirizzo ip quello del destinatario e indirizzo mc del DG del router, solo i router sanno i mac di tutti
+
+Arp replay - Arp request 
+
+
+		-------------------SEGMENTO TCP-------------------
+		
+		
+	20B (fissi)+ 40B (opzioni+padding)
+	>sorce port mittente 2 B
+	>destination port destinatario 2 B
+	
+	>32 bit di SN + ISN
+	>32 bit di ack
+	
+	>4 bit header lenght	
+	>4 bit non usati
+	
+	>8 bit flag
+		impo:
+		URG
+		ACK
+		
+		RST \
+		SYN  | - apertura e chiusura di una connessione
+		FIN /
+	
+	>window size 16 bit quanto può ricevere il destinatario
+	>checksum 16 bit -verifica validità del segmento 
+	-urger pointer 16 bit - n byte dove deve iniziare a leggere
+	
+	options e data
+	
+	fanno controllo di flusso:
+	SN, ack , reset, syn, fin, window size
+	
+		-------------------DATAGRAM UDP-------------------
+	segmento errato lo butto via
+	
+	>sorce port mittente 2 B
+	>destination port destinatario 2 B	
+	>lenght 16 bit - contiene la lunghezza totale del datagram
+	>checksum 16 bit - codice controllo datagram
+	> data
+	
+	
+---- UDP LITE ----
+
+	>sorce port mittente 2 B
+	>destination port destinatario 2 B	
+	>checksum coverage lenght 16 bit - contiene la lunghezza totale del datagram
+	>checksum 16 bit - codice controllo datagram
+	> data
+	
+	
+	regge modifiche, campo lunghezza assume nuovo significato controllo errori sui byte dell'intestazione 
+	\_ servizio veloce
+	
+	
+
+		------------------- GESTIONE DELLA CONGESTIONE -------------------
+
+algoritmi  che cooperano tra di loro per il controllo della congestione
+algoritmi che fanno uso di 4 variabili : finestre di congestione
+
+
+-- WC(congestion window): è il numero massimo di B che la rete è in grado di trasmettere
+-- WR(advertised window) ricezione: indica quanti B il destinatario può ricevere(window size del TCP)
+-- WT: l'host prenderà il num max di B che può trasmettere il min tra i due valori delle finestre
+
+BERKELEY quando ho congestione -50% 
+slow start (esponenziale)
+congestion avoidance(lineare)
+
+
+		------------------- PORTE -------------------
+		
+> well known port 0-1023
+> registered port 1024-49.151
+> dinamic port 49.152-65.535
+
+		------------------- DNS -------------------
+
+protocollo al lv applicativo
+
+si basa su UDP per richiesta Client 
+TCP per trasferire informazioni tra server DNS
+
+i server DNS sono database distribuiti 
+>quando digitiamo qualcosa all'interno del browser il facciamo una richiesta al server DNS 
+	struttura ad albero:
+		-root che contiene tutti i top level domain
+			sotto abbiamo i sottodomini e così via
+		>i nomi logici si leggono da dx a sx, es. www è l'ultimo letto<
+		
+	server rinominati dalla A alla M < - struttura primaria, ce ne sono circa 13 distribuiti nel mondo
+	server secondari 300 copie struttura primaria
+	
+	altri server (non autoritari o proprietari) cache, non sempre corretta l'info però più veloci
+	
+richiesta root invia posizione di it e così via
+
+		------------------- POSTA -------------------
+		
+	POP 110		ricezione
+	IMAP 143 	ricezione
+	SMTP 25		invio
+	
+	pop scarico nel client la posta e la tolgo dal server
+	imap guardo direttamente nel server
+	
+	verifica credenziali ogni volta e stabilisco una nuova connessione, server posta mittente e destinatario
+	
+	dominio di posta DNS
+	
+	vari campi da compilare, es dest(mittente lo mette in automatico)
+		------------------- TFTP/FTP -------------------
+TFTP
+udp 69 file piccole dimensioni, generalmente configurazioni
+
+FTP: attivo(normale) o passivo
+tcp 20 21 qualsiasi tipo di file
+|
+porta 20 download 21 comandi, nella prima apro ad ogni connessione, nella seconda solo 1 volta
+	>attiva, uso porte 20 21 e quelle assegnate sul pc, è il server che apre la connessione verso il client
+	>passiva, uso 21 e altra porta che simula la 20, è il client che apre la connessione
+	
+quando apro connessione verso server e mi manda un ack mi invia anche la porta da cui mi invierà le info/quella a cui mi devo connettere
+	
+		------------------- IPV6 -------------------
+128bit -> 8 quartetti di cifre esadecimali distinte dai 2 punti
+ogni cifra occupa 4 bit
+offre maggiore sicurezza
+(abbreviazioni -> es. se ho tutti zeri o metto 0 o ::)
+non frammento a livelli inferiori
+
+- Passaggio da IPv6 a IPv4:
+	>Dual stack
+	>Tunneling				IPv10 -> regole applicate se all'interno della rete utilizzo entrambi i protocolli
+	>Traduzione
+
+1- Tutti i dispositivi possono comprendere e lavorare con entrambi gli indirizzi
+2-Da rete 6 a 4 SDU dentro intestazione IPv4, disp dual stack, lo imbusta
+3-NAT 6 4 traduce 6 in 4 router di confine traduce
+
+
+	3 TIPI DI INDIRIZZI
+	
+	>Unicast : identifica in modo univoco
+	>Multicast: assegnato a diverse interfacce 
+	>Anycast: stesso unicast assegnato a dispo diversi, l'invio arriva solo al primo dispositivo che riceve il pacchetto
+	
+	
+-> Unicast: SOTTOCLASSIFICAZIONE
+
+	-Unicast globale: tipo IPv4 pubblico
+	-Link-local: Gli indirizzi link-local vengono utilizzati per comunicare con altri dispositivi nello stesso link
+				locale. Con IPv6, il termine link si riferisce a una subnet. Gli indirizzi link-local sono associati a un
+				singolo link. La loro unicità deve essere confermata solo in quel link, perché non sono instradabili.
+				In altre parole, i router non inoltrano pacchetti con un indirizzo link-local di origine o di
+				destinazione.
+				
+	-Unique local: tipo privati Ipv4, solitamente dati a server raggiungibili solo dall'interno
+
+
+	-- INDIRIZZAMENTO --
+	
+	-Unique local: FC00::/7 e FDFF::/7
+	-link local: ne crea uno automaticamente se non assegnato -> intervallo da FE80::/10 a (FEBF)
+	-Unicast globale: prima cifra quartetto 2 o 3 
+						statici 
+						dinamica -> slaac, slaac+dhcp stateless, DHCP stateful
+	
+	
+>Generazione unicast globale<
+	-- ASSEGNAZIONE PREFISSO (ID rete) --
+		>SLAAC: configurare rooter, ip globale so quale è il DG ogni 200s il router pubblicizza le info id di rete la SM e DG dentro RA
+				il NAS costruisce indirizzo host, se RA non arriva faccio richiesta RS anticipo invio msg <- flooding
+				
+		>+DHCP: RA contiene info in + -> indirizzo server che ha info relative ai DNS
+		
+		>stateful: tipo DHCP, router RA con info DG, IP di rete e indirizzo DHCP
+		
+		UTILIZZATI DI PIù PRIMI 2 MA NON HO PARTE HOST, VA COSTRUITA
+	-- GENERAZIONE HOST --
+		>EUI-64: genera una string che sara la parte di host ma già univoca
+		>RANDOM+DAD	(DAD verifica univocità indirizzo stesso)
+			1-arriva /64 mancano 8B -> 6B indirizzo MAC 
+				divido i primi 3 in mezzo metto FFFE e poi ultimi 3 B indirizzo MAC
+			2-NOS genera numero di 64 bit, poi invia msg a quell'indirizzo, se qualcuno risponde lo cambia altrimenti lo assegna 
+				alla macchina che lo ha generato
+				
+	----- INTESTAZIONE IPv6 -----
+	4bit 	Versione
+	1B 		Traffic Class 	-> 		tipo tos
+	20bit 	Flow Label 		-> 		etichetta che viene data ai dati di quel pacchetto
+	2B		Payload Lenght 	-> 
+	1B		Next Header 	-> 		punta inizio dati se non ho opzioni -> ogni opzione next header
+	1B		Hop LImit 		-> 		TTL
+	128bit  Ip mittente
+	128bit	Ip destinatario
+	
+	
+	-- SICUREZZA INFORMATICA --
+	Insieme prodotti e servizi + regole organizzative e dei comportamenti indivisuali che proteggono i sistemi informatici di un'azienda
+	Compito proteggere risorse da accessi indesiderati, garantire riservatezza delle info, assicurare il funzionamento e la disponibilità dei 
+	servizi a fronte di determinati imprevisti
+	
+	faccio sicurezza quasi al 100% in area piccola
+	
+	Minacce sicurezza: 
+		- naturali: non le posso prevedere
+		- umane: 2 obbi ->acquisire info o limitare operatività dei sistemi
+			\_ attacchi:
+					-> intenzionali
+					-> involontari : operatori agiscono con ignoranza e crano danni
+					
+					attacchi: 
+						-> interni: dipendenti o persone che hanno lavorato all'interno
+						-> esterni: (attacchi hacker)
+							--> passivi: prelevano info
+							--> attivi: bloccano il sistema info
+							
+							
+							
+	credenziali devono essere sostituite
+	
+	Valutazione rischi
+	
+	
+	
+ ----- SICUREZZA A 360° -----
+ 
+dopo valutazione(che deve essere presente in azienda)
+
+amministratore può andare in account condivisi: 
+account sia aziendali e personali e non può accedervi l'amministratore però può essere analizzato da sw(antivirus)
+
+
+> INTERVENTI <
+
+>SW	: devo avere antivirus se il server fa aggiornamento poi programmo agg cloud a gruppi e lo distribuisco scaglionando il lavoro
+	Antivirus - >pagamento con versione server
+	AGG -> tutti quelli che ritengo validi prima di aggiornare back up sistema - pericolosi firmware
+	manutenzione ordinaria
+	back up -> totale
+			-> incrementale (di volta in volta)
+		
+	3 - 2 -1 (su tre posti diversi -copie back up-, 2 due posizioni diverse, 1 offline)
+	
+>HW
+	-> firewall: Sw su host HW 		costo hw + licenza(solitamente annuo)
+	
+	lavora a diversi livelli: > applicativo - ACL lavorano anche a rete e trasporto
+							  > trasporto e rete
+							  > rete - difficili gestione
+	
+	divide logicamente in Vlan, tante vlan in base alle porte minimo 3, divisione minima per fare sicurezza
+	indice di privilegio vlan 1 0, vlan 2 100, vlan 3 50 viaggiare da superiore a minore, possono entrare ma elaborate dal firewall
+	DMZ  a lan non può ammenochè non creo applicazione da me messa nel sw
+	
+	altri interventi hw- duplicazione dei server importanti, utilizzo macchina virtuale
+	
+	NAS -> solo memorizzaione back up sempre dentro LAN, disabilitare alcune porte(engeneering)
+	
+	
+---- ATTACCHI E TIPOLOGIA ATTACCHI ----
+
+
+---- TECNICHE CRITTOGRAFIA ----
+Testo in chiaro M
+Testo cifrato C
+
+La crittografia è l'insieme delle procedure ideate allo scopo di nascondere il significato di un messaggio a tutti tranne al leggittimo destinatario
+-Cifrario: ogni carattere viene trasformato in un altro carattere
+-Codice : ogni carattere rappresenta un'informazione
+
+Per cifrare serve:
+> algoritmo di cifratura(pubblico)
+> chiave (segreta)
+
+C = f(M,K) - testo in chiaro messo in un algoritmo di cifratura + una chiave = testo cifrato
+
+CODIFICA = metodo di scrittura sostituire alcune parole con altre
+CIFRATURA =  sostituisco le lettere
+
+Principio di Kerckhoffs, la sicurezza è data solo dalla chiave
+
+> CLASSIFICAZIONE DEI SISTEMI CRITTOGRAFICI <
+
+1. tipologia di operazioni usate per trasformare il testo in chiaro
+- crittografia a sostituzione: ogni elementom del testo in chiaro è trasformato in un altro elementom
+- crittografia a trasposizione(permutazione): elementi testo in chiaro riorganizzati
+
+2. modo in cui il testo in chiaro è elaborato
+- crittografia a blocchi: testo suddiviso in blocchi di N bit e ogni blocco viene elaborato in modo indipendente
+- crittografia a flusso: elabora N bit variabile senza lunghezza prefissa
+
+3. N chiavi usate
+- crittografia a chiave simmetrica: chiave mittente e dest uguali
+- crittografia a chiave asimmmetrica: coppia di chiavi per ogni utente, una pubblica e una privata, cifro con la pubblica decifro con l'altra
+
+
+CRITTOGRAFIA A SOSTITUZIONE -> Cifrario di Cesare
+
+CRITTOGRAFIA A TRASPOSIZIONE ->  cifrario a matrice, M e D decidono chiave segreta, inserisco testo in una matrice e metto colonne in 
+								 ordine secondo la chiave
+
+	-- CRITTOGRAFIA A CHIAVE SIMMETRICA --
+	Si basa sull'utilizzo di una solo chiave, usata dal mittente per cifrare il messaggio e dal destinatario per deficrare, i cifrari a 
+	sostituzione e a trasportazione sono cifrari a chiave simmetrica.
+	
+	
+	-- CRITTOGRAFIA A CHIAVE ASIMMETRICA --
+	Nasce per risolvere il problema della distribuzione sicura delle chiavi, esso utilizza una coppia di chiavi per ogni utente, 
+	una pubblica e una privata, cifro con la pubblica decifro con l'altra. Ovviamente le due chiavi devono essere correlate matematicamente
+	
+	
+	>Garantire autenticazione 
+	>Garantire sicurezza
+	>Garantire Integrità
+	
+	Per le chiavi distribuisco chiave pubblica attraverso enti certificati, le chiavi vengono "calcolate" prima della connessione
+	
+	Utilizzo degli HASH
+		
+		
+	
