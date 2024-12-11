@@ -551,7 +551,30 @@ CRITTOGRAFIA A TRASPOSIZIONE ->  cifrario a matrice, M e D decidono chiave segre
 	
 	Per le chiavi distribuisco chiave pubblica attraverso enti certificati, le chiavi vengono "calcolate" prima della connessione
 	
-	Utilizzo degli HASH
+	Utilizzo degli HASH per fare S + I + A
+	
+	
+	ALGORITMI DI CRITTOGRAFIA  SIMMETRICI
+	
+> DES 64b chiavi(K) da 64b(56K+8 controllo)
+	sostituzione + permutazione
+	    |               |			16 Blocchi di operazioni
+	confusione      diffusione
 		
-		
+	prima era un cifrario standard, ora abbinato con ibrida, rende msg sicuro per breve temporale
+
+> Triplo DES
+	applica 3 volte il cifrario DES con 3 K diverse
+	può essere applicato anche con solo 2 chiavi diverse su 3
+	
+> IDEA sempre blocchi di 64b chiavi a 128bit
+	utilizzato per le transazioni bancarie
+	
+> AES cifrario standard del governo Americano
+	risulta ad oggi non violabile
+	Blocchi da 128b chiavi da 128-192-256b
+	i simmetrici al momento risultano non violabili se usano k da 128bit, per gli asimmetrici minimo k da 1024b
+	
+> CAST modificare lunghezza blocco 64/128bit
+	operazioni di addizione, sottrazione e xor
 	

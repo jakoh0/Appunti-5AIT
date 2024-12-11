@@ -1,0 +1,142 @@
+--------- HTTP ---------
+Il Web è basato sul modello client-server che ha due differenti elementi:
+• Client;
+• Server.
+
+>CLIENT<
+	I client sono elementi ATTIVI (Web browser) che:
+	• utilizzano il protocollo HTTP per connettersi al server, secondo un modello a client attivo;
+	• usano un URL per identificare le risorse;
+	• richiedono pagine Web al server e ne visualizzano il contenuto.
+
+>SERVER<
+	I server sono elementi PASSIVI (Web server o HTTP server) che:
+	• rimangono in ascolto di eventuali connessioni di nuovi client su una determinata porta TCP, secondo un
+	modello a server passivo;
+	• utilizzando il protocollo HTTP per interagire con il client;
+	• forniscono ai client le pagine Web o le risorse richieste
+	
+	-> A cosa server?
+		HTTP è un protocollo usato per la trasmettere risorse, non solo file. Un risorsa è indentificata da un URI o URL.
+		
+	-> URI E URL
+		• URI (Uniform Resource Identifier): “set generico di nomi o indirizzi che rappresentano stringhe 
+			assegnate alle risorse”, viene solitamente utilizzato in XML, file di librerie di tag e altri file, come JSTL e 
+			XSTL, IDENTIFICA UNA RISORSA;
+		• URL (Uniform Resource Locator): “termine informale, utilizzato solo nelle specifiche tecniche, associato
+			a popolari protocolli quali HTTP, FTP, mailto, ... ecc.”, serve principalmente per la ricerca di pagine Web,
+			CONSENTE DI INDIVIDUARE UNA RISORSA.
+		
+Il protocollo applicativo HTTP utilizza normalmente la porta TCP 80 con lo schema http:, ma per rendere
+riservata e non manipolabile la comunicazione client/server è possibile adottare il protocollo TLS (Transport
+Layer Security) per autenticare e cifrare la comunicazione effettuata con il protocollo di trasporto TCP: il
+protocollo di trasporto e quello applicativo e sulla sua base è stata realizzata la versione sicura del
+protocollo HTTP denominata HTTPS (HTTP Secure) che utilizza normalmente la TCP 443, con il quale serve ottenere un certificato SSL/TLS
+
+
+-> chiave di sessione è una chiave utilizzata per implementare un canale sicuro tra mittente e destinatario
+mediante cifratura simmetrica.
+
+>MESSAGGIO RICHIESTA HTTP<
+Gli header più comuni che possiamo trovare nelle richieste sono:
+	• la versione del browser che prende il nome di User-Agent;
+	• l’host presente nell’URL;
+	• il parametro (per i tipi di documento che supportano il tipo MIME).
+
+-> Una HTTPrequest è un messaggio testuale inviato dal client al server HTTP ed è formato da tre elementi:
+		• riga di richiesta 1
+		• intestazione HTTP (header), 2
+		• corpo del messaggio (messagebody), 3
+		
+	1 - La riga di richiesta contiene:
+			• il metodo (Method) che può essere:
+			– GET,
+			– DELETE, GET, HEAD, LINK, POST, PUT, UNLINK,
+			– CONNECT, DELETE, GET, HEAD, POST, PUT, OPTIONS, TRACE;
+			• l’URI è l’identificativo di risorsa richiesta al server;
+			• la versione (Version) può assumere i valori HTTP/1.0 o HTTP/1.1
+			
+	2 - Esempi di intestazione: 
+			• intestazioni generali (si applicano solo al messaggio trasmesso e si applicano sia ad una richiesta che ad
+				una risposta, ma non necessariamente alla risorsa trasmessa );
+
+			• intestazioni della richiesta (impostati dal client per specificare informazioni sulla richiesta e su se stesso
+				al server);
+
+			• intestazioni del corpo dell’entità (forniscono informazioni sul corpo del messaggio, o, se non vi è corpo,
+				sulla risorsa specificata);
+
+	3 - Il corpo del messaggio contiene i dati trasportati
+
+>MESSAGGIO RISPOSTA HTTP<
+	La response (risposta) HTTP è organizzata in maniera analoga rispetto a una richiesta. L’unica differenza è
+	che le risposte iniziano con una riga di stato al posto della riga di richiesta.
+	La response è formata da:
+		• una riga iniziale con versione protocollo HTTP e stato;
+		• un’intestazione (header) facoltativa; 1
+		• un corpo (body) facoltativo. 2 
+	
+	1 - Gli header della response sono formati, come nel caso della richiesta, da insiemi di coppie, formate da un
+		nome separato dal valore dai due punti (:), che specificano le caratteristiche del messaggio.
+			• Header generali della trasmissione
+				- MIME-Version: la versione MIME usata per la trasmissione, normalmente 1.0
+				- Transfer-Encoding: indica la compressione dei dati trasmessi e si riferisce a tutto il messaggio.
+				
+			• Header relativi all’entità trasmessa
+				- Content-Type: indica il MIME e specifica se si tratta di un’immagine PNG, un filmato MPG ecc.;
+				- Expires: indica la data di validità della risorsa.
+				
+			• Header riguardo la richiesta effettuata
+				- User-Agent: indica la versione e il tipo di browser oltre alla versione e al sistema operativo del
+					clien
+					
+			• Header della risposta generata
+				- Server: una stringa che descrive il server (tipo, sistema operativo e versione);
+				- WWW-Authenticate: indica il tipo di autenticazione e le credenziali per autenticare un utente
+
+	2 - Contiene l'HTML della pagina richiesta
+
+>CODICI DI STATO<
+	codici a tre cifre che indicano l'esito di una comunicazione tra client e server che usano il protocollo HTTP
+
+	Lo status code è un numero formato da tre cifre, di cui la prima indica la classe della risposta e le altre due
+	la risposta specifica. Esistono cinque classi principali di codici di stato, suddivisi in base alla tipologia di
+	risposta
+		1. 100-199 (Information): questi codici di risposta forniscono informazioni temporanee alla richiesta
+		2. 200-299 (Successful): richiesta andata a buon fine
+		3. 300-399 (Redirection): trattamento particolare di dati da parte del browser;
+		4. 400-499 (Client error): questo intervallo di valori viene utilizzato per indicare le condizioni
+		5. 500-599 (Server error): messaggi di errore 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

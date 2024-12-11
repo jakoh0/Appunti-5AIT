@@ -1,0 +1,109 @@
+CARATTERISTICHE GENERALI DEL LINGUAGGIO SQL
+SQL(Structured Query Language) -> linguaggio non procedurale che è diventato uno standard tra i linguaggio per a gestione dei database
+relazionali
+
+Può eseguire con facilità:
+- definizione e creazione di un database relazionale
+- diverse operazioni di gestione dei dati(inserimento, cancellazione, variazione dei record)
+- interrogazione per estrarre dati
+
+Il linguaggio SQL consente all'utente:
+-> definire database, la struttura delle tabelle che la compongono
+-> modificare i dati contenuti nel database con le operazioni di DML
+-> definire gli utenti e controllare gli accessi al DB
+-> gestire e controllare le transazioni
+
+comandi Structured Query Language (SQL) sono parole chiave o istruzioni SQL specifiche utilizzate dagli sviluppatori per manipolare 
+i dati archiviati in un database relazionale. È possibile classificare i comandi SQL come segue.
+
+>Data Definition Language<
+	Il Data Definition Language (DDL) si riferisce ai comandi SQL che progettano la struttura del database. Gli ingegneri del database 
+	utilizzano il DDL per creare e modificare oggetti di database in base ai requisiti aziendali. Ad esempio, l'ingegnere di database 
+	utilizza il comando CREATE per creare oggetti di database come tabelle, viste e indici.
+
+	ESEMPI:
+		- ALTER TABLE
+		- CREATE INDEX
+		- DROP
+
+>Data Query Language<
+	Il Data Query Language (DQL) è costituito da istruzioni per il recupero dei dati memorizzati nei database relazionali. 
+	Le applicazioni software utilizzano il comando SELECT per filtrare e restituire risultati specifici da una tabella SQL. 
+
+>Data Manipulation Language<
+	Le istruzioni del Data Manipulation Language (DML) scrivono nuove informazioni o modificano i record esistenti in un database 
+	relazionale. Ad esempio, un'applicazione utilizza il comando INSERT per memorizzare un nuovo record nel database.
+	
+	ESEMPI:
+		- INSERT +: 
+			-> INTO  nome_table(parametri)
+			-> VALUES elenco tra () dei parametri da inserire
+			
+		- UPDATE:
+			-> SET
+			
+		- DELETE:
+			-> FROM
+		\_ nelle ultime due può comparire anche la clausola WHERE, per effetto della quale è possibile operare su più righe.
+		
+
+>Data Control Language<
+	Gli amministratori di database utilizzano il Data Control Language (DCL) per gestire o autorizzare l'accesso al database per altri 
+	utenti. Ad esempio, possono utilizzare il comando GRANT per consentire a determinate applicazioni di manipolare una o più tabelle. 
+	
+	Vanno utilizzati i comandi GRANT o REVOKE, li utilizziamo in combinazione con i seguenti comandi:
+	
+	-ALTER 		-> aggiungere o eliminare colonne o per modificare i tipi di dati
+	-DELETE		-> eliminare righe dalle tabelle
+	-INDEX		-> creare indici
+	-INSERT		-> inserire nuove righe nelle tablle
+	-SELECT		-> ritrovare i dati delle tabelle
+	-UPDATE		-> cambiare i contenuti nelle tabelle  
+	-ALL		-> per tutti i permessi precedenti
+
+>Transaction Control Language<
+	Il motore relazionale utilizza il Transaction Control Language (TCL) per apportare automaticamente modifiche al database. Ad esempio,
+	il database utilizza il comando ROLLBACK per annullare una transazione errata. 
+	
+	
+	----> I DBMS <----
+		
+	E' un prodotto sw per la gestione dei DB sono indicati con il termine DBMS, acronimo di Database Management System
+	
+	Due tra i più diffusi sono Access e MySQL
+	
+	I DBMS consentono all'utente di focalizzare l'attenzione solo sull'applicazione che utilizza i dati dell'archivio, permettendone la gestione
+	anche a utenti che non conoscono l'hardware sottostante.
+	
+	Un DBMS deve essere in grado di svolgere tre tipo di operazioni fondamenteali:
+		- Permette la creazione di una nuova base di dati DDL
+		- Facilitare gli utenti utenti nell'inserimento, nella cancellazione e variazione dei dati nel database sfruttando uno specifico
+			linguaggio che prende il nome di DML
+		- Rende possibile l'estrazione di informazioni dal DB interrogandolo mediante un apposito linguaggio di interrogazione QL
+		
+		VANTAGGI DEI SISTEMI BASATI SU DATABASE
+		- Eliminazione della ridondanza e dell'inconsistenza 
+		
+		- Indipendenza della struttura logica e fisica dei dati:
+							-> gli stessi dati non compaiono più volte in archivi diversi
+								
+		- Interrogazioni non predefinite
+							-> 	è possibile interrogare i dati con un linguaggio semplice e standard
+								
+		- Facilità di accesso ai dati
+							-> il ritrovamento dei dati è facilitato e trasparente per chi si occupa della programmazione ed èsvolto con grande
+								velocità
+								
+		-Integrità dei dati
+							-> i vincoli di integrità sono memorizzati nel DB e controllati dai DBMS
+							
+		-Sicurezza dei dati
+							-> sono previste procedure di controllo sia per impedire accessi non autorizzati ai dati contenuti nel DB
+		
+		-Utilizzo da parte di più utenti e controllo della concorrenza
+							-> i dati del database possono essere usati da più utenti, consentendo una visione anche parziale del DB da parte
+								del singolo utente
+		
+		
+		
+		

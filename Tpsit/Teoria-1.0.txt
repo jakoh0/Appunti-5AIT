@@ -1,0 +1,81 @@
+---------- SISTEMI INFORMATICI ----------
+
+- Centralizzato : unico nodo elaborativo
+- Distribuito   : diversi nodi collaborano e comunicano tra di loro
+
+>SUDDIVISIONI
+
+ -> Architettura
+	-Client/Server
+	-P2P
+	-Sistemi ibridi
+	
+ -> Tipologia
+	-Bus
+	-Anello
+	-Stella
+	-Maglia
+	
+ -> Coerenza
+	-Fortemente consistente --> visione dei dati, tutti sanno tutto
+	-Eventualmente consistente --> non sono costretti a sapere le info che passano
+	
+
+>CLASSIFICAZIONE
+	1) CLUSTER: parallelismo
+	2) GRID: risorse di calcolo distribuite geograficamente
+	3) DISTRIBUITI: archiviare, gestire dati
+	4) PERVASIVI: fornire dati in tempo reale
+
+>BENEFICI												>SVANTAGGI
+	-scalabilità											-complessità
+	-tolleranza ai guasti									-porblemi di comunicaione
+	-disponibilità											-sicurezza
+	-prestazioni											-gestione consistenza dati
+	-flessibilità											-costi di implementazione
+
+
+>PROTOCOLLI DI SICUREZZA
+	-SSL/TLS	proteggere i dati durante il trasferimento
+	-kerberos	autenticazione
+	-IPsec		proteggere a livello IP
+	-OAuth		accessi ai servizi senza condividere le credenziali (cloud)
+	-PKI		chiavi per l'autenticazione
+	
+	
+>Middleware
+	servizio che si colloca tra piattaforme e applicazioni, rende facilmente programmabii i sistemi distribuiti
+	
+MODALITA' DI INTERAZIONE:
+
+	-RPC chiamare i nodi da remoto come fossero locali
+	-MESSAGGISTICA ASINCRONA scambio di messaggi tra nodi
+	
+-- CONCETTO TRASPARENZA --
+
+> ARCHITETTURA C/S
+	CLIENT													SERVER 
+		-interfaccia grafica									-rispondere alle richieste
+		-prepara richieste										-comunica con altri server per trovare la soluzione
+		-analizza risposte										-nasconde struttura del sistema
+		
+		
+ --> Architettura C/S a livelli
+	-Livello di Presentazione
+	-Livello logico
+	-Livello Dati
+	
+>TASSONOMIA DI FLYNN
+	è una classificazione dei sistemi di calcolo basta sul parallelismo dei flussi
+	
+	-SISD
+	-SIMD
+	-MISD
+	-MIMD
+	
+	
+	
+	
+	
+	
+ 
