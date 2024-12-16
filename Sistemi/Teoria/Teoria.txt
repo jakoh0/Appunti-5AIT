@@ -1,6 +1,6 @@
 		-------------------ARCHITETTURE-------------------
 
-ISO/OSI															TCP/IP
+ISO/OSI													TCP/IP
 
 
 APPLICAZIONE												
@@ -369,8 +369,8 @@ non frammento a livelli inferiori
 	>Traduzione
 
 1- Tutti i dispositivi possono comprendere e lavorare con entrambi gli indirizzi
-2-Da rete 6 a 4 SDU dentro intestazione IPv4, disp dual stack, lo imbusta
-3-NAT 6 4 traduce 6 in 4 router di confine traduce
+2- Da rete 6 a 4 SDU dentro intestazione IPv4, disp dual stack, lo imbusta
+3- NAT 6 4 traduce 6 in 4 router di confine traduce
 
 
 	3 TIPI DI INDIRIZZI
@@ -413,11 +413,13 @@ non frammento a livelli inferiori
 		UTILIZZATI DI PIù PRIMI 2 MA NON HO PARTE HOST, VA COSTRUITA
 	-- GENERAZIONE HOST --
 		>EUI-64: genera una string che sara la parte di host ma già univoca
-		>RANDOM+DAD	(DAD verifica univocità indirizzo stesso)
-			1-arriva /64 mancano 8B -> 6B indirizzo MAC 
+			-arriva /64 mancano 8B -> 6B indirizzo MAC 
 				divido i primi 3 in mezzo metto FFFE e poi ultimi 3 B indirizzo MAC
-			2-NOS genera numero di 64 bit, poi invia msg a quell'indirizzo, se qualcuno risponde lo cambia altrimenti lo assegna 
+			-nei primi 3B al 7^ bit a partire da sx viene applicato il complemento A1
+		>RANDOM+DAD	(DAD verifica univocità indirizzo stesso)
+			-NOS genera numero di 64 bit, poi invia msg a quell'indirizzo, se qualcuno risponde lo cambia altrimenti lo assegna 
 				alla macchina che lo ha generato
+			
 				
 	----- INTESTAZIONE IPv6 -----
 	4bit 	Versione
@@ -466,7 +468,7 @@ amministratore può andare in account condivisi:
 account sia aziendali e personali e non può accedervi l'amministratore però può essere analizzato da sw(antivirus)
 
 
-> INTERVENTI <
+--> INTERVENTI <--
 
 >SW	: devo avere antivirus se il server fa aggiornamento poi programmo agg cloud a gruppi e lo distribuisco scaglionando il lavoro
 	Antivirus - >pagamento con versione server
@@ -479,10 +481,14 @@ account sia aziendali e personali e non può accedervi l'amministratore però può 
 	
 >HW
 	-> firewall: Sw su host HW 		costo hw + licenza(solitamente annuo)
+		Il firewall è un muro o una partizione progettata per impedire la diffusione degli incendi da un
+		punto all'altro degli edifici. Nelle reti di computer, il firewall è progettato per controllare o filtrare le
+		comunicazioni autorizzate in ingresso e in uscita dai dispositivi o dalle reti, come mostrato nella
+		figura.
 	
 	lavora a diversi livelli: > applicativo - ACL lavorano anche a rete e trasporto
 							  > trasporto e rete
-							  > rete - difficili gestione
+								\-> rete - difficili gestione
 	
 	divide logicamente in Vlan, tante vlan in base alle porte minimo 3, divisione minima per fare sicurezza
 	indice di privilegio vlan 1 0, vlan 2 100, vlan 3 50 viaggiare da superiore a minore, possono entrare ma elaborate dal firewall
@@ -490,12 +496,41 @@ account sia aziendali e personali e non può accedervi l'amministratore però può 
 	
 	altri interventi hw- duplicazione dei server importanti, utilizzo macchina virtuale
 	
-	NAS -> solo memorizzaione back up sempre dentro LAN, disabilitare alcune porte(engeneering)
+	NAS -> solo memorizzaione back up sempre dentro LAN, 
+	disabilitare alcune porte(engeneering)
 	
 	
----- ATTACCHI E TIPOLOGIA ATTACCHI ----
+---- SUDDIVISIONE DELLE VULNERABILITA' DI PROTEZIONE ----
 
+> Overflow del buffer: scrittura dati oltre il limite del buffer
+> Input non valido:  i programmi operano con input di dati, se questi dannosi possiamo penetrare
+> Race condition:    ordine esecuzione
+> Punti deboli nelle procedure di sicurezza: non introdurre propri algoritmi di sicurezza
+> Controllo degli accessi: molte vulnerabilità di protezione vengono create dall'utilizzo non corretto del controllo degli accessi.
+	
 
+	--- TIPOLOGIE MALWARE ---
+	> Spyware		portare fuori dati
+	> Adware        far comparire pop-up
+	> Ransomware    crittografare dati di sistema
+	> Trojan horse  far entrare qualcosa di malevolo utilizzando qualcosa che sembra benevolo
+	> Worm          rallento il sistema
+	> Virus         pezzi di codice che si attacano ad altri pezzi di codice 
+	> Scareware     per mettere paura
+	> Rootkit       pacchetti già preconfezionati per entrare dentro un computer
+	> Bot 			script che segue delle azioni
+	> Man-in-the-middle(Trudy) intromettersi in mezzo alla comunicazione
+	
+	
+	--- TIPOLOGIA ATTACCHI ---
+	> Phishing  mandare un messaggio che sembra di un'autorità ma che alla fine preleva dati
+	> DoS       interruzione di servizi, più richieste dallo stesso punto
+	> DDoS      creare rete di host(botnet) e attaccare tutti insieme lo stesso servizio
+	
+	> attacco misto
+	
+	
+	
 ---- TECNICHE CRITTOGRAFIA ----
 Testo in chiaro M
 Testo cifrato C
@@ -518,7 +553,7 @@ Principio di Kerckhoffs, la sicurezza è data solo dalla chiave
 > CLASSIFICAZIONE DEI SISTEMI CRITTOGRAFICI <
 
 1. tipologia di operazioni usate per trasformare il testo in chiaro
-- crittografia a sostituzione: ogni elementom del testo in chiaro è trasformato in un altro elementom
+- crittografia a sostituzione: ogni elemento del testo in chiaro è trasformato in un altro elementom
 - crittografia a trasposizione(permutazione): elementi testo in chiaro riorganizzati
 
 2. modo in cui il testo in chiaro è elaborato
@@ -536,13 +571,13 @@ CRITTOGRAFIA A TRASPOSIZIONE ->  cifrario a matrice, M e D decidono chiave segre
 								 ordine secondo la chiave
 
 	-- CRITTOGRAFIA A CHIAVE SIMMETRICA --
-	Si basa sull'utilizzo di una solo chiave, usata dal mittente per cifrare il messaggio e dal destinatario per deficrare, i cifrari a 
+	Si basa sull'utilizzo di una solo chiave, usata dal mittente per cifrare il messaggio e dal destinatario per decifrare, i cifrari a 
 	sostituzione e a trasportazione sono cifrari a chiave simmetrica.
 	
 	
 	-- CRITTOGRAFIA A CHIAVE ASIMMETRICA --
 	Nasce per risolvere il problema della distribuzione sicura delle chiavi, esso utilizza una coppia di chiavi per ogni utente, 
-	una pubblica e una privata, cifro con la pubblica decifro con l'altra. Ovviamente le due chiavi devono essere correlate matematicamente
+	una pubblica e una privata, cifro con la pubblica decifro con l'altra. Ovviamente le due chiavi devono essere correlate matematicamente.
 	
 	
 	>Garantire autenticazione 
