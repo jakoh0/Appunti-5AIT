@@ -6,8 +6,8 @@ ISO/OSI													TCP/IP
 APPLICAZIONE												
 PRESENTAZIONE												APPLICATIVO
 SESSIONE									
-TRASPORTO													TRASPORTO
-RETE														RETE
+TRASPORTO												TRASPORTO
+RETE													RETE
 DATA LINK											-----	HtN
 FISICO
 
@@ -172,7 +172,7 @@ choke packet
 		fase di hello
 		scambio tabelle di routing vicini
 		:) - percorso ottimo
-		:( - convergenza alti, no topologia rete
+		:( - tempi convergenza alti, no topologia rete
 		
 		
 		
@@ -292,6 +292,8 @@ Arp replay - Arp request
 algoritmi  che cooperano tra di loro per il controllo della congestione
 algoritmi che fanno uso di 4 variabili : finestre di congestione
 
+
+> TCP BERKELEY <
 
 -- WC(congestion window): è il numero massimo di B che la rete è in grado di trasmettere
 -- WR(advertised window) ricezione: indica quanti B il destinatario può ricevere(window size del TCP)
@@ -477,7 +479,7 @@ account sia aziendali e personali e non può accedervi l'amministratore però può 
 	back up -> totale
 			-> incrementale (di volta in volta)
 		
-	3 - 2 -1 (su tre posti diversi -copie back up-, 2 due posizioni diverse, 1 offline)
+	3 - 2 -1 (tre copie diverse -copie back up-, 2 due posizioni diverse, 1 offline)
 	
 >HW
 	-> firewall: Sw su host HW 		costo hw + licenza(solitamente annuo)

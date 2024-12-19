@@ -103,6 +103,26 @@ i dati archiviati in un database relazionale. È possibile classificare i comand
 		-Utilizzo da parte di più utenti e controllo della concorrenza
 							-> i dati del database possono essere usati da più utenti, consentendo una visione anche parziale del DB da parte
 								del singolo utente
+								
+								
+								
+								
+> FORME NORMALI NEL MODELLO RELAZIONALE <
+
+Prima forma normale:
+	- tutte le tuple della relazione contengono lo stesso numero di colonne
+	- gli attributi rappresentano informazioni elementare
+	- i valori che compaiono in un attributo sono dello stesso tipo, appartengono allo stesso dominio
+	- ogni tupla è diversa da tutte le altre, cioè non ci possono essere due righe con gli stessi valori nelle colonne
+	- l'ordine con il quale le tuple compaiono nella tabella è irrilevante
+	
+	
+Seconda forma normale: 
+	- eliminare la dipendenza parziale degli attributi
+	
+	
+Terza forma normale: 
+	- eliminare la dipendenza transitiva
 		
 		
 		
