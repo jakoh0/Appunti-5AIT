@@ -109,6 +109,27 @@ i dati archiviati in un database relazionale. È possibile classificare i comand
 								
 > FORME NORMALI NEL MODELLO RELAZIONALE <
 
+
+	--- NORMALIZZAZIONE --
+La normalizzazione è il processo di organizzazione dei dati in un database. Tale processo comprende la creazione di tabelle e la definizione di 
+relazioni tra di esse sulla base di regole progettate in modo da proteggere i dati e rendere il database più flessibile mediante l'eliminazione 
+della ridondanza e delle dipendenze incoerenti.
+La presenza di dati ridondanti comporta uno spreco di spazio su disco nonché problemi di manutenzione. Se è necessario modificare dati presenti in 
+più posizioni, la modifica deve essere effettuata ovunque seguendo le stesse modalità. Ad esempio, è più agevole implementare la modifica relativa 
+all'indirizzo di un cliente se i dati relativi sono memorizzati solo nella tabella Clienti.
+Per la normalizzazione dei database è necessario seguire alcune regole, Ogni regola è chiamata "forma normale". Se viene osservata la prima regola, 
+il database è considerato in "prima forma normale". Se vengono rispettate le prime tre regole, il database è considerato in "terza forma normale". 
+Sebbene siano possibili altri livelli di normalizzazione, la terza forma normale è considerata il livello più alto necessario per la maggior parte 
+delle applicazioni.
+
+Il motivo principale per cui si applica la normalizzazione e quello di evitare le varie anomalie durante il trattamento dei dati nelle 
+varie tabelle:
+Anomalie di inserimento;
+Anomalie di aggiornamento;
+Anomalie di cancellazione.
+
+
+
 Prima forma normale:
 	- tutte le tuple della relazione contengono lo stesso numero di colonne
 	- gli attributi rappresentano informazioni elementare
@@ -123,6 +144,92 @@ Seconda forma normale:
 	
 Terza forma normale: 
 	- eliminare la dipendenza transitiva
+	
+Data una relazione alunni, con attributo chiave CF, e attributi non chiave Nome e Cognome:
+alunni ( CF, Nome, Cognome)
+si possono individuare delle dipendenze funzionali che legano gli attributi non chiave agli attributi chiave.
+Si può affermare che:
+Nome dipende funzionalmente da CF
+Cognome dipende funzionalmente da CF
+e si dice che (leggendola al contrario):
+CF determina Nome | CF -> Nome
+CF determina Cognome | CF -> Cognome
+ma se nella relazione aggiungiamo un ulteriore attributo che rappresenta la prima lettera del Nome:
+alunni ( CF, Nome, Cognome, InizialeNome)
+ci troviamo nella condizione in cui CF determina sia Nome che Cognome (come nell'esempio precedente), ma InizialeNome non dipende da CF, 
+bensì da Nome.
+Si ha quindi che:
+CF -> Nome
+Nome -> InizialeNome
+CF -> Cognome
+oppure
+CF -> Nome -> InizialeNome
+CF -> Cognome
+Si nota che i valori della colonna InizialeNome dipendono funzionalmente da Nome (in modo diretto), ma anche da CF, seppur in modo 
+indiretto (detto transitivo).
+Se ci si vuole attenere strettamente alle regole della normalizzazione, bisogna evitare la presenza di attributi che dipendono dalle chiavi 
+in modo transitivo 
+(è preferibile siano tutte dipendenze dirette).
+	
+	
+	
+CREATE TABLE persona(
+	CF char(4) NOT NULL,
+	nome varchar(50) NOT NULL,
+	cognome varchar(50) NOT NULL,
+	PRIMARY KEY(CF)
+) ENGINE = INNODB;
+
+INSERT INTO persona(CF, nome, cognome)
+VALUES ( 'TFFJ', 'Jacopo','Toffolo'),
+ ( 'BBBB', 'Tommaso','Alberti'),
+ ( 'AAAA', 'T','J');
+ 
+CREATE TABLE auto(
+	NrTelaio char(4) NOT NULL,
+	colore varchar(50) NOT NULL,
+	modello varchar(50) NOT NULL,
+	marca varchar(50) NOT NULL,
+	PRIMARY KEY(NrTelaio)
+) ENGINE = INNODB;
+
+INSERT INTO auto(NrTelaio, colore, modello, marca)
+VALUES ( '4C4C', 'giallo','A4', 'audi'),
+( '4C4B', 'blu','A6', 'punto'),
+( '4C4A', 'giallo','A5', 'mercedes');
+
+
+CREATE TABLE possedere(
+	NrTelaio char(4) NOT NULL,
+	CF char(4) NOT NULL,
+	Dataacq date NOT NULL,
+	PRIMARY KEY(NrTelaio, CF),
+	FOREIGN KEY(CF) REFERENCES persona(CF),
+	FOREIGN KEY(NrTelaio) REFERENCES auto(NrTelaio)
+) ENGINE = INNODB;
+
+INSERT INTO possedere(NrTelaio, CF, Dataacq)
+VALUES ('4C4C', 'TFFJ','2006-06-27');
+
+CREATE TABLE direttore ( 
+	nome varchar(50) NOT NULL,
+	cognome varchar(50) NOT NULL,
+	matricola char(4) NOT NULL,
+	PRIMARY KEY(matricola)
+	);
+	
+CREATE TABLE dipartimento ( 
+	nome varchar(50) NOT NULL,
+	sede varchar(50) NOT NULL,
+	telefono char(10) NOT NULL,
+	matricola char(4) NOT NULL,
+	Datainizio date NOT NULL,
+	PRIMARY KEY(nome),
+	FOREIGN KEY(matricola) REFERENCES direttore(matricola)
+	);
+	
+	
+	
 		
 		
 		
