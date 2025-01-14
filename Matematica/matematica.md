@@ -17,3 +17,51 @@ a e b rappresentano l'intevallo sul quale andremo a calcolare l'area.
 
 
 <h2>TEOREMA DELLA MEDIA</h2>
+
+<p>Sia f(x) una funzione continua in un intervallo [a;b], allora esiste almeno un punto Z nell'intervallo tale che l'integrale definito della funzione sia uguale a f(z)(b-a).</p>
+
+Essendo f continua in [a;b] vale il T. di Weiestrass quindi f ammette max e min assoluti-
+<img src="https://matematicaoltre.altervista.org/wp-content/uploads/2019/05/dimostrazione.png">
+
+<li>L'area blu è equivalente a quella rosssa
+f(z) = 0.5</li>
+
+<p align="center"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtE2QUMeegkPowYfnftqINOYEc1x45wYXjCg&s" ></p>
+
+<h3>Conclusione</h3>
+Se la funzione f(x) è positiva in [a;b], il teorema della media esprime l'equivalenza fra un trapezoide (la cui area è $\int_a^b f(x) \, dx$ e un rettangolo avente base b−a. L'altezza del rettangolo è data dal valore di f in un particolare punto z dell'intervallo. Questo valore si chiama **valore medio**.
+
+<p></p>
+<h2>TEOREMA FONDAMENTALE DEL CALCOLO INTEGRALE</h2>
+Sia f(x) una funzione continua in un intervallo [a;b] e sia x un punto dell'intervallo. Si definisce FUNZIONE INTEGRALE : <p></p><p align="center"><img width="20%"src="https://images.treccani.it/ext-tool/intra/images/0/05/Enciclopedia_della_Matematica_formula_lettc_00300_001.jpg"></p>
+
+<p>Se la funzione è positiva nell'intervallo, la funzione integrale F(x) rappresetna l'area del trapezoide. Tale area dipende dal valore di x.
+<li>F(a) ->  [inegrale con intervallo [a;a] ] = 0</li>
+<li>F(b) -> [integrale con intervallo [a;b] ] = risoluzione dell'integrale</li>
+<p></p>
+<img width="65%" src="https://www.geogebra.org/resource/psmruunp/PQ5FfBUtLeMfdtK7/material-psmruunp.png"></p>
+
+><h3>TEOREMA TORRIICELLI-BARROW</h3>
+
+Sia f(x) una funzione continua in [a;b], allora esiste la derivata della funzione integrale.
+
+
+
+
+## Formula di Leibniz-Newton
+La formula di Leibniz-Newton fornisce un metodo per calcolare un integrale definito utilizzando una primitiva \( F(x) \) della funzione \( f(x) \):
+
+$$
+\int_a^b f(x) \, dx = F(b) - F(a)
+$$
+
+dove \( F'(x) = f(x) \).
+
+
+
+## Esempio di Calcolo
+Consideriamo la funzione \( f(x) = x^2 \) e gli estremi di integrazione \( a = 1 \) e \( b = 2 \). L'integrale definito si calcola come segue:
+
+$$
+\int_1^2 x^2 \, dx = \left[ \frac{x^3}{3} \right]_1^2 = \frac{2^3}{3} - \frac{1^3}{3} = \frac{8}{3} - \frac{1}{3} = \frac{7}{3} \approx 2.3333
+$$
