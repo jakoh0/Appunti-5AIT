@@ -227,7 +227,8 @@ chi non ha chiesto chiusura può inviare info e l'altro solo ack
 trasforma gli indirizzi ip in mac
 se non conosco mac faccio richiesta arp per "chiedere il Mac", siccome info deve passare e andare al lv "sotto"(data link(LLC-MAC))
 
-all'interno della rete no problema se deve uscire indirizzo ip quello del destinatario e indirizzo mc del DG del router, solo i router sanno i mac di tutti
+all'interno della rete no problema se deve uscire indirizzo ip quello del destinatario e indirizzo mc del DG del router, solo i 
+router sanno i mac di tutti
 
 Arp replay - Arp request 
 
@@ -436,8 +437,8 @@ non frammento a livelli inferiori
 	
 	-- SICUREZZA INFORMATICA --
 	Insieme prodotti e servizi + regole organizzative e dei comportamenti indivisuali che proteggono i sistemi informatici di un'azienda
-	Compito proteggere risorse da accessi indesiderati, garantire riservatezza delle info, assicurare il funzionamento e la disponibilità dei 
-	servizi a fronte di determinati imprevisti
+	Compito proteggere risorse da accessi indesiderati, garantire riservatezza delle info, assicurare il funzionamento e la 
+	disponibilità dei servizi a fronte di determinati imprevisti
 	
 	faccio sicurezza quasi al 100% in area piccola
 	
@@ -537,7 +538,9 @@ account sia aziendali e personali e non può accedervi l'amministratore però può 
 Testo in chiaro M
 Testo cifrato C
 
-La crittografia è l'insieme delle procedure ideate allo scopo di nascondere il significato di un messaggio a tutti tranne al leggittimo destinatario
+La crittografia è l'insieme delle procedure ideate allo scopo di nascondere il significato di un messaggio a tutti tranne al
+leggittimo destinatario
+
 -Cifrario: ogni carattere viene trasformato in un altro carattere
 -Codice : ogni carattere rappresenta un'informazione
 
@@ -564,7 +567,8 @@ Principio di Kerckhoffs, la sicurezza è data solo dalla chiave
 
 3. N chiavi usate
 - crittografia a chiave simmetrica: chiave mittente e dest uguali
-- crittografia a chiave asimmmetrica: coppia di chiavi per ogni utente, una pubblica e una privata, cifro con la pubblica decifro con l'altra
+- crittografia a chiave asimmmetrica: coppia di chiavi per ogni utente, una pubblica e una privata, cifro con la pubblica decifro 
+	con l'altra
 
 
 CRITTOGRAFIA A SOSTITUZIONE -> Cifrario di Cesare
@@ -579,7 +583,8 @@ CRITTOGRAFIA A TRASPOSIZIONE ->  cifrario a matrice, M e D decidono chiave segre
 	
 	-- CRITTOGRAFIA A CHIAVE ASIMMETRICA --
 	Nasce per risolvere il problema della distribuzione sicura delle chiavi, esso utilizza una coppia di chiavi per ogni utente, 
-	una pubblica e una privata, cifro con la pubblica decifro con l'altra. Ovviamente le due chiavi devono essere correlate matematicamente.
+	una pubblica e una privata, cifro con la pubblica decifro con l'altra. Ovviamente le due chiavi devono essere correlate 
+	matematicamente.
 	
 	
 	>Garantire autenticazione 
@@ -614,4 +619,69 @@ CRITTOGRAFIA A TRASPOSIZIONE ->  cifrario a matrice, M e D decidono chiave segre
 	
 > CAST modificare lunghezza blocco 64/128bit
 	operazioni di addizione, sottrazione e xor
+	
+	
+	ALGORITMI DI CRITTOGRAFIA SIMMETRICI
+	
+	
+> RSA(curve ellittiche
+	numeri primi scritti su 2048 bit <- non violabile ( a 1024 neanche ma si presume)
+	\_ numeri di circa 600 cifre
+	
+	-> Passaggi <-
+	
+	1) individuo p e q (2 numeri primi)
+		n= p*q(n è parte delle chiavi pub. e private)
+	
+	2) individuo phi(n)  individua tutti i numeri <n e coprimi con nascondere
+		phi(n) = (p-1)(q-1) = Z ( funzione che trova tutti i numeri /)
+		
+	3) e tale che MCD(e,Z)=1 (è coprimo con Z)
+		(e,n) sarà la chiave pubblica
+		
+	4) d tale che d*e modulo(z) = 1
+		d= Kz+1/e
+		(d,n) K privata
+		
+
+	>--- CERTIFICATI ---<
+	HASH -> FIRMA MITTENTE
+			\- no ripudio
+		quando viene scambiata la kpub ho la certezza che sia della persona che la ha inviata
+		ma solitamente certificato digitale -> firma ente certificatore dell'hash della chiave pubblica 
+		
+	---- HTTPS ----
+	protocolli : SSL/TLS
+	
+	questi protocolli permettono al HTTP di fare sicurezza e autenticazione del server ( il client non deve autenticarsi)
+	una volta accertata l'itdentità del server il protocollo deve perseguire i 3 obbiettivi della sicurezza
+	
+	CLASSIFICAZIONE
+		quello ufficiale (defualt) -> TLS (considerato standard)
+		riservatezza -> cifrari simmetrici ( DES, RC4)
+		autenticazione -> firma digitale -> combinazione funzioni hash
+		affidabilità (integrità) -> TLS lo fa, applica una funzione hash viene chiamato h-mac concatena il msg/blocco 
+									alla chiave di sessione, l'integrità
+											HMAC = H(M.Ksessione)
+											
+	> TLS <
+	aopra lv trasport -> sessione (ISO/OSI)
+	
+	USO:
+		sincronizzare, per poter usufruire di questo protocollo egli deve decidere le funzioni, nella TCP/IP è il protocollo
+		del lv.
+		APPLICATIVO
+	
+	> Ha due sottoprotocolli:
+							- TLS record protocol <- più vicino trasporto -> cifrare msg (segretezza)
+							- TLS hand shake protocol -> 3 ulteriori protocolli
+								\- devono concordare i cirfrari da utilizzare, resposabile dello scambio chiave gestioone e gestire 
+									eventuali errori che si possono manifestare
+								
+	3 protocolli: 
+			> Hand shake protocol
+			> Change Cipher Specification
+			> Alert protocol
+		
+	
 	
