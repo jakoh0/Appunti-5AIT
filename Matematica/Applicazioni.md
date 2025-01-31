@@ -65,3 +65,11 @@ La media della funzione \( f(x) = 2x + 4 \) nell'intervallo \( [-1, 2] \) è:
 $$
 f(z) = 5
 $$
+
+
+## Esempio di Calcolo Leibniz-Newton
+Consideriamo la funzione \( f(x) = x^2 \) e gli estremi di integrazione \( a = 1 \) e \( b = 2 \). L'integrale definito si calcola come segue:
+
+$$
+\int_1^2 x^2 \, dx = \left[ \frac{x^3}{3} \right]_1^2 = \frac{2^3}{3} - \frac{1^3}{3} = \frac{8}{3} - \frac{1}{3} = \frac{7}{3} \approx 2.3333
+$$
