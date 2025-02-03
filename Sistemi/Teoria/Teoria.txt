@@ -697,7 +697,43 @@ l'autenticità e la non ripudiabilità.
 
 E' basato su un sistema a chiavi asimmetriche, utilizza un certificato digitale rilasciato da un ente certificatore.
 Siccome non è sempre certa l'identità dell'individuo, c'è l'intervento di un ente di terze parti, i certificatori che verificano:
-
-		
+	> l'identità di un soggetto e la corrispondenza co la titolarità della chiave pubblica e di cifratura
+	> attestano tali informazioni mediante l'emissione del certificato digitale
+	> pubblicano tempestivamente la sospensione del certificato in apposite liste
 	
+(il file firmato digitalmente deve essere certificato dall'ente *prima* dell'invio)
+Attraverso il certificato il destinatario otterrà la kpub sicura che gli permetterà di verificare l'identità
+del mittente e l'integrità del documento.
+
+Attualmente il nostro ordinamento prevede l'utilizzo di 3 formati per produrre file firamti digitalmente:
+	> p7m è il primo formato 
+	> pdf più usato
+	> XML	formato più utilizzato nel settore bancario e sanitario(gestione elettronica dei flussi di dati) usato tra sistemi
+	
+Per leggere e verificare un file firmato in PDF è sufficiente un comune lettore di questo formato, come Acrobat Reader.
+
+	--> Generare la firma digitale <--
+
+	Richiede kit di firma digitale:
+		- smart card
+		- token USB
+		- sw di firma in grado di utilizzare un dispositivo di cui si è dotati
+		
+	Per immettere la firma bisogna inserire la smart card nell'apposito lettore o il token nella porta, l'applicazione
+	di firma richiederà il PIN di protezione, chiederà il certificato da usare e procederà alla generazione della firma.
+	(online sono disponibili anche servizi di verifica della firma digitale)
+	
+	Una volta arrivato a destinazione il destinatario calcolerà a sua volta l'impronta partendo dal testo in chiaro e usando 
+	la stessa funzione hash e poi la ricalcolerà utilizzando, questa volta, la kpub reperita con il certificato.
+	Se uguali significa che il documento è stato firmato dalla persona corretta.
+	
+	
+	- Servizi che si basano sugli enti certificatori:
+		> PEC (Posta elettronica Certificata)
+		> SPID ( Sistema Pubblico di Identità Digitale)
+		> CNS (Carta Nazionale dei Servizi)
+		
+		
+		
+		
 	
