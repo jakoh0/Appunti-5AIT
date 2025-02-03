@@ -679,9 +679,25 @@ CRITTOGRAFIA A TRASPOSIZIONE ->  cifrario a matrice, M e D decidono chiave segre
 									eventuali errori che si possono manifestare
 								
 	3 protocolli: 
-			> Hand shake protocol
-			> Change Cipher Specification
-			> Alert protocol
+			> Hand shake protocol	1
+			> Change Cipher Specification	2
+			> Alert protocol	3
+			
+	1 - Avvia la negoziazione dei protocollo e dei cifrari da usare
+		vengono scelti i protocolli
+		è il client che decide i protocolli(server si adatta)
+		
+		fine negoziazione client genera chiave di sessione e userà kpub del server per cifrarla
+		
+		
+
+	---- FIRMA DIGITALE ----
+La firma digitale è l'equivalente elettronico della firma su carta. è associata al documento elettronico e ne attesta l'integrità, 
+l'autenticità e la non ripudiabilità.
+
+E' basato su un sistema a chiavi asimmetriche, utilizza un certificato digitale rilasciato da un ente certificatore.
+Siccome non è sempre certa l'identità dell'individuo, c'è l'intervento di un ente di terze parti, i certificatori che verificano:
+
 		
 	
 	
