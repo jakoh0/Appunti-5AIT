@@ -665,7 +665,7 @@ CRITTOGRAFIA A TRASPOSIZIONE ->  cifrario a matrice, M e D decidono chiave segre
 											HMAC = H(M.Ksessione)
 											
 	> TLS <
-	opera lv trasport -> sessione (ISO/OSI)
+	sopra lv trasport -> sessione (ISO/OSI)
 	
 	USO:
 		sincronizzare, per poter usufruire di questo protocollo egli deve decidere le funzioni, nella TCP/IP � il protocollo
