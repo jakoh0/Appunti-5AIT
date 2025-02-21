@@ -123,7 +123,7 @@ salti max che possono fare
 codifica il protocollo che ha mandato la SDU
 
 >2 B: CHECK SAM
-controllo errori solo dei Byte dell'intestazione, � da ricalcolare ad ogni salto
+controllo errori solo dei Byte dell'intestazione, è da ricalcolare ad ogni salto
 
 
 4 word:
@@ -183,7 +183,7 @@ choke packet
 		:( - calcolare percorso ottimo
 
 -GERARCHICO:
-	suddividere la rete in pi� aree comunicanti(INTERNET back bone)
+	suddividere la rete in più aree comunicanti(INTERNET back bone)
 	router interni ed esterni
 	EGP 
 	IGP
@@ -195,14 +195,14 @@ choke packet
 
 STOP & WAIT/ FINESTRE SCORREVOLI(GO BACK N - SELECTIVE REPEAT)
 
-io mi adeguo al pi� lento
+io mi adeguo al più lento
 
 1) invia info si ferma e aspetta un ack(acknowledgment) per un quanto di tempo
 
 2){
 	-Go back N:
 		buffer al mittente
-		destinatario pu� solo ricevere un segmento alla volta
+		destinatario può solo ricevere un segmento alla volta
 		
 	-Selective repeat:
 		buffer entrambi
@@ -219,7 +219,7 @@ CHIUSURA CONNESSIONE
 
 >3 vie
 >4 vie
-chi non ha chiesto chiusura pu� inviare info e l'altro solo ack
+chi non ha chiesto chiusura può inviare info e l'altro solo ack
 
 
 
@@ -255,7 +255,7 @@ Arp replay - Arp request
 		SYN  | - apertura e chiusura di una connessione
 		FIN /
 	
-	>window size 16 bit quanto pu� ricevere il destinatario
+	>window size 16 bit quanto può ricevere il destinatario
 	>checksum 16 bit -verifica validit� del segmento 
 	-urger pointer 16 bit - n byte dove deve iniziare a leggere
 	
@@ -296,9 +296,9 @@ algoritmi che fanno uso di 4 variabili : finestre di congestione
 
 > TCP BERKELEY <
 
--- WC(congestion window): � il numero massimo di B che la rete � in grado di trasmettere
--- WR(advertised window) ricezione: indica quanti B il destinatario pu� ricevere(window size del TCP)
--- WT: l'host prender� il num max di B che pu� trasmettere il min tra i due valori delle finestre
+-- WC(congestion window): è il numero massimo di B che la rete è in grado di trasmettere
+-- WR(advertised window) ricezione: indica quanti B il destinatario può ricevere(window size del TCP)
+-- WT: l'host prender� il num max di B che può trasmettere il min tra i due valori delle finestre
 
 BERKELEY quando ho congestione -50% 
 slow start (esponenziale)
@@ -322,15 +322,15 @@ i server DNS sono database distribuiti
 >quando digitiamo qualcosa all'interno del browser il facciamo una richiesta al server DNS 
 	struttura ad albero:
 		-root che contiene tutti i top level domain
-			sotto abbiamo i sottodomini e cos� via
-		>i nomi logici si leggono da dx a sx, es. www � l'ultimo letto<
+			sotto abbiamo i sottodomini e così via
+		>i nomi logici si leggono da dx a sx, es. www è l'ultimo letto<
 		
 	server rinominati dalla A alla M < - struttura primaria, ce ne sono circa 13 distribuiti nel mondo
 	server secondari 300 copie struttura primaria
 	
-	altri server (non autoritari o proprietari) cache, non sempre corretta l'info per� pi� veloci
+	altri server (non autoritari o proprietari) cache, non sempre corretta l'info però più veloci
 	
-richiesta root invia posizione di it e cos� via
+richiesta root invia posizione di it e così via
 
 		------------------- POSTA -------------------
 		
@@ -354,8 +354,8 @@ FTP: attivo(normale) o passivo
 tcp 20 21 qualsiasi tipo di file
 |
 porta 20 download 21 comandi, nella prima apro ad ogni connessione, nella seconda solo 1 volta
-	>attiva, uso porte 20 21 e quelle assegnate sul pc, � il server che apre la connessione verso il client
-	>passiva, uso 21 e altra porta che simula la 20, � il client che apre la connessione
+	>attiva, uso porte 20 21 e quelle assegnate sul pc, è il server che apre la connessione verso il client
+	>passiva, uso 21 e altra porta che simula la 20, è il client che apre la connessione
 	
 quando apro connessione verso server e mi manda un ack mi invia anche la porta da cui mi invier� le info/quella a cui mi devo connettere
 	
@@ -388,7 +388,7 @@ non frammento a livelli inferiori
 	-Unicast globale: tipo IPv4 pubblico
 	-Link-local: Gli indirizzi link-local vengono utilizzati per comunicare con altri dispositivi nello stesso link
 				locale. Con IPv6, il termine link si riferisce a una subnet. Gli indirizzi link-local sono associati a un
-				singolo link. La loro unicit� deve essere confermata solo in quel link, perch� non sono instradabili.
+				singolo link. La loro unicità deve essere confermata solo in quel link, perchè non sono instradabili.
 				In altre parole, i router non inoltrano pacchetti con un indirizzo link-local di origine o di
 				destinazione.
 				
@@ -406,20 +406,20 @@ non frammento a livelli inferiori
 	
 >Generazione unicast globale<
 	-- ASSEGNAZIONE PREFISSO (ID rete) --
-		>SLAAC: configurare rooter, ip globale so quale � il DG ogni 200s il router pubblicizza le info id di rete la SM e DG dentro RA
+		>SLAAC: configurare rooter, ip globale so quale è il DG ogni 200s il router pubblicizza le info id di rete la SM e DG dentro RA
 				il NAS costruisce indirizzo host, se RA non arriva faccio richiesta RS anticipo invio msg <- flooding
 				
 		>+DHCP: RA contiene info in + -> indirizzo server che ha info relative ai DNS
 		
 		>stateful: tipo DHCP, router RA con info DG, IP di rete e indirizzo DHCP
 		
-		UTILIZZATI DI PI� PRIMI 2 MA NON HO PARTE HOST, VA COSTRUITA
+		UTILIZZATI DI PIU' PRIMI 2 MA NON HO PARTE HOST, VA COSTRUITA
 	-- GENERAZIONE HOST --
-		>EUI-64: genera una string che sara la parte di host ma gi� univoca
+		>EUI-64: genera una string che sara la parte di host ma già univoca
 			-arriva /64 mancano 8B -> 6B indirizzo MAC 
 				divido i primi 3 in mezzo metto FFFE e poi ultimi 3 B indirizzo MAC
 			-nei primi 3B al 7^ bit a partire da sx viene applicato il complemento A1
-		>RANDOM+DAD	(DAD verifica univocit� indirizzo stesso)
+		>RANDOM+DAD	(DAD verifica univocità indirizzo stesso)
 			-NOS genera numero di 64 bit, poi invia msg a quell'indirizzo, se qualcuno risponde lo cambia altrimenti lo assegna 
 				alla macchina che lo ha generato
 			
@@ -436,9 +436,9 @@ non frammento a livelli inferiori
 	
 	
 	-- SICUREZZA INFORMATICA --
-	Insieme prodotti e servizi + regole organizzative e dei comportamenti indivisuali che proteggono i sistemi informatici di un'azienda
+	Insieme prodotti e servizi + regole organizzative e dei comportamenti individuali che proteggono i sistemi informatici di un'azienda
 	Compito proteggere risorse da accessi indesiderati, garantire riservatezza delle info, assicurare il funzionamento e la 
-	disponibilit� dei servizi a fronte di determinati imprevisti
+	disponibilità dei servizi a fronte di determinati imprevisti
 	
 	faccio sicurezza quasi al 100% in area piccola
 	
@@ -463,12 +463,12 @@ non frammento a livelli inferiori
 	
 	
 	
- ----- SICUREZZA A 360� -----
+ ----- SICUREZZA A 360° -----
  
 dopo valutazione(che deve essere presente in azienda)
 
-amministratore pu� andare in account condivisi: 
-account sia aziendali e personali e non pu� accedervi l'amministratore per� pu� essere analizzato da sw(antivirus)
+amministratore può andare in account condivisi: 
+account sia aziendali e personali e non può accedervi l'amministratore però può essere analizzato da sw(antivirus)
 
 
 --> INTERVENTI <--
@@ -484,8 +484,8 @@ account sia aziendali e personali e non pu� accedervi l'amministratore per� 
 	
 >HW
 	-> firewall: Sw su host HW 		costo hw + licenza(solitamente annuo)
-		Il firewall � un muro o una partizione progettata per impedire la diffusione degli incendi da un
-		punto all'altro degli edifici. Nelle reti di computer, il firewall � progettato per controllare o filtrare le
+		Il firewall è un muro o una partizione progettata per impedire la diffusione degli incendi da un
+		punto all'altro degli edifici. Nelle reti di computer, il firewall è progettato per controllare o filtrare le
 		comunicazioni autorizzate in ingresso e in uscita dai dispositivi o dalle reti, come mostrato nella
 		figura.
 	
@@ -495,7 +495,7 @@ account sia aziendali e personali e non pu� accedervi l'amministratore per� 
 	
 	divide logicamente in Vlan, tante vlan in base alle porte minimo 3, divisione minima per fare sicurezza
 	indice di privilegio vlan 1 0, vlan 2 100, vlan 3 50 viaggiare da superiore a minore, possono entrare ma elaborate dal firewall
-	DMZ  a lan non pu� ammenoch� non creo applicazione da me messa nel sw
+	DMZ  a lan non può ammenochè non creo applicazione da me messa nel sw
 	
 	altri interventi hw- duplicazione dei server importanti, utilizzo macchina virtuale
 	
@@ -520,14 +520,14 @@ account sia aziendali e personali e non pu� accedervi l'amministratore per� 
 	> Worm          rallento il sistema
 	> Virus         pezzi di codice che si attacano ad altri pezzi di codice 
 	> Scareware     per mettere paura
-	> Rootkit       pacchetti gi� preconfezionati per entrare dentro un computer
+	> Rootkit       pacchetti già preconfezionati per entrare dentro un computer
 	> Bot 			script che segue delle azioni
 	> Man-in-the-middle(Trudy) intromettersi in mezzo alla comunicazione
 	
 	
 	--- TIPOLOGIA ATTACCHI ---
 	> Phishing  mandare un messaggio che sembra di un'autorit� ma che alla fine preleva dati
-	> DoS       interruzione di servizi, pi� richieste dallo stesso punto
+	> DoS       interruzione di servizi, più richieste dallo stesso punto
 	> DDoS      creare rete di host(botnet) e attaccare tutti insieme lo stesso servizio
 	
 	> attacco misto
@@ -538,7 +538,7 @@ account sia aziendali e personali e non pu� accedervi l'amministratore per� 
 Testo in chiaro M
 Testo cifrato C
 
-La crittografia � l'insieme delle procedure ideate allo scopo di nascondere il significato di un messaggio a tutti tranne al
+La crittografia è l'insieme delle procedure ideate allo scopo di nascondere il significato di un messaggio a tutti tranne al
 leggittimo destinatario
 
 -Cifrario: ogni carattere viene trasformato in un altro carattere
@@ -553,15 +553,15 @@ C = f(M,K) - testo in chiaro messo in un algoritmo di cifratura + una chiave = t
 CODIFICA = metodo di scrittura sostituire alcune parole con altre
 CIFRATURA =  sostituisco le lettere
 
-Principio di Kerckhoffs, la sicurezza � data solo dalla chiave
+Principio di Kerckhoffs, la sicurezza è data solo dalla chiave
 
 > CLASSIFICAZIONE DEI SISTEMI CRITTOGRAFICI <
 
 1. tipologia di operazioni usate per trasformare il testo in chiaro
-- crittografia a sostituzione: ogni elemento del testo in chiaro � trasformato in un altro elementom
+- crittografia a sostituzione: ogni elemento del testo in chiaro è trasformato in un altro elementom
 - crittografia a trasposizione(permutazione): elementi testo in chiaro riorganizzati
 
-2. modo in cui il testo in chiaro � elaborato
+2. modo in cui il testo in chiaro è elaborato
 - crittografia a blocchi: testo suddiviso in blocchi di N bit e ogni blocco viene elaborato in modo indipendente
 - crittografia a flusso: elabora N bit variabile senza lunghezza prefissa
 
@@ -589,7 +589,7 @@ CRITTOGRAFIA A TRASPOSIZIONE ->  cifrario a matrice, M e D decidono chiave segre
 	
 	>Garantire autenticazione 
 	>Garantire sicurezza
-	>Garantire Integrit�
+	>Garantire Integrità
 	
 	Per le chiavi distribuisco chiave pubblica attraverso enti certificati, le chiavi vengono "calcolate" prima della connessione
 	
@@ -607,7 +607,7 @@ CRITTOGRAFIA A TRASPOSIZIONE ->  cifrario a matrice, M e D decidono chiave segre
 
 > Triplo DES
 	applica 3 volte il cifrario DES con 3 K diverse
-	pu� essere applicato anche con solo 2 chiavi diverse su 3
+	può essere applicato anche con solo 2 chiavi diverse su 3
 	
 > IDEA sempre blocchi di 64b chiavi a 128bit
 	utilizzato per le transazioni bancarie
@@ -631,13 +631,13 @@ CRITTOGRAFIA A TRASPOSIZIONE ->  cifrario a matrice, M e D decidono chiave segre
 	-> Passaggi <-
 	
 	1) individuo p e q (2 numeri primi)
-		n= p*q(n � parte delle chiavi pub. e private)
+		n= p*q(n è parte delle chiavi pub. e private)
 	
 	2) individuo phi(n)  individua tutti i numeri <n e coprimi con nascondere
 		phi(n) = (p-1)(q-1) = Z ( funzione che trova tutti i numeri /)
 		
-	3) e tale che MCD(e,Z)=1 (� coprimo con Z)
-		(e,n) sar� la chiave pubblica
+	3) e tale che MCD(e,Z)=1 (è coprimo con Z)
+		(e,n) sarà la chiave pubblica
 		
 	4) d tale che d*e modulo(z) = 1
 		d= Kz+1/e
@@ -654,26 +654,26 @@ CRITTOGRAFIA A TRASPOSIZIONE ->  cifrario a matrice, M e D decidono chiave segre
 	protocolli : SSL/TLS
 	
 	questi protocolli permettono al HTTP di fare sicurezza e autenticazione del server ( il client non deve autenticarsi)
-	una volta accertata l'itdentit� del server il protocollo deve perseguire i 3 obbiettivi della sicurezza
+	una volta accertata l'itdentità del server il protocollo deve perseguire i 3 obbiettivi della sicurezza
 	
 	CLASSIFICAZIONE
 		quello ufficiale (defualt) -> TLS (considerato standard)
 		riservatezza -> cifrari simmetrici ( DES, RC4)
 		autenticazione -> firma digitale -> combinazione funzioni hash
-		affidabilit� (integrit�) -> TLS lo fa, applica una funzione hash viene chiamato h-mac concatena il msg/blocco 
-									alla chiave di sessione, l'integrit�
+		affidabilità (integrità) -> TLS lo fa, applica una funzione hash viene chiamato h-mac concatena il msg/blocco 
+									alla chiave di sessione, l'integrità
 											HMAC = H(M.Ksessione)
 											
 	> TLS <
 	sopra lv trasport -> sessione (ISO/OSI)
 	
 	USO:
-		sincronizzare, per poter usufruire di questo protocollo egli deve decidere le funzioni, nella TCP/IP � il protocollo
+		sincronizzare, per poter usufruire di questo protocollo egli deve decidere le funzioni, nella TCP/IP è il protocollo
 		del lv.
 		APPLICATIVO
 	
 	> Ha due sottoprotocolli:
-							- TLS record protocol <- pi� vicino trasporto -> cifrare msg (segretezza)
+							- TLS record protocol <- più vicino trasporto -> cifrare msg (segretezza)
 							- TLS hand shake protocol -> 3 ulteriori protocolli
 								\- devono concordare i cirfrari da utilizzare, resposabile dello scambio chiave gestioone e gestire 
 									eventuali errori che si possono manifestare
@@ -685,52 +685,52 @@ CRITTOGRAFIA A TRASPOSIZIONE ->  cifrario a matrice, M e D decidono chiave segre
 			
 	1 - Avvia la negoziazione dei protocollo e dei cifrari da usare
 		vengono scelti i protocolli
-		� il client che decide i protocolli(server si adatta)
+		è il client che decide i protocolli(server si adatta)
 		
 		fine negoziazione client genera chiave di sessione e user� kpub del server per cifrarla
 		
 		
 
 	---- FIRMA DIGITALE ----
-La firma digitale � l'equivalente elettronico della firma su carta. � associata al documento elettronico e ne attesta l'integrit�, 
-l'autenticit� e la non ripudiabilit�.
+La firma digitale è l'equivalente elettronico della firma su carta. è associata al documento elettronico e ne attesta l'integrità, 
+l'autenticità e la non ripudiabilità.
 
 E' basato su un sistema a chiavi asimmetriche, utilizza un certificato digitale rilasciato da un ente certificatore.
-Siccome non � sempre certa l'identit� dell'individuo, c'� l'intervento di un ente di terze parti, i certificatori che verificano:
-	> l'identit� di un soggetto e la corrispondenza co la titolarit� della chiave pubblica e di cifratura
+Siccome non è sempre certa l'identità dell'individuo, c'è l'intervento di un ente di terze parti, i certificatori che verificano:
+	> l'identità di un soggetto e la corrispondenza con la titolarità della chiave pubblica e di cifratura
 	> attestano tali informazioni mediante l'emissione del certificato digitale
 	> pubblicano tempestivamente la sospensione del certificato in apposite liste
 	
 (il file firmato digitalmente deve essere certificato dall'ente *prima* dell'invio)
-Attraverso il certificato il destinatario otterr� la kpub sicura che gli permetter� di verificare l'identit�
-del mittente e l'integrit� del documento.
+Attraverso il certificato il destinatario otterrà la kpub sicura che gli permetterà di verificare l'identit�
+del mittente e l'integrità del documento.
 
 Attualmente il nostro ordinamento prevede l'utilizzo di 3 formati per produrre file firamti digitalmente:
-	> p7m � il primo formato 
-	> pdf pi� usato
-	> XML	formato pi� utilizzato nel settore bancario e sanitario(gestione elettronica dei flussi di dati) usato tra sistemi
+	> p7m è il primo formato 
+	> pdf più usato
+	> XML	formato più utilizzato nel settore bancario e sanitario(gestione elettronica dei flussi di dati) usato tra sistemi
 	
-Per leggere e verificare un file firmato in PDF � sufficiente un comune lettore di questo formato, come Acrobat Reader.
+Per leggere e verificare un file firmato in PDF è sufficiente un comune lettore di questo formato, come Acrobat Reader.
 
 	--> Generare la firma digitale <--
 
 	Richiede kit di firma digitale:
 		- smart card
 		- token USB
-		- sw di firma in grado di utilizzare un dispositivo di cui si � dotati
+		- sw di firma in grado di utilizzare un dispositivo di cui si è dotati
 		
 	Per immettere la firma bisogna inserire la smart card nell'apposito lettore o il token nella porta, l'applicazione
-	di firma richieder� il PIN di protezione, chieder� il certificato da usare e proceder� alla generazione della firma.
+	di firma richiederà il PIN di protezione, chiederà il certificato da usare e procederà alla generazione della firma.
 	(online sono disponibili anche servizi di verifica della firma digitale)
 	
-	Una volta arrivato a destinazione il destinatario calcoler� a sua volta l'impronta partendo dal testo in chiaro e usando 
-	la stessa funzione hash e poi la ricalcoler� utilizzando, questa volta, la kpub reperita con il certificato.
-	Se uguali significa che il documento � stato firmato dalla persona corretta.
+	Una volta arrivato a destinazione il destinatario calcolerà a sua volta l'impronta partendo dal testo in chiaro e usando 
+	la stessa funzione hash e poi la ricalcolerà utilizzando, questa volta, la kpub reperita con il certificato.
+	Se uguali significa che il documento è stato firmato dalla persona corretta.
 	
 	
 	- Servizi che si basano sugli enti certificatori:
 		> PEC (Posta elettronica Certificata)
-		> SPID ( Sistema Pubblico di Identit� Digitale)
+		> SPID ( Sistema Pubblico di Identità Digitale)
 		> CNS (Carta Nazionale dei Servizi)
 		
 		
