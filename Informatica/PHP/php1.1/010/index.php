@@ -1,0 +1,17 @@
+<!doctype HTML>
+<html>
+	<head>
+		<title>Esercizio 010 - index</title>
+	</head>
+	<body>
+		<p><h2>Bowling</h2></p>
+		<br>
+		<li><a href="010_register.php">Registrazione</a></li>	
+		<li><a href="login.php">Login</a></li>	
+		<li><a href="">Verifica utente</a></li>	
+	</body>
+</html>
+
+<?php
+	include("../000/000_NavigationMenu.php");
+?>

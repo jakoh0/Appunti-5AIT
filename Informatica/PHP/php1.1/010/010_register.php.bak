@@ -1,0 +1,50 @@
+<?php
+	if(!isset($_POST["inviocredenziali"])){
+?>
+<!doctype html>
+<html>
+	<head>
+		<title>Registrazione</title>
+	</head>
+	
+	<body>
+		<h2>Register</h2>
+		<form method="post" action="">
+			<p>Inserisci credenziali</p>
+			<input type="text" name="utente" placeholder="utente">
+			<input type="text" name="pass" placeholder="password">
+			<input type="submit" name="inviocredenziali" placeholder="Invia">
+			
+		</form>
+	</body>
+</html>
+<?php
+	}else{
+		if(isset($_POST["utente"]) && trim($_POST["utente"])==" "){
+			
+			die("Inserisci qualcosa");
+		}
+		if(isset($_POST["pass"]) && trim($_POST["pass"])==" "){
+			
+			die("Ciao");
+		}
+		$utente = $_POST["utente"];
+		$password = $_POST["pass"];
+		
+		$conn = mysqli_connect("localhost","root","","5ait_bowling")
+		or die ("ERROR: Cannot connect");
+		$sql = "SELECT ID FROM utenti WHERE user = '$utente'";
+		$result = mysqli_query($conn,$sql);
+		if(mysqli_num_rows($result)>0){
+			die("utente già presente");
+		}
+		else{
+			$pass = md5($password);
+			$sql = "INSERT INTO utenti (user,password) VALUES ('$utente','$pass')";
+			$result = mysqli_query($conn,$sql);
+			echo "Registrato correttamente";
+		}
+		
+		
+	}
+?>

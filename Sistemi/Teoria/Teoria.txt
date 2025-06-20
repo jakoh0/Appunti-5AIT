@@ -734,6 +734,74 @@ Per leggere e verificare un file firmato in PDF è sufficiente un comune lettore
 		> CNS (Carta Nazionale dei Servizi)
 		
 		
+	---- DNS SEC ----	
+	
+	
+	Stessa struttura dei dns normali, ma ad ogni livello viene data una chiave pubblica e privata,
+	quella della root è la più lunga per questioni si sicurezza. Si richiede la chiave pubblica al livello soprastante
+	a quello inferiore con la sua chiave privata autentica.
+	
+	Questo per evitare attacchi di tipo:
+	-poisoning	sostituzione campo/record nei dns non autorevoli
+	-spuffing	sostituire campo/record
+	
+	La chiave del root è suddivisa in 5 parti e vengono suddivise a 7 persone( i 7 Templari di Internet)
+	
+	
+	--- VPN ---
+	
+	Virtual Private Network
+	Serve per rendere un host esterno interno alla rete lan
+	
+	Vantaggi:								Svantaggi:
+	-sicurezza								-costi installazione
+	-estendere la lan						-tempi configurazione lunghi
+	-congestione							-manca scalabilità
+	-prestazioni(non sicuro)				-se guasto rischio blocco
+	
+	Tipologia:
+	-Accesso remoto:
+		un utente si collega alla rete aziendale, il server che devo avere dentro l'azienda è
+		un server NAS (chiamato NAZZ), differente da quello per i backup. Per autenticare la personao o
+		si utilizza lo stesso server oppure un server RADIUS AAA. Poi bisogna utilizzare anche un firewall e dalla
+		parte del client un software specifico.
+		
+		
+	-Site to site:
+		Browser connessi, provider ex. ikea che si collega con le aziende affiliate per prenotare pezzi
+		
+		2 tipi:
+			-Intranet -> filiali connesse tutte tra di loro, rete aziendale interna
+			-Extranet -> altri, quindi Internet, connessi con me
+			
+	
+	EFFETTO TUNNELING:
+		metodo utilizzato per fare sicurezza
+		-> trasporto	utilizzati solo software
+		-> tunnel/tunneling 	utilizzati anche dispositivi di commutazione
+		
+		Protocolli usati:
+		IPsec IGP SSH GRE L2TP PPTP SSL/TLS
+		
+		Più utilizzato IPsec:
+			-AH
+				->trasporto
+				
+				->tunnel
+			-ESP
+			
+				->trasporto
+				
+				->tunnel
+				
+			-IKE
+			
+				->trasporto
+				
+				->tunnel
+		// finire di spiegare
+		
+	
 		
 		
 	

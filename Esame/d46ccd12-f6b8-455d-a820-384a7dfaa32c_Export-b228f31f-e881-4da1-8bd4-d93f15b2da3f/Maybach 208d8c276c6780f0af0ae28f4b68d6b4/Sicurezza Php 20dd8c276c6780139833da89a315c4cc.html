@@ -1,0 +1,781 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Sicurezza Php </title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: undefined; }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-translucentGray { background-color: undefined; }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="20dd8c27-6c67-8013-9833-da89a315c4cc" class="page sans"><header><h1 class="page-title">Sicurezza Php </h1><p class="page-description"></p></header><div class="page-body"><hr id="20dd8c27-6c67-803b-a068-dbd00f612cca"/><h2 id="20dd8c27-6c67-80d6-88ee-d8ceac870d41" class="">1. Prevenire l’SQL Injection con MySQLi Prepared Statements</h2><h3 id="20dd8c27-6c67-809f-9eaa-e2cb2ec7257b" class="">Cos’è e perché è pericolosa</h3><p id="20dd8c27-6c67-80b3-99af-e2cf528c0223" class="">L’<strong>SQL Injection</strong> è una tecnica di attacco in cui un malintenzionato inietta frammenti di SQL all’interno di input non filtrati per modificare la semantica delle query. Gli effetti possono variare dal semplice furto di dati alla cancellazione di interi archivi.</p><h3 id="20dd8c27-6c67-8003-be10-e8b601c6e7cf" class="">Principio dei Prepared Statements</h3><ol type="1" id="20dd8c27-6c67-8032-afe3-e23a610498a5" class="numbered-list" start="1"><li><strong>Preparazione</strong>: la query “a scheletro” viene inviata al database con placeholder (<code>?</code>).</li></ol><ol type="1" id="20dd8c27-6c67-80c5-a475-d229abc5909c" class="numbered-list" start="2"><li><strong>Binding</strong>: i valori utente vengono associati separatamente ai placeholder, e MySQLi li considera <strong>solo</strong> come dati.</li></ol><h3 id="20dd8c27-6c67-80be-8d5a-e65511c2b295" class="">Buone pratiche</h3><ul id="20dd8c27-6c67-80fb-830b-c3325c1dbeee" class="bulleted-list"><li style="list-style-type:disc"><strong>Tipi di dato</strong>: usa <code>bind_param()</code> con il tipo corretto (<code>i</code>, <code>d</code>, <code>s</code>, <code>b</code>).</li></ul><ul id="20dd8c27-6c67-80d0-bb27-f08efa29c16f" class="bulleted-list"><li style="list-style-type:disc"><strong>Error handling</strong>: dopo <code>prepare()</code> o <code>execute()</code>, controlla sempre <code>$mysqli-&gt;error</code> o <code>$stmt-&gt;error</code>.</li></ul><ul id="20dd8c27-6c67-8010-8415-c6914cf0848f" class="bulleted-list"><li style="list-style-type:disc"><strong>Chiusura</strong>: chiudi sempre lo statement e la connessione.</li></ul><h3 id="20dd8c27-6c67-800a-9353-fcbaf5549e2b" class="">Esempi di codice</h3><p id="20dd8c27-6c67-80c8-8044-c885b10ae3a1" class=""><strong>SELECT</strong></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="20dd8c27-6c67-8032-a964-f505a4ab0f1a" class="code"><code class="language-PHP" style="white-space:pre-wrap;word-break:break-all">&lt;?php
+$mysqli = new mysqli(&#x27;localhost&#x27;, &#x27;dbuser&#x27;, &#x27;dbpass&#x27;, &#x27;esame&#x27;);
+if ($mysqli-&gt;connect_errno) {
+    die(&quot;Connessione fallita: &quot; . $mysqli-&gt;connect_error);
+}
+
+$query = &quot;SELECT id, nome, email FROM utenti WHERE email = ?&quot;;
+if ($stmt = $mysqli-&gt;prepare($query)) {
+    $stmt-&gt;bind_param(&#x27;s&#x27;, $emailInput);
+    $emailInput = $_POST[&#x27;email&#x27;];
+
+    $stmt-&gt;execute();
+    $stmt-&gt;bind_result($id, $nome, $emailTrovata);
+
+    while ($stmt-&gt;fetch()) {
+        echo &quot;Utente #{$id}: {$nome} – {$emailTrovata}&lt;br&gt;&quot;;
+    }
+    $stmt-&gt;close();
+}
+
+$mysqli-&gt;close();
+?&gt;
+</code></pre><p id="20dd8c27-6c67-806e-9a53-f0deb468120f" class=""><strong>INSERT</strong></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="20dd8c27-6c67-80d5-bd0e-dd9a0fb7c908" class="code"><code class="language-PHP" style="white-space:pre-wrap;word-break:break-all">&lt;?php
+$mysqli = new mysqli(&#x27;localhost&#x27;, &#x27;dbuser&#x27;, &#x27;dbpass&#x27;, &#x27;esame&#x27;);
+
+$query = &quot;INSERT INTO prodotti (nome, prezzo) VALUES (?, ?)&quot;;
+if ($stmt = $mysqli-&gt;prepare($query)) {
+    $stmt-&gt;bind_param(&#x27;sd&#x27;, $nomeProdotto, $prezzoProdotto);
+
+    $nomeProdotto   = $_POST[&#x27;nome&#x27;];
+    $prezzoProdotto = (float) $_POST[&#x27;prezzo&#x27;];
+
+    $stmt-&gt;execute();
+
+    if ($stmt-&gt;affected_rows &gt; 0) {
+        echo &quot;Inserimento riuscito, ID nuovo prodotto: &quot; . $stmt-&gt;insert_id;
+    }
+    $stmt-&gt;close();
+}
+
+$mysqli-&gt;close();
+?&gt;
+</code></pre><hr id="20dd8c27-6c67-8015-b946-d0fe00ce32d2"/><h2 id="20dd8c27-6c67-80c7-9e62-c85c6de46486" class="">2. Difendersi dal Cross-Site Scripting (XSS)</h2><h3 id="20dd8c27-6c67-80c1-b6e3-cfb111a3efa1" class="">Comprendere la minaccia</h3><p id="20dd8c27-6c67-80b4-9ca5-ff1fa0cdbfd5" class="">Il <strong>Cross-Site Scripting</strong> si verifica quando un’applicazione ripropone contenuto HTML/JS arbitrario senza sanificarlo. Iniettando script, un attaccante può rubare cookie, token o manipolare il DOM per ingannare l’utente.</p><h3 id="20dd8c27-6c67-8035-9934-fbf346e3186b" class="">Sanificazione con <code>htmlspecialchars()</code></h3><p id="20dd8c27-6c67-804a-8df6-e807b72b5c94" class="">Alla stampa in HTML, ogni carattere “pericoloso” va trasformato nella sua entità:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="20dd8c27-6c67-80a9-85f8-fd41f29d75e2" class="code"><code class="language-PHP" style="white-space:pre-wrap;word-break:break-all">&lt;?php
+$commentoGreedy = $_POST[&#x27;commento&#x27;] ?? &#x27;&#x27;;
+$commentoSicuro = htmlspecialchars($commentoGreedy, ENT_QUOTES, &#x27;UTF-8&#x27;);
+echo &quot;&lt;p&gt;{$commentoSicuro}&lt;/p&gt;&quot;;
+?&gt;
+</code></pre><ul id="20dd8c27-6c67-8071-83a5-c420642cec72" class="bulleted-list"><li style="list-style-type:disc"><strong>ENT_QUOTES</strong>: converte sia <code>&quot;</code> sia <code>&#x27;</code>.</li></ul><ul id="20dd8c27-6c67-80d0-9a76-e52096100ee2" class="bulleted-list"><li style="list-style-type:disc"><strong>UTF-8</strong>: evita bypass con multi-byte.</li></ul><h3 id="20dd8c27-6c67-8063-9ce9-e722dbc76315" class="">Strategie aggiuntive</h3><ul id="20dd8c27-6c67-806d-af22-c3f74b2e7c57" class="bulleted-list"><li style="list-style-type:disc"><strong>CSP</strong>: imposta l’intestazione <code>Content-Security-Policy</code>.</li></ul><ul id="20dd8c27-6c67-80ef-84e8-f8410582ac68" class="bulleted-list"><li style="list-style-type:disc"><strong>HttpOnly Cookies</strong>: blocca l’accesso JavaScript ai cookie di sessione.</li></ul><ul id="20dd8c27-6c67-80c4-b93a-d8c079363da5" class="bulleted-list"><li style="list-style-type:disc"><strong>Validazione server-side</strong>: verifica lunghezza, pattern, tipo di dato prima del salvataggio.</li></ul><hr id="20dd8c27-6c67-8027-ae73-c34034ec9c28"/><h2 id="20dd8c27-6c67-8098-9e0b-f6e171935607" class="">3. Hashing e Gestione Sicura delle Password</h2><h3 id="20dd8c27-6c67-8007-bbd4-d84a055df7d7" class="">Criticità degli hash “veloci”</h3><p id="20dd8c27-6c67-80aa-a618-fd3df7541e80" class="">Algoritmi come MD5 o SHA1 sono vulnerabili a tabelle rainbow e attacchi brute-force paralleli su GPU. Serve un metodo con salt e work factor adattabile.</p><h3 id="20dd8c27-6c67-8014-a22a-eed112d36156" class="">Funzioni PHP integrate</h3><ul id="20dd8c27-6c67-8097-831c-e2d00eb4dee6" class="bulleted-list"><li style="list-style-type:disc"><code><strong>password_hash($pwd, PASSWORD_DEFAULT)</strong></code>: genera hash con salt automatico usando bcrypt o argon2.</li></ul><ul id="20dd8c27-6c67-80ec-8133-cc551c037173" class="bulleted-list"><li style="list-style-type:disc"><code><strong>password_verify($pwd, $hash)</strong></code>: confronta in modo sicuro.</li></ul><h3 id="20dd8c27-6c67-8020-8fae-db95c6c7abf1" class="">Migrazione e rehashing</h3><p id="20dd8c27-6c67-80fa-b277-d92c1b9eebf7" class="">Usa <code>password_needs_rehash($hash, PASSWORD_DEFAULT)</code> per verificare se l’hash è obsoleto e rigenerarlo al login.</p><h3 id="20dd8c27-6c67-8048-9765-c3c5e27122e0" class="">Esempi di codice</h3><p id="20dd8c27-6c67-8086-ac86-fb0fa51d6dcc" class=""><strong>Registrazione</strong></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="20dd8c27-6c67-8047-bfe1-ead5a80c4e9f" class="code"><code class="language-PHP" style="white-space:pre-wrap;word-break:break-all">&lt;?php
+$mysqli = new mysqli(&#x27;localhost&#x27;, &#x27;dbuser&#x27;, &#x27;dbpass&#x27;, &#x27;esame&#x27;);
+
+$passwordPlain = $_POST[&#x27;password&#x27;];
+$hashPassword  = password_hash($passwordPlain, PASSWORD_DEFAULT);
+
+$query = &quot;INSERT INTO utenti (username, pass_hash) VALUES (?, ?)&quot;;
+if ($stmt = $mysqli-&gt;prepare($query)) {
+    $stmt-&gt;bind_param(&#x27;ss&#x27;, $usernameInput, $hashPassword);
+    $usernameInput = $_POST[&#x27;username&#x27;];
+    $stmt-&gt;execute();
+    echo &quot;Registrazione avvenuta con successo.&quot;;
+    $stmt-&gt;close();
+}
+
+$mysqli-&gt;close();
+?&gt;
+</code></pre><p id="20dd8c27-6c67-80b1-8239-fe8acb64733f" class=""><strong>Login &amp; Verifica</strong></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="20dd8c27-6c67-80bf-919f-f770ba53a3aa" class="code"><code class="language-PHP" style="white-space:pre-wrap;word-break:break-all">&lt;?php
+$mysqli = new mysqli(&#x27;localhost&#x27;, &#x27;dbuser&#x27;, &#x27;dbpass&#x27;, &#x27;esame&#x27;);
+
+$query = &quot;SELECT pass_hash FROM utenti WHERE username = ?&quot;;
+if ($stmt = $mysqli-&gt;prepare($query)) {
+    $stmt-&gt;bind_param(&#x27;s&#x27;, $usernameInput);
+    $usernameInput = $_POST[&#x27;username&#x27;];
+
+    $stmt-&gt;execute();
+    $stmt-&gt;bind_result($hashMemorizzato);
+
+    if ($stmt-&gt;fetch()) {
+        if (password_verify($_POST[&#x27;password&#x27;], $hashMemorizzato)) {
+            // Rehash se necessario
+            if (password_needs_rehash($hashMemorizzato, PASSWORD_DEFAULT)) {
+                $newHash = password_hash($_POST[&#x27;password&#x27;], PASSWORD_DEFAULT);
+                $update  = $mysqli-&gt;prepare(&quot;UPDATE utenti SET pass_hash = ? WHERE username = ?&quot;);
+                $update-&gt;bind_param(&#x27;ss&#x27;, $newHash, $usernameInput);
+                $update-&gt;execute();
+                $update-&gt;close();
+            }
+            echo &quot;Accesso consentito. Benvenuto, {$usernameInput}!&quot;;
+        } else {
+            echo &quot;Password errata.&quot;;
+        }
+    } else {
+        echo &quot;Utente non trovato.&quot;;
+    }
+    $stmt-&gt;close();
+}
+
+$mysqli-&gt;close();
+?&gt;
+</code></pre><hr id="20dd8c27-6c67-80f5-bb1d-d705d7f526d0"/><h3 id="20dd8c27-6c67-8098-96e1-c2e861dd6bf1" class="">Roadmap di Implementazione</h3><ol type="1" id="20dd8c27-6c67-80f8-9b5e-e6f10bf9966b" class="numbered-list" start="1"><li><strong>Audit del codice</strong>: individua punti di accesso al DB e ogni echo di dati utente.</li></ol><ol type="1" id="20dd8c27-6c67-80f4-927f-d2fd48b45e89" class="numbered-list" start="2"><li><strong>Refactoring</strong>: applica i pattern sopra (Prepared Statements, <code>htmlspecialchars()</code>, <code>password_hash()</code>/<code>verify()</code>).</li></ol><ol type="1" id="20dd8c27-6c67-8092-9918-f24da37a0dbb" class="numbered-list" start="3"><li><strong>Test di sicurezza</strong>: usa tool automatici (SQLMap, OWASP ZAP) e test manuali.</li></ol><ol type="1" id="20dd8c27-6c67-806e-9151-e0da7e17fb48" class="numbered-list" start="4"><li><strong>Monitoraggio</strong>: logga tentativi di attacco, ma senza esporre dati sensibili.</li></ol><p id="20dd8c27-6c67-80bf-8e55-c3d403ee063a" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

@@ -1,0 +1,812 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Maybach</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: undefined; }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-translucentGray { background-color: undefined; }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="208d8c27-6c67-80f0-af0a-e28f4b68d6b4" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🚔</span></div><h1 class="page-title">Maybach</h1><p class="page-description"></p></header><div class="page-body"><p id="20cd8c27-6c67-80d7-bcd1-f69b24b6ce35" class="">
+</p><hr id="20cd8c27-6c67-8082-b0a5-f2bf731d281c"/><h1 id="20cd8c27-6c67-809f-96a9-dd0a20b58dae" class="">🏛️ Super Appunti Esame di Stato - Informatica ITIS (Versione Completa)</h1><p id="20cd8c27-6c67-80aa-a89e-e2031357a235" class=""><strong>Materiali di Riferimento:</strong></p><ul id="20cd8c27-6c67-8048-8600-d2de0303c3e2" class="bulleted-list"><li style="list-style-type:disc">Libro di testo (specificare quale, se possibile)</li></ul><ul id="20cd8c27-6c67-80e6-bf51-fc67a888eb52" class="bulleted-list"><li style="list-style-type:disc">Atlas, di Lorenzi e Cavalli, SYNTAX-Database e linguaggio SQL</li></ul><ul id="20cd8c27-6c67-80d3-95f9-c6bb0ea8e565" class="bulleted-list"><li style="list-style-type:disc">Materiale fornito dalla docente</li></ul><hr id="20cd8c27-6c67-80a5-b75a-d2f6d47ee6da"/><h2 id="20cd8c27-6c67-800b-9b70-f54fc193ce4b" class="">Database e Progettazione</h2><h3 id="20cd8c27-6c67-803a-b4aa-c4b9c62135d2" class="">Toggle: 1. Progettazione Database 📐</h3><ul id="20cd8c27-6c67-80aa-a75f-de830f5bd1ea" class="bulleted-list"><li style="list-style-type:disc"><strong>Obiettivo:</strong> Creare un modello dei dati che sia efficiente, coerente, privo di ridondanze inutili e che soddisfi i requisiti informativi di un&#x27;applicazione o di un&#x27;organizzazione.</li></ul><ul id="20cd8c27-6c67-80b2-8a02-d7706ec3281b" class="bulleted-list"><li style="list-style-type:disc"><strong>Fasi Principali:</strong><ol type="1" id="20cd8c27-6c67-806a-ba7e-f5d4833dfaa1" class="numbered-list" start="1"><li><strong>Analisi dei Requisiti:</strong><ul id="20cd8c27-6c67-8022-88b2-ece37b5b6a26" class="bulleted-list"><li style="list-style-type:disc"><strong>Cosa:</strong> È la fase di raccolta delle informazioni. Si deve capire quali dati devono essere memorizzati, come verranno utilizzati e da chi.</li></ul><ul id="20cd8c27-6c67-8035-904a-f428c5fc844c" class="bulleted-list"><li style="list-style-type:disc"><strong>Come:</strong> Interviste con gli utenti finali, analisi di documenti esistenti (es. fatture, moduli), questionari, workshop.</li></ul><ul id="20cd8c27-6c67-80a3-956e-e8dd260f021b" class="bulleted-list"><li style="list-style-type:disc"><strong>Output:</strong> Un documento formale che include:<ul id="20cd8c27-6c67-801e-ab40-d622c6b5d0bc" class="bulleted-list"><li style="list-style-type:circle"><strong>Specifiche dei requisiti:</strong> Una lista dettagliata di tutte le informazioni che il database deve gestire.</li></ul><ul id="20cd8c27-6c67-8092-9fde-ce63f48faaee" class="bulleted-list"><li style="list-style-type:circle"><strong>Glossario:</strong> Un dizionario dei termini usati nel dominio applicativo per evitare ambiguità.</li></ul><ul id="20cd8c27-6c67-804c-81cb-c7548bc0f1ea" class="bulleted-list"><li style="list-style-type:circle"><strong>Descrizione delle funzionalità:</strong> Le operazioni che gli utenti dovranno compiere sui dati (es. &quot;L&#x27;impiegato deve poter inserire un nuovo cliente&quot;, &quot;Il manager deve poter visualizzare il fatturato mensile&quot;).</li></ul></li></ul><ul id="20cd8c27-6c67-8058-b93a-e6764d387a51" class="bulleted-list"><li style="list-style-type:disc"><strong>Criticità:</strong> Requisiti incompleti, ambigui o contraddittori. Un&#x27;analisi superficiale in questa fase compromette tutto il progetto.</li></ul><ul id="20cd8c27-6c67-80d0-8f24-e40f708966a7" class="bulleted-list"><li style="list-style-type:disc"><strong>Esempio:</strong> Per un sistema di biblioteca, i requisiti potrebbero essere: &quot;gestire i dati dei libri (titolo, autore, ISBN)&quot;, &quot;gestire i dati degli utenti (nome, cognome, tessera)&quot;, &quot;tracciare i prestiti (chi ha preso cosa e quando)&quot;, &quot;sapere quali libri sono disponibili&quot;.</li></ul></li></ol><ol type="1" id="20cd8c27-6c67-803d-acb8-d2fdde51c61a" class="numbered-list" start="2"><li><strong>Modellazione Concettuale (Diagramma Entità-Relazione - ERD):</strong><ul id="20cd8c27-6c67-8018-99e6-c08a9862e4a2" class="bulleted-list"><li style="list-style-type:disc"><strong>Scopo:</strong> Creare una rappresentazione astratta e di alto livello dei dati e delle loro relazioni, <strong>indipendente da qualsiasi tecnologia o DBMS</strong>. È il &quot;progetto&quot; del database.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="20dd8c27-6c67-80e7-874c-d4ef77201e9f" class="code"><code class="language-Mermaid">erDiagram
+    STUDENTE {
+        INT Matricola PK
+        STRING Nome
+        STRING Cognome
+    }
+    CORSO {
+        INT IDCorso PK
+        STRING Titolo
+    }
+    STUDENTE ||--o{ SOSTIENE : &quot;sostiene&quot;
+    CORSO    ||--o{ SOSTIENE : &quot;è sostenuto in&quot;
+    SOSTIENE {
+        INT Voto
+        DATE Data
+    }
+</code></pre><p id="20dd8c27-6c67-807e-a5c5-cad89d3bab2f" class="">
+</p><ul id="20cd8c27-6c67-80f4-90b0-d1f6d276a3f7" class="bulleted-list"><li style="list-style-type:disc"><strong>Componenti:</strong><ul id="20cd8c27-6c67-80d6-b8c0-f7ebdd1a8f78" class="bulleted-list"><li style="list-style-type:circle"><strong>Entità:</strong> Rappresenta una classe di oggetti del mondo reale con esistenza autonoma e proprietà comuni. (es. Studente, Corso, Professore). Si disegna con un <strong>Rettangolo</strong>.</li></ul><ul id="20cd8c27-6c67-80a5-8a4b-c81a0eb26d1d" class="bulleted-list"><li style="list-style-type:circle"><strong>Attributi:</strong> Proprietà o caratteristiche che descrivono un&#x27;entità. (es. Nome, Cognome, Matricola per l&#x27;entità Studente). Si disegnano con un&#x27;<strong>Ovale</strong> collegato all&#x27;entità.<ul id="20cd8c27-6c67-801a-9484-f4874f725f27" class="bulleted-list"><li style="list-style-type:square"><em>Identificatore (Chiave Primaria Concettuale):</em> Attributo (o insieme di attributi) che identifica univocamente un&#x27;istanza dell&#x27;entità. Si <strong>sottolinea</strong>. Es: <code>Matricola</code> per Studente.</li></ul><ul id="20cd8c27-6c67-80f6-b688-e6fffbebbc44" class="bulleted-list"><li style="list-style-type:square"><em>Attributi Composti:</em> Attributi che possono essere suddivisi in sotto-parti (es. <code>Indirizzo</code> composto da <code>Via</code>, <code>Città</code>, <code>CAP</code>).</li></ul><ul id="20cd8c27-6c67-808e-9ff7-e54e9166d694" class="bulleted-list"><li style="list-style-type:square"><em>Attributi Multivalore:</em> Attributi che possono avere più valori per la stessa istanza (es. <code>NumeroTelefono</code> di una persona). Si disegnano con un doppio ovale.</li></ul></li></ul><ul id="20cd8c27-6c67-804c-9125-dc57a6f2394c" class="bulleted-list"><li style="list-style-type:circle"><strong>Relazioni (Associazioni):</strong> Un legame logico tra due o più entità. (es. Studente <code>ISCRITTO_A</code> Corso). Si disegna con un <strong>Rombo</strong>.</li></ul><ul id="20cd8c27-6c67-8096-a27b-f76a313d4e49" class="bulleted-list"><li style="list-style-type:circle"><strong>Cardinalità:</strong> Specifica il numero minimo e massimo di istanze di un&#x27;entità che possono partecipare a una relazione. Si esprime con una coppia <code>(min, max)</code> su ogni lato della relazione.<ul id="20cd8c27-6c67-8057-8c97-cc158aab5b76" class="bulleted-list"><li style="list-style-type:square"><code>min=0</code>: partecipazione opzionale.</li></ul><ul id="20cd8c27-6c67-80c1-8713-cb968a35a818" class="bulleted-list"><li style="list-style-type:square"><code>min=1</code>: partecipazione obbligatoria.</li></ul><ul id="20cd8c27-6c67-8075-adc2-fa60cd2834ed" class="bulleted-list"><li style="list-style-type:square"><code>max=1</code>: al massimo un&#x27;istanza.</li></ul><ul id="20cd8c27-6c67-80b7-99a0-e6b596d34dcc" class="bulleted-list"><li style="list-style-type:square"><code>max=N</code>: più istanze.</li></ul><ul id="20cd8c27-6c67-800b-8e60-c3ca4f3e2ddf" class="bulleted-list"><li style="list-style-type:square"><strong>Esempio:</strong> <code>PROFESSORE (1,1) --- INSEGNA --- (1,N) CORSO</code> significa: &quot;Un professore insegna almeno un corso e al massimo N corsi. Un corso è tenuto da esattamente un professore&quot;.</li></ul></li></ul></li></ul><ul id="20cd8c27-6c67-8077-b407-faaa77609f1a" class="bulleted-list"><li style="list-style-type:disc"><strong>Diagramma E-R:</strong> Lo schema grafico completo che visualizza entità, attributi e relazioni.</li></ul><ul id="20cd8c27-6c67-80b9-804a-f3e04f5d0e30" class="bulleted-list"><li style="list-style-type:disc"><strong>Criticità:</strong> Scelta errata entità/attributi (es. modellare come entità qualcosa che è solo un attributo), cardinalità errate, relazioni ridondanti o mancanti.</li></ul></li></ol><ol type="1" id="20cd8c27-6c67-80e6-a08a-e49a9df6f3a1" class="numbered-list" start="3"><li><strong>Modellazione Logica (Schema Relazionale):</strong><ul id="20cd8c27-6c67-80b3-a7d8-eb9e849de53e" class="bulleted-list"><li style="list-style-type:disc"><strong>Scopo:</strong> Tradurre il modello concettuale E-R, che è astratto, in un modello specifico per un tipo di DBMS, tipicamente il <strong>modello relazionale</strong>. Questo schema è implementabile.</li></ul><ul id="20cd8c27-6c67-80ca-b62d-fd4f9ca3512d" class="bulleted-list"><li style="list-style-type:disc"><strong>Componenti del Modello Relazionale:</strong><ul id="20cd8c27-6c67-80d7-ab95-e138e0e74079" class="bulleted-list"><li style="list-style-type:circle"><strong>Relazione (Tabella):</strong> Struttura bidimensionale formata da righe e colonne.</li></ul><ul id="20cd8c27-6c67-801f-a973-d2a7feb9d504" class="bulleted-list"><li style="list-style-type:circle"><strong>Tupla (Riga/Record):</strong> Rappresenta una singola istanza (un &quot;oggetto&quot;) della tabella.</li></ul><ul id="20cd8c27-6c67-8060-89d5-e7ba1b706aed" class="bulleted-list"><li style="list-style-type:circle"><strong>Attributo (Colonna/Campo):</strong> Una proprietà specifica, con un nome e un tipo di dato (dominio).</li></ul><ul id="20cd8c27-6c67-803b-997d-c36bd9c4966d" class="bulleted-list"><li style="list-style-type:circle"><strong>Dominio:</strong> L&#x27;insieme dei valori ammissibili per un attributo (es. il dominio di <code>Voto</code> potrebbe essere l&#x27;insieme degli interi da 18 a 30).</li></ul><ul id="20cd8c27-6c67-80d4-a4ff-c9efe146bf35" class="bulleted-list"><li style="list-style-type:circle"><strong>Chiave Primaria (PK - Primary Key):</strong> Uno o più attributi il cui valore identifica univocamente ogni tupla nella tabella. Non può contenere valori NULL.</li></ul><ul id="20cd8c27-6c67-8029-b881-c2a86fa330a1" class="bulleted-list"><li style="list-style-type:circle"><strong>Chiave Esterna (FK - Foreign Key):</strong> Un attributo (o insieme di attributi) in una tabella che fa riferimento alla Chiave Primaria di un&#x27;altra tabella, stabilendo così un legame logico tra le due.</li></ul></li></ul><ul id="20cd8c27-6c67-80e1-89b3-ee174c83915f" class="bulleted-list"><li style="list-style-type:disc"><strong>Regole di Traduzione da ER a Relazionale (FONDAMENTALE):</strong><ul id="20cd8c27-6c67-80a1-91a0-e7b9224b13fd" class="bulleted-list"><li style="list-style-type:circle"><strong>Entità Forti:</strong> Ogni entità diventa una tabella. L&#x27;identificatore dell&#x27;entità diventa la Chiave Primaria (PK) della tabella.<ul id="20cd8c27-6c67-8059-94dd-d79898e7275b" class="bulleted-list"><li style="list-style-type:square"><code>STUDENTE(Matricola, Nome, Cognome)</code> -&gt; <code>STUDENTE(PK Matricola, Nome, Cognome)</code></li></ul></li></ul><ul id="20cd8c27-6c67-80b9-9da6-f91ac020d2f6" class="bulleted-list"><li style="list-style-type:circle"><strong>Relazioni 1:N:</strong> La PK dell&#x27;entità &quot;lato 1&quot; viene aggiunta come Chiave Esterna (FK) nella tabella dell&#x27;entità &quot;lato N&quot;.<ul id="20cd8c27-6c67-8064-a7f6-cfe4c543a985" class="bulleted-list"><li style="list-style-type:square"><code>PROFESSORE(IDProf, ...) ---1---INSEGNA---N---CORSO(IDCorso, ...)</code></li></ul><ul id="20cd8c27-6c67-80de-93db-deb4dd686ced" class="bulleted-list"><li style="list-style-type:square">Diventa: <code>PROFESSORE(PK IDProf, ...)</code> e <code>CORSO(PK IDCorso, ..., FK IDProf_insegna)</code></li></ul></li></ul><ul id="20cd8c27-6c67-80f3-9eda-e439a7ee0a8f" class="bulleted-list"><li style="list-style-type:circle"><strong>Relazioni 1:1:</strong> Si propaga la PK da una tabella all&#x27;altra come FK. La scelta di quale propagare dipende dalla logica (es. si propaga dalla tabella &quot;indipendente&quot; a quella &quot;dipendente&quot;) o dalla cardinalità minima (si propaga dalla tabella con partecipazione opzionale (0,1) a quella con partecipazione obbligatoria (1,1) per evitare FK nulle).</li></ul><ul id="20cd8c27-6c67-8013-a284-ece85648badd" class="bulleted-list"><li style="list-style-type:circle"><strong>Relazioni N:M:</strong> Questa relazione <strong>diventa una nuova tabella</strong>, chiamata tabella associativa o di join. La sua PK è composta dalle PK delle due entità collegate (che sono anche FK verso le tabelle originali). Eventuali attributi della relazione finiscono in questa nuova tabella.<ul id="20cd8c27-6c67-80b0-a376-e31d36f85b12" class="bulleted-list"><li style="list-style-type:square"><code>STUDENTE(Matricola) ---N---SOSTIENE---M---ESAME(CodiceEsame)</code></li></ul><ul id="20cd8c27-6c67-800f-8b56-e8085ed97676" class="bulleted-list"><li style="list-style-type:square">Diventa: <code>STUDENTE(PK Matricola, ...)</code>, <code>ESAME(PK CodiceEsame, ...)</code> e una nuova tabella <code>SOSTIENE(FK Matricola, FK CodiceEsame, Voto, Data)</code>. La PK di <code>SOSTIENE</code> è <code>(Matricola, CodiceEsame)</code>.</li></ul></li></ul><ul id="20cd8c27-6c67-804b-9508-c1cc2b862283" class="bulleted-list"><li style="list-style-type:circle"><strong>Attributi Multivalore:</strong> Si crea una nuova tabella con la PK dell&#x27;entità originaria come FK e l&#x27;attributo multivalore stesso. La PK della nuova tabella è la coppia (FK, attributo multivalore).<ul id="20cd8c27-6c67-8019-af3a-d334f201d2b5" class="bulleted-list"><li style="list-style-type:square">Entità <code>PERSONA</code> con attributo multivalore <code>{Telefono}</code>.</li></ul><ul id="20cd8c27-6c67-80d8-8a5d-c29ff011d657" class="bulleted-list"><li style="list-style-type:square">Diventa: <code>PERSONA(PK CF, ...)</code> e <code>TELEFONI_PERSONA(FK CF_persona, Telefono)</code>. PK = <code>(CF_persona, Telefono)</code>.</li></ul></li></ul><ul id="20cd8c27-6c67-80d4-9e30-c2a8683c9281" class="bulleted-list"><li style="list-style-type:circle"><strong>Entità Deboli:</strong> Un&#x27;entità che non ha una PK propria ma dipende dall&#x27;esistenza di un&#x27;altra (entità forte). La sua PK è formata dalla PK dell&#x27;entità forte (che agisce da FK) più un discriminante parziale.</li></ul></li></ul></li></ol><ol type="1" id="20cd8c27-6c67-80ab-a06c-f9d44d482782" class="numbered-list" start="4"><li><strong>Normalizzazione:</strong><ul id="20cd8c27-6c67-8066-933b-c64a8d1c1bb5" class="bulleted-list"><li style="list-style-type:disc"><strong>Scopo:</strong> Processo formale per organizzare le tabelle in modo da ridurre la <strong>ridondanza dei dati</strong> e migliorare l&#x27;<strong>integrità dei dati</strong>. L&#x27;obiettivo è eliminare le <strong>anomalie</strong>, ovvero problemi che possono verificarsi durante le operazioni di inserimento, aggiornamento e cancellazione.<ul id="20cd8c27-6c67-8046-96e0-d83c27967289" class="bulleted-list"><li style="list-style-type:circle"><em>Anomalia di Inserimento:</em> Impossibilità di aggiungere un dato perché manca un altro dato (es. non posso inserire un nuovo corso se non ha ancora nessun iscritto).</li></ul><ul id="20cd8c27-6c67-80d1-8e67-cb80f37dc5e6" class="bulleted-list"><li style="list-style-type:circle"><em>Anomalia di Aggiornamento:</em> Dover modificare la stessa informazione in più righe, con il rischio di incoerenze se me ne dimentico una.</li></ul><ul id="20cd8c27-6c67-805e-affd-c7afa417ae2d" class="bulleted-list"><li style="list-style-type:circle"><em>Anomalia di Cancellazione:</em> La cancellazione di una riga causa la perdita involontaria di altre informazioni.</li></ul></li></ul><ul id="20cd8c27-6c67-80cb-b0a9-cb90dbc9b8fc" class="bulleted-list"><li style="list-style-type:disc"><strong>Dipendenza Funzionale (DF):</strong> Un concetto chiave. Dati due attributi A e B, si dice che <code>B dipende funzionalmente da A</code> (scritto <code>A -&gt; B</code>) se e solo se a ogni valore di A corrisponde <strong>uno e un solo</strong> valore di B. La PK determina funzionalmente tutti gli altri attributi della tabella.</li></ul><ul id="20cd8c27-6c67-8012-8e19-f55fa8007f07" class="bulleted-list"><li style="list-style-type:disc"><strong>Forme Normali (FN):</strong><ul id="20cd8c27-6c67-80cd-8a02-e27a54c87956" class="bulleted-list"><li style="list-style-type:circle"><strong>1NF (Prima Forma Normale):</strong> Requisito base di un database relazionale.<ul id="20cd8c27-6c67-808f-b6f2-f0eb428c673a" class="bulleted-list"><li style="list-style-type:square">Tutti gli attributi devono essere <strong>atomici</strong> (indivisibili, non possono contenere liste o altri record).</li></ul><ul id="20cd8c27-6c67-80c5-972c-d848fcd799c2" class="bulleted-list"><li style="list-style-type:square">Non ci sono gruppi ripetuti. Ogni cella contiene un solo valore.</li></ul></li></ul><ul id="20cd8c27-6c67-803e-8375-f486c7b85394" class="bulleted-list"><li style="list-style-type:circle"><strong>2NF (Seconda Forma Normale):</strong><ul id="20cd8c27-6c67-8040-80da-c21cd65f75ee" class="bulleted-list"><li style="list-style-type:square">La tabella deve essere in 1NF.</li></ul><ul id="20cd8c27-6c67-80fa-a30d-fbbda31c85a2" class="bulleted-list"><li style="list-style-type:square">Ogni attributo non-chiave deve dipendere funzionalmente dall&#x27;<strong>INTERA</strong> chiave primaria. Questa forma è rilevante solo per tabelle con PK composta. Se un attributo dipende solo da una <em>parte</em> della PK, viola la 2NF.</li></ul><ul id="20cd8c27-6c67-80af-8f05-ee1f11b8afc4" class="bulleted-list"><li style="list-style-type:square"><strong>Esempio:</strong> <code>ORDINI(PK(IDOrdine, IDProdotto), Qta, DescrizioneProdotto)</code>. Qui <code>DescrizioneProdotto</code> dipende solo da <code>IDProdotto</code>, non dall&#x27;intera PK. Si viola la 2NF. Soluzione: spezzare in <code>ORDINI(PK(IDOrdine, IDProdotto), Qta)</code> e <code>PRODOTTI(PK IDProdotto, DescrizioneProdotto)</code>.</li></ul></li></ul><ul id="20cd8c27-6c67-8013-8d7f-e84e89aac29f" class="bulleted-list"><li style="list-style-type:circle"><strong>3NF (Terza Forma Normale):</strong><ul id="20cd8c27-6c67-808e-907c-dd1535d8da4a" class="bulleted-list"><li style="list-style-type:square">La tabella deve essere in 2NF.</li></ul><ul id="20cd8c27-6c67-8005-8db5-f2c184d0be29" class="bulleted-list"><li style="list-style-type:square">Nessun attributo non-chiave deve dipendere <strong>transitivamente</strong> da un altro attributo non-chiave attraverso la PK. Significa che non ci devono essere dipendenze del tipo <code>PK -&gt; Attributo1 -&gt; Attributo2</code>.</li></ul><ul id="20cd8c27-6c67-801a-88ce-c4e6952e3277" class="bulleted-list"><li style="list-style-type:square"><strong>Esempio:</strong> <code>CLIENTI(PK IDCliente, Nome, IDCittà, NomeCittà)</code>. Qui <code>PK -&gt; IDCittà</code> e <code>IDCittà -&gt; NomeCittà</code>. C&#x27;è una dipendenza transitiva. Soluzione: spezzare in <code>CLIENTI(PK IDCliente, Nome, FK IDCittà)</code> e <code>CITTA(PK IDCittà, NomeCittà)</code>.</li></ul><p id="20dd8c27-6c67-8012-b92d-d5bbcd5166e1" class="">
+</p><table id="20dd8c27-6c67-80ac-bc17-c73cf5ec033e" class="simple-table"><tbody><tr id="20dd8c27-6c67-8007-8f99-f81beffcf100"><td id=":_Vt" class=""><strong>Forma Normale</strong></td><td id="&gt;}]Y" class=""><strong>Requisiti principali</strong></td><td id="oN:B" class=""><strong>Obiettivo</strong></td></tr><tr id="20dd8c27-6c67-807c-bacc-c19d249e8829"><td id=":_Vt" class="">1NF</td><td id="&gt;}]Y" class="">Attributi atomici, niente gruppi ripetuti</td><td id="oN:B" class="">Eliminare ripetizioni di celle</td></tr><tr id="20dd8c27-6c67-806a-bb2d-fc288f0fc8ee"><td id=":_Vt" class="">2NF</td><td id="&gt;}]Y" class="">1NF + ogni attributo non-chiave dipende dall’intera PK</td><td id="oN:B" class="">Eliminare dipendenze parziali</td></tr><tr id="20dd8c27-6c67-8020-ae24-e01742fe7616"><td id=":_Vt" class="">3NF</td><td id="&gt;}]Y" class="">2NF + nessuna dipendenza transitiva tra attributi non-chiave</td><td id="oN:B" class="">Eliminare dipendenze transitive</td></tr><tr id="20dd8c27-6c67-8066-bff6-d73e3285c411"><td id=":_Vt" class="">BCNF</td><td id="&gt;}]Y" class="">Ogni dipendenza non banale X → Y, X deve essere una superchiave</td><td id="oN:B" class="">Risolvere anomalie non coperte da 3NF</td></tr></tbody></table></li></ul><ul id="20cd8c27-6c67-80bb-9efe-dee67c1ddbac" class="bulleted-list"><li style="list-style-type:circle"><strong>BCNF (Boyce-Codd Normal Form):</strong> Una versione più restrittiva della 3NF. Per ogni dipendenza funzionale non banale <code>X -&gt; Y</code>, <code>X</code> deve essere una <strong>superchiave</strong> (cioè un insieme di attributi che contiene una chiave candidata). Risolve alcune anomalie rare non coperte dalla 3NF.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="20dd8c27-6c67-8060-90dc-ee9f97c3cbfe" class="code"><code class="language-Mermaid">flowchart LR
+    A[Tabella non normalizzata]
+    B[1NF: eliminazione gruppi ripetuti]
+    C[2NF: rimozione dipendenze parziali]
+    D[3NF: rimozione dipendenze transitive]
+    E[BCNF: ogni FD X-&gt;Y, X superchiave]
+    A --&gt; B --&gt; C --&gt; D --&gt; E
+</code></pre></li></ul><ul id="20cd8c27-6c67-8080-8ead-fb8bdcb652a4" class="bulleted-list"><li style="list-style-type:disc"><strong>Denormalizzazione:</strong> Il processo controllato di introdurre ridondanza in un database normalizzato per <strong>migliorare le performance in lettura</strong>. Si fa aggiungendo dati ridondanti per evitare costosi JOIN. È un compromesso: si sacrifica la pulizia del modello e si aumenta la complessità in scrittura per velocizzare le query più frequenti.</li></ul></li></ol></li></ul><hr id="20cd8c27-6c67-807e-841c-ede7269ac849"/><h3 id="20cd8c27-6c67-8099-92bf-db92e4d34cb0" class="">Toggle: 2. DBMS (Database Management System) ⚙️</h3><ul id="20cd8c27-6c67-80b3-93da-dc1e73132237" class="bulleted-list"><li style="list-style-type:disc"><strong>Definizione:</strong> Un sistema software progettato per creare, gestire, interrogare e mantenere basi di dati in modo efficiente, affidabile e sicuro. Funge da intermediario tra l&#x27;utente/applicazione e i dati fisici.</li></ul><ul id="20cd8c27-6c67-80af-81f8-c2f56ab72179" class="bulleted-list"><li style="list-style-type:disc"><strong>Funzionalità Principali:</strong><ul id="20cd8c27-6c67-80e4-855c-dc079a0f410e" class="bulleted-list"><li style="list-style-type:circle"><strong>Definizione Dati (DDL):</strong> Fornisce un linguaggio per creare e modificare la struttura del database (tabelle, indici, vincoli).</li></ul><ul id="20cd8c27-6c67-8021-ba74-d46d1ee565de" class="bulleted-list"><li style="list-style-type:circle"><strong>Manipolazione Dati (DML):</strong> Fornisce un linguaggio per inserire, aggiornare, cancellare e soprattutto interrogare i dati.</li></ul><ul id="20cd8c27-6c67-8045-9964-f7c506d21acb" class="bulleted-list"><li style="list-style-type:circle"><strong>Controllo Accesso e Sicurezza (DCL):</strong> Gestisce l&#x27;autenticazione degli utenti e l&#x27;autorizzazione alle operazioni sui dati.</li></ul><ul id="20cd8c27-6c67-8077-a1d4-db14ce601883" class="bulleted-list"><li style="list-style-type:circle"><strong>Gestione della Concorrenza:</strong> Controlla gli accessi simultanei di più utenti agli stessi dati, evitando conflitti e inconsistenza (es. tramite locking).</li></ul><ul id="20cd8c27-6c67-8010-8555-d8556453c79c" class="bulleted-list"><li style="list-style-type:circle"><strong>Integrità dei Dati:</strong> Applica i vincoli definiti (PK, FK, NOT NULL, CHECK) per garantire la coerenza e la correttezza dei dati.</li></ul><ul id="20cd8c27-6c67-803e-9f71-fa4b96cbc967" class="bulleted-list"><li style="list-style-type:circle"><strong>Backup e Recovery:</strong> Fornisce strumenti per creare copie di sicurezza del database (backup) e per ripristinare il sistema a uno stato consistente dopo un guasto (recovery).</li></ul><ul id="20cd8c27-6c67-8008-94e4-e376a923071d" class="bulleted-list"><li style="list-style-type:circle"><strong>Ottimizzazione delle Query:</strong> Analizza le query degli utenti e sceglie il piano di esecuzione più efficiente (es. decidendo se e quale indice usare).</li></ul><ul id="20cd8c27-6c67-80a0-9165-c02b0ec44f75" class="bulleted-list"><li style="list-style-type:circle"><strong>Catalogo di Sistema (Dizionario Dati):</strong> Contiene i metadati, cioè le &quot;informazioni sulle informazioni&quot; (struttura delle tabelle, vincoli, utenti, permessi, ecc.).</li></ul></li></ul><ul id="20cd8c27-6c67-80a5-915c-fbc9ddc64798" class="bulleted-list"><li style="list-style-type:disc"><strong>Architettura ANSI-SPARC (3 Livelli):</strong> Modello standard per descrivere l&#x27;architettura di un DBMS.<ol type="1" id="20cd8c27-6c67-802c-af58-d304e867b5db" class="numbered-list" start="1"><li><strong>Livello Esterno (Viste):</strong> La prospettiva del singolo utente o applicazione. Mostra solo una porzione del database, personalizzata e semplificata per le sue esigenze (es. una vista potrebbe nascondere colonne o mostrare dati aggregati). Garantisce l&#x27;<strong>indipendenza logica</strong>: si può modificare lo schema logico sottostante senza dover riscrivere le applicazioni che usano le viste.</li></ol><ol type="1" id="20cd8c27-6c67-805a-9196-d57e9102992e" class="numbered-list" start="2"><li><strong>Livello Logico/Concettuale:</strong> La descrizione completa della struttura del database per l&#x27;intera comunità di utenti. Corrisponde allo schema relazionale (tutte le tabelle, colonne, relazioni, vincoli). È indipendente dalla memorizzazione fisica. Garantisce l&#x27;<strong>indipendenza fisica</strong>: si può cambiare come i dati sono memorizzati fisicamente (es. cambiare disco, aggiungere indici) senza modificare lo schema logico o le applicazioni.</li></ol><ol type="1" id="20cd8c27-6c67-8016-9fa1-cee309eb6c12" class="numbered-list" start="3"><li><strong>Livello Interno/Fisico:</strong> Descrive come i dati sono effettivamente memorizzati sui dispositivi di massa (strutture di file, percorsi, indici, blocchi di dati). È il livello più vicino all&#x27;hardware.</li></ol></li></ul><ul id="20cd8c27-6c67-8072-96ca-e4f0dcc2403a" class="bulleted-list"><li style="list-style-type:disc"><strong>Linguaggi dei DBMS:</strong><ul id="20cd8c27-6c67-8052-a320-db889fa3a453" class="bulleted-list"><li style="list-style-type:circle"><strong>DDL (Data Definition Language):</strong> <code>CREATE</code>, <code>ALTER</code>, <code>DROP</code>, <code>TRUNCATE</code>.</li></ul><ul id="20cd8c27-6c67-80fb-9ef9-e3c075cbfae0" class="bulleted-list"><li style="list-style-type:circle"><strong>DML (Data Manipulation Language):</strong> <code>SELECT</code>, <code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>.</li></ul><ul id="20cd8c27-6c67-80bc-bf1c-d16c324160f7" class="bulleted-list"><li style="list-style-type:circle"><strong>DCL (Data Control Language):</strong> <code>GRANT</code> (concedi permessi), <code>REVOKE</code> (revoca permessi).</li></ul><ul id="20cd8c27-6c67-800c-b247-e3f92ca6d88e" class="bulleted-list"><li style="list-style-type:circle"><strong>TCL (Transaction Control Language):</strong> <code>COMMIT</code> (salva transazione), <code>ROLLBACK</code> (annulla transazione), <code>SAVEPOINT</code>.</li></ul></li></ul><ul id="20cd8c27-6c67-80ac-9e63-fc15f0acbd0c" class="bulleted-list"><li style="list-style-type:disc"><strong>Tipi di DBMS:</strong><ul id="20cd8c27-6c67-80d0-9645-d126a66cfcb2" class="bulleted-list"><li style="list-style-type:circle"><strong>Relazionali (RDBMS):</strong> Dominanti per decenni, basati sul modello relazionale. Esempi: MySQL, PostgreSQL, Microsoft SQL Server, Oracle.</li></ul><ul id="20cd8c27-6c67-80d8-801c-c814a7a28dfb" class="bulleted-list"><li style="list-style-type:circle"><strong>NoSQL (cenni):</strong> &quot;Not Only SQL&quot;. Famiglia di DBMS non relazionali, progettati per scalabilità orizzontale, grandi volumi di dati (Big Data) e flessibilità dello schema.<ul id="20cd8c27-6c67-803c-90da-ca7382a279ba" class="bulleted-list"><li style="list-style-type:square"><em>Document Store (es. MongoDB):</em> Memorizza dati in documenti simili a JSON.</li></ul><ul id="20cd8c27-6c67-8002-b69d-f55b2abdfd38" class="bulleted-list"><li style="list-style-type:square"><em>Key-Value Store (es. Redis):</em> Dati memorizzati come semplici coppie chiave-valore.</li></ul><ul id="20cd8c27-6c67-8024-9701-c6533b4e6e3b" class="bulleted-list"><li style="list-style-type:square"><em>Column-Family Store (es. Cassandra):</em> Ottimizzati per letture e scritture su colonne.</li></ul><ul id="20cd8c27-6c67-8032-9d57-ca8e74dd1d86" class="bulleted-list"><li style="list-style-type:square"><em>Graph Database (es. Neo4j):</em> Specializzati nel gestire dati e relazioni complesse (es. social network, sistemi di raccomandazione).</li></ul></li></ul></li></ul><ul id="20cd8c27-6c67-803f-be5b-d6f799a80cdc" class="bulleted-list"><li style="list-style-type:disc"><strong>Transazioni:</strong> Una sequenza di una o più operazioni SQL che vengono eseguite come un&#x27;unica <strong>unità logica e atomica di lavoro</strong>.<ul id="20cd8c27-6c67-802a-a838-e1b28348278b" class="bulleted-list"><li style="list-style-type:circle"><strong>Proprietà ACID (FONDAMENTALE):</strong><ul id="20cd8c27-6c67-8028-b936-c4c75e19cb1f" class="bulleted-list"><li style="list-style-type:square"><strong>Atomicità:</strong> O tutte le operazioni della transazione hanno successo (<code>COMMIT</code>), o nessuna di esse viene applicata (<code>ROLLBACK</code>). Non esiste uno stato intermedio. <em>Esempio: in un bonifico (trasferimento da conto A a conto B), sia l&#x27;addebito su A che l&#x27;accredito su B devono avvenire. Se uno dei due fallisce, l&#x27;intera operazione viene annullata.</em></li></ul><ul id="20cd8c27-6c67-80ff-ba5b-dba5315a1c5f" class="bulleted-list"><li style="list-style-type:square"><strong>Consistenza:</strong> La transazione porta il database da uno stato valido a un altro stato altrettanto valido, rispettando tutti i vincoli di integrità.</li></ul><ul id="20cd8c27-6c67-80a4-8de6-cb5729d1de2f" class="bulleted-list"><li style="list-style-type:square"><strong>Isolamento:</strong> Le transazioni eseguite in modo concorrente non devono interferire tra loro. Ogni transazione deve avere l&#x27;illusione di essere l&#x27;unica in esecuzione sul sistema. I risultati intermedi di una transazione non sono visibili alle altre.</li></ul><ul id="20cd8c27-6c67-806d-8fa9-db9750fe8dfe" class="bulleted-list"><li style="list-style-type:square"><strong>Durabilità:</strong> Una volta che una transazione è stata confermata (<code>COMMIT</code>), le sue modifiche sono permanenti e sopravvivono a qualsiasi guasto successivo (es. crash del sistema, mancanza di corrente).</li></ul></li></ul></li></ul><ul id="20cd8c27-6c67-8022-b4e1-f08f35cc7f85" class="bulleted-list"><li style="list-style-type:disc"><strong>Concorrenza e Controllo:</strong><ul id="20cd8c27-6c67-8096-8e4f-fff041aab585" class="bulleted-list"><li style="list-style-type:circle"><strong>Timestamping:</strong> Un altro approccio dove a ogni transazione viene assegnato un timestamp. Il DBMS usa questi timestamp per ordinare le operazioni e garantire che non violino l&#x27;isolamento.</li></ul></li></ul><ul id="20dd8c27-6c67-807f-975e-e5bca341321b" class="bulleted-list"><li style="list-style-type:disc"><strong>Locking:</strong> Il meccanismo più comune di gestione della concorrenza. Quando una transazione accede a una risorsa (riga o tabella), la &quot;blocca&quot; per impedire accessi conflittuali da altre transazioni. Un lock può essere condiviso (per lettura) o esclusivo (per scrittura).<strong>Esempio pratico di Locking</strong><ul id="20dd8c27-6c67-8077-9feb-d9ce2139a06f" class="bulleted-list"><li style="list-style-type:circle"><strong>Scenari:</strong> Due utenti A e B vogliono aggiornare il saldo dello stesso conto.</li></ul><ul id="20dd8c27-6c67-809c-b154-d5c92a0cfbeb" class="bulleted-list"><li style="list-style-type:circle"><strong>Lock condiviso (S):</strong> Entrambi possono leggere, ma nessuno può scrivere fino al rilascio del lock.</li></ul><ul id="20dd8c27-6c67-801c-80f9-ec669380fac8" class="bulleted-list"><li style="list-style-type:circle"><strong>Lock esclusivo (X):</strong> Un solo utente può leggere e scrivere; gli altri devono attendere.</li></ul><ul id="20dd8c27-6c67-8050-af22-cf841ad88eb1" class="bulleted-list"><li style="list-style-type:circle"><strong>Impatto sul livello di isolamento:</strong><ul id="20dd8c27-6c67-801d-bfd6-e9430f557c49" class="bulleted-list"><li style="list-style-type:square">Read Uncommitted → dirty reads possibili</li></ul><ul id="20dd8c27-6c67-80ca-a209-d94550d94417" class="bulleted-list"><li style="list-style-type:square">Serializable → nessun fenomeno di concorrenza anomalo</li></ul></li></ul></li></ul><hr id="20cd8c27-6c67-8024-a81f-f6b3073b67d4"/><h2 id="20cd8c27-6c67-8008-b975-c661a027355c" class="">Linguaggio SQL</h2><h3 id="20cd8c27-6c67-80fd-846b-ffa22d06a471" class="">Toggle: 3. Linguaggio SQL ⌨️</h3><ul id="20cd8c27-6c67-8097-91eb-c5a42c94f8f4" class="bulleted-list"><li style="list-style-type:disc"><strong>SQL (Structured Query Language):</strong> Il linguaggio standard per definire, manipolare e interrogare i dati nei database relazionali.</li></ul><ul id="20cd8c27-6c67-8011-ad65-da13df957dc6" class="bulleted-list"><li style="list-style-type:disc"><strong>Comandi DDL (Data Definition Language):</strong><ul id="20cd8c27-6c67-80f7-b05c-f568b2d495c3" class="bulleted-list"><li style="list-style-type:circle"><code>CREATE TABLE nome_tabella (col1 TIPO [VINCOLI], col2 TIPO [VINCOLI], ...);</code><ul id="20cd8c27-6c67-80d9-9822-c81437c92262" class="bulleted-list"><li style="list-style-type:square"><strong>Tipi di Dati Comuni:</strong> <code>INT</code> (o <code>INTEGER</code>), <code>VARCHAR(n)</code> (stringa a lunghezza variabile), <code>CHAR(n)</code> (stringa a lunghezza fissa), <code>TEXT</code> (testi lunghi), <code>DATE</code> (data), <code>DATETIME</code>/<code>TIMESTAMP</code> (data e ora), <code>DECIMAL(p,s)</code> (numero a virgola fissa con precisione <code>p</code> e <code>s</code> cifre decimali), <code>FLOAT</code>/<code>DOUBLE</code> (numeri a virgola mobile), <code>BOOLEAN</code>, <code>BLOB</code> (dati binari).</li></ul></li></ul><ul id="20cd8c27-6c67-80de-9cf5-e141cc6349d5" class="bulleted-list"><li style="list-style-type:circle"><code>ALTER TABLE nome_tabella ADD/DROP/MODIFY COLUMN ...;</code> (Modifica la struttura di una tabella esistente).</li></ul><ul id="20cd8c27-6c67-80d1-adc1-ed4790ef1bc8" class="bulleted-list"><li style="list-style-type:circle"><code>DROP TABLE nome_tabella;</code> (Elimina permanentemente una tabella).</li></ul><ul id="20cd8c27-6c67-80da-943d-c22ec46cabc2" class="bulleted-list"><li style="list-style-type:circle"><code>TRUNCATE TABLE nome_tabella;</code> (Svuota rapidamente una tabella da tutte le righe. È un&#x27;operazione DDL, spesso non può essere annullata con <code>ROLLBACK</code>).</li></ul></li></ul><ul id="20cd8c27-6c67-8068-89d0-d0aca2d63a54" class="bulleted-list"><li style="list-style-type:disc"><strong>Vincoli di Integrità:</strong><ul id="20cd8c27-6c67-80e1-9ba8-fd4268fbbcd9" class="bulleted-list"><li style="list-style-type:circle"><code>PRIMARY KEY</code>: Identifica univocamente una riga. Implica <code>UNIQUE</code> e <code>NOT NULL</code>.</li></ul><ul id="20cd8c27-6c67-805c-812f-ec7f96dc3a74" class="bulleted-list"><li style="list-style-type:circle"><code>FOREIGN KEY (col_fk) REFERENCES tabella_ref(col_pk_ref) [ON DELETE ...] [ON UPDATE ...]</code>: Garantisce che il valore nella <code>col_fk</code> esista nella <code>col_pk_ref</code> della tabella referenziata.<ul id="20cd8c27-6c67-80c9-8b1e-ea6b8e1b776c" class="bulleted-list"><li style="list-style-type:square"><code>ON DELETE CASCADE</code>: Se una riga nella tabella padre viene cancellata, anche le righe correlate nella tabella figlio vengono cancellate.</li></ul><ul id="20cd8c27-6c67-8018-affc-d559593843c2" class="bulleted-list"><li style="list-style-type:square"><code>ON DELETE SET NULL</code>: Se la riga padre viene cancellata, il valore della FK nelle righe figlio viene impostato a <code>NULL</code>.</li></ul></li></ul><ul id="20cd8c27-6c67-8044-981c-cbd1ae5466c0" class="bulleted-list"><li style="list-style-type:circle"><code>UNIQUE</code>: Assicura che tutti i valori in una colonna siano unici. Ammette un solo valore <code>NULL</code>.</li></ul><ul id="20cd8c27-6c67-8054-98af-c02a35cfd59f" class="bulleted-list"><li style="list-style-type:circle"><code>NOT NULL</code>: La colonna non può contenere valori <code>NULL</code>.</li></ul><ul id="20cd8c27-6c67-80aa-9c43-ea4892e6f0d8" class="bulleted-list"><li style="list-style-type:circle"><code>CHECK (condizione)</code>: Il valore inserito deve soddisfare una condizione booleana (es. <code>CHECK (Prezzo &gt; 0)</code>).</li></ul><ul id="20cd8c27-6c67-8066-8f7c-f276643ddfc1" class="bulleted-list"><li style="list-style-type:circle"><code>DEFAULT valore</code>: Assegna un valore di default se non ne viene specificato uno durante l&#x27;inserimento.</li></ul></li></ul><ul id="20cd8c27-6c67-80fb-9390-ed8c95c5f938" class="bulleted-list"><li style="list-style-type:disc"><strong>Comandi DML (Data Manipulation Language):</strong><ul id="20cd8c27-6c67-8042-9fc8-d137c22b1ef4" class="bulleted-list"><li style="list-style-type:circle"><code>INSERT INTO nome_tabella (col1, col2) VALUES (val1, val2);</code></li></ul><ul id="20cd8c27-6c67-807c-95f4-c6bf1dbde340" class="bulleted-list"><li style="list-style-type:circle"><code>UPDATE nome_tabella SET col1 = val1, col2 = val2 WHERE condizione;</code> (⚠️ <strong>ATTENZIONE</strong> alla clausola <code>WHERE</code>! Se manca, aggiorna TUTTE le righe della tabella!)</li></ul><ul id="20cd8c27-6c67-80cd-b1b3-fe4d6a8ea9aa" class="bulleted-list"><li style="list-style-type:circle"><code>DELETE FROM nome_tabella WHERE condizione;</code> (⚠️ <strong>ATTENZIONE</strong> alla clausola <code>WHERE</code>! Se manca, cancella TUTTE le righe!)</li></ul></li></ul><ul id="20cd8c27-6c67-803d-a4a2-f5671145aa05" class="bulleted-list"><li style="list-style-type:disc"><strong>Interrogazioni (Query) - </strong><code><strong>SELECT</strong></code><strong>:</strong><ul id="20cd8c27-6c67-80a8-8d83-d7c8cbb8209d" class="bulleted-list"><li style="list-style-type:circle"><strong>Ordine logico di esecuzione (importante per capire il funzionamento):</strong><ol type="1" id="20cd8c27-6c67-80a6-8e92-de10aa2726c5" class="numbered-list" start="1"><li><code>FROM</code> e <code>JOIN</code>: Identifica le tabelle e le unisce.</li></ol><ol type="1" id="20cd8c27-6c67-805d-a37c-f4b823b6133d" class="numbered-list" start="2"><li><code>WHERE</code>: Filtra le righe.</li></ol><ol type="1" id="20cd8c27-6c67-8097-a545-c79893db5476" class="numbered-list" start="3"><li><code>GROUP BY</code>: Raggruppa le righe.</li></ol><ol type="1" id="20cd8c27-6c67-8069-87fc-f7ebe8b36556" class="numbered-list" start="4"><li><code>HAVING</code>: Filtra i gruppi.</li></ol><ol type="1" id="20cd8c27-6c67-8065-b319-e2cf7d34bea9" class="numbered-list" start="5"><li><code>SELECT</code>: Seleziona le colonne e calcola le espressioni.</li></ol><ol type="1" id="20cd8c27-6c67-80ad-8bdf-ec44d19d13c5" class="numbered-list" start="6"><li><code>DISTINCT</code>: Rimuove i duplicati.</li></ol><ol type="1" id="20cd8c27-6c67-8000-8eec-e65ea47e8130" class="numbered-list" start="7"><li><code>ORDER BY</code>: Ordina il risultato finale.</li></ol><ol type="1" id="20cd8c27-6c67-80d6-ac86-f66057d9b949" class="numbered-list" start="8"><li><code>LIMIT</code> / <code>OFFSET</code>: Seleziona un sottoinsieme di righe.</li></ol></li></ul><ul id="20cd8c27-6c67-80d6-9333-d2c1a72b02b6" class="bulleted-list"><li style="list-style-type:circle"><strong>Sintassi:</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="20cd8c27-6c67-805e-83db-e94d979813dd" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT [DISTINCT] col1, col2, espressione AS alias_colonna
+FROM tabella1 [AS t1]
+[JOIN tabella2 [AS t2] ON t1.col = t2.col]
+[WHERE condizione_filtro]
+[GROUP BY col_raggruppamento1, col_raggruppamento2]
+[HAVING condizione_su_gruppi]
+[ORDER BY col_ordinamento [ASC|DESC]]
+[LIMIT numero_righe [OFFSET salto]];
+
+</code></pre></li></ul></li></ul><ul id="20cd8c27-6c67-802c-936d-da357a3b5626" class="bulleted-list"><li style="list-style-type:disc"><strong>Operatori:</strong><ul id="20cd8c27-6c67-8056-b110-cb93747d1a9e" class="bulleted-list"><li style="list-style-type:circle"><strong>Logici:</strong> <code>AND</code>, <code>OR</code>, <code>NOT</code>.</li></ul><ul id="20cd8c27-6c67-805e-b084-e2c41a82169e" class="bulleted-list"><li style="list-style-type:circle"><strong>Confronto:</strong> <code>=</code>, <code>&lt;&gt;</code>, <code>!=</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>.</li></ul><ul id="20cd8c27-6c67-80f5-8cfa-f0f222ef69d4" class="bulleted-list"><li style="list-style-type:circle"><strong>Stringhe/Pattern:</strong> <code>LIKE &#x27;pattern&#x27;</code> (<code>%</code> = qualsiasi sequenza di 0 o più caratteri, <code>_</code> = esattamente un carattere). Es: <code>LIKE &#x27;A%</code> -&gt; inizia con &#x27;A&#x27;.</li></ul><ul id="20cd8c27-6c67-8093-8306-d098f8e1b341" class="bulleted-list"><li style="list-style-type:circle"><strong>Range/Liste:</strong> <code>BETWEEN val1 AND val2</code>, <code>IN (val1, val2, ...)</code>.</li></ul><ul id="20cd8c27-6c67-80d3-98f3-dfbb9db3d101" class="bulleted-list"><li style="list-style-type:circle"><strong>Null:</strong> <code>IS NULL</code>, <code>IS NOT NULL</code>.</li></ul></li></ul><ul id="20cd8c27-6c67-806f-873e-caf2d229a8d1" class="bulleted-list"><li style="list-style-type:disc"><strong>Funzioni Aggregate (usate con </strong><code><strong>GROUP BY</strong></code><strong> o sull&#x27;intera tabella):</strong><ul id="20cd8c27-6c67-80fc-a8d3-d1b994436c0b" class="bulleted-list"><li style="list-style-type:circle"><code>COUNT(* | colonna | DISTINCT colonna)</code>: Conta le righe o i valori non nulli.</li></ul><ul id="20cd8c27-6c67-808a-8ba7-c0f3c038aa03" class="bulleted-list"><li style="list-style-type:circle"><code>SUM(colonna_numerica)</code>: Somma dei valori.</li></ul><ul id="20cd8c27-6c67-80c7-8d9b-e847242d0809" class="bulleted-list"><li style="list-style-type:circle"><code>AVG(colonna_numerica)</code>: Media dei valori.</li></ul><ul id="20cd8c27-6c67-80d7-881f-d28b04004816" class="bulleted-list"><li style="list-style-type:circle"><code>MIN(colonna)</code>: Valore minimo.</li></ul><ul id="20cd8c27-6c67-80b2-bb6c-cc67ed63da72" class="bulleted-list"><li style="list-style-type:circle"><code>MAX(colonna)</code>: Valore massimo.</li></ul></li></ul><ul id="20cd8c27-6c67-8024-963d-fff3811f2498" class="bulleted-list"><li style="list-style-type:disc"><strong>JOIN (Unione di tabelle):</strong><ul id="20cd8c27-6c67-80c0-a5d7-d9fc4b86cc6b" class="bulleted-list"><li style="list-style-type:circle"><code>INNER JOIN</code> (o solo <code>JOIN</code>): Restituisce solo le righe che hanno una corrispondenza in entrambe le tabelle secondo la condizione <code>ON</code>.</li></ul><ul id="20cd8c27-6c67-8044-8152-f31ccca4f1e3" class="bulleted-list"><li style="list-style-type:circle"><code>LEFT JOIN</code> (o <code>LEFT OUTER JOIN</code>): Restituisce <strong>tutte</strong> le righe della tabella a sinistra e le righe corrispondenti della tabella a destra. Se non c&#x27;è corrispondenza a destra, le colonne di destra avranno valore <code>NULL</code>.</li></ul><ul id="20cd8c27-6c67-8037-aefa-f652f248ef9c" class="bulleted-list"><li style="list-style-type:circle"><code>RIGHT JOIN</code> (o <code>RIGHT OUTER JOIN</code>): Il contrario del LEFT JOIN. Restituisce <strong>tutte</strong> le righe della tabella a destra.</li></ul><ul id="20cd8c27-6c67-80e5-a5a2-fb54ffb31b9a" class="bulleted-list"><li style="list-style-type:circle"><code>FULL OUTER JOIN</code>: Restituisce tutte le righe di entrambe le tabelle, inserendo <code>NULL</code> dove mancano le corrispondenze.</li></ul><ul id="20cd8c27-6c67-80e5-b904-f873a836e120" class="bulleted-list"><li style="list-style-type:circle"><code>CROSS JOIN</code>: Prodotto cartesiano. Ogni riga della prima tabella viene combinata con ogni riga della seconda. Non ha una clausola <code>ON</code>.</li></ul></li></ul><ul id="20cd8c27-6c67-8078-9b93-d6aa28ed11c5" class="bulleted-list"><li style="list-style-type:disc"><strong>Subquery (Query Annidate):</strong> Una query <code>SELECT</code> inserita all&#x27;interno di un&#x27;altra istruzione SQL.<ul id="20cd8c27-6c67-800c-80e9-e9a1366edcde" class="bulleted-list"><li style="list-style-type:circle"><strong>Scalari:</strong> Restituisce una singola riga e una singola colonna. Può essere usata dove è atteso un singolo valore. <code>SELECT nome FROM utenti WHERE stipendio &gt; (SELECT AVG(stipendio) FROM utenti);</code></li></ul><ul id="20cd8c27-6c67-8043-a91f-f89e2a0c38a7" class="bulleted-list"><li style="list-style-type:circle"><strong>Multi-riga:</strong> Restituisce più righe. Spesso usata con operatori come <code>IN</code>, <code>ANY</code>, <code>ALL</code>. <code>SELECT * FROM prodotti WHERE IDFornitore IN (SELECT ID FROM fornitori WHERE nazione = &#x27;Italia&#x27;);</code></li></ul><ul id="20cd8c27-6c67-8014-bb04-c2d471b67569" class="bulleted-list"><li style="list-style-type:circle"><strong>Correlate:</strong> La subquery interna dipende da un valore della query esterna e viene eseguita una volta per ogni riga della query esterna. Può essere lenta.</li></ul></li></ul><ul id="20cd8c27-6c67-80f3-896f-debbd418f79f" class="bulleted-list"><li style="list-style-type:disc"><strong>Operatori Set:</strong><ul id="20cd8c27-6c67-80c4-b21e-dc441011e0c9" class="bulleted-list"><li style="list-style-type:circle"><code>UNION</code>: Combina i risultati di due <code>SELECT</code> e rimuove le righe duplicate.</li></ul><ul id="20cd8c27-6c67-8012-b308-f5290e59b1a3" class="bulleted-list"><li style="list-style-type:circle"><code>UNION ALL</code>: Combina i risultati ma mantiene tutti i duplicati (più veloce).</li></ul><ul id="20cd8c27-6c67-80bc-80d1-c08916027fc6" class="bulleted-list"><li style="list-style-type:circle"><code>INTERSECT</code>: Restituisce solo le righe presenti in entrambi i risultati.</li></ul><ul id="20cd8c27-6c67-8084-974c-de6988c0c580" class="bulleted-list"><li style="list-style-type:circle"><code>EXCEPT</code> (o <code>MINUS</code> in Oracle): Restituisce le righe del primo risultato che non sono presenti nel secondo.</li></ul></li></ul><ul id="20cd8c27-6c67-80f3-9055-e417db2d70ba" class="bulleted-list"><li style="list-style-type:disc"><strong>Viste (Views):</strong> Tabelle virtuali basate sul risultato di una query.<ul id="20cd8c27-6c67-809d-bbb7-f2908a6494e9" class="bulleted-list"><li style="list-style-type:circle"><code>CREATE VIEW nome_vista AS SELECT ...;</code></li></ul><ul id="20cd8c27-6c67-8037-8093-f184988edb9c" class="bulleted-list"><li style="list-style-type:circle"><strong>Vantaggi:</strong><ul id="20cd8c27-6c67-8058-9644-f0b07ee9f21e" class="bulleted-list"><li style="list-style-type:square"><strong>Semplificazione:</strong> Nascondono la complessità di query con molti join.</li></ul><ul id="20cd8c27-6c67-8067-a61b-da6d8caa4f56" class="bulleted-list"><li style="list-style-type:square"><strong>Sicurezza:</strong> Limitano l&#x27;accesso ai dati, mostrando solo colonne/righe specifiche.</li></ul><ul id="20cd8c27-6c67-8023-9081-ea2d50eaa8df" class="bulleted-list"><li style="list-style-type:square"><strong>Indipendenza logica:</strong> Permettono di cambiare la struttura delle tabelle sottostanti senza impattare le query che usano la vista.</li></ul></li></ul></li></ul><ul id="20cd8c27-6c67-80be-8fe3-dacd6530d5b6" class="bulleted-list"><li style="list-style-type:disc"><strong>Indici (Indexes):</strong> Strutture dati speciali (solitamente B-Tree) associate a una tabella per velocizzare le operazioni di ricerca (<code>SELECT</code> con <code>WHERE</code>, <code>JOIN</code>).<ul id="20cd8c27-6c67-8071-aaff-c4fa71c6a0f2" class="bulleted-list"><li style="list-style-type:circle"><code>CREATE INDEX nome_indice ON nome_tabella (colonna1, colonna2, ...);</code></li></ul><ul id="20cd8c27-6c67-8084-9164-c0260111bdab" class="bulleted-list"><li style="list-style-type:circle"><strong>Vantaggi:</strong> Aumentano drasticamente le performance in lettura.</li></ul><ul id="20cd8c27-6c67-80b2-83a1-e2981dd10fc4" class="bulleted-list"><li style="list-style-type:circle"><strong>Svantaggi:</strong> Rallentano le operazioni di scrittura (<code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>) perché l&#x27;indice deve essere aggiornato. Occupano spazio su disco.</li></ul></li></ul><hr id="20cd8c27-6c67-80ce-a61f-c27c2dba98a3"/><p id="20cd8c27-6c67-807a-ab7c-f7ce87ad6854" class=""><em>Le sezioni successive dedicate a PHP e Web sono in fase di completamento per mantenere lo stesso livello di dettaglio...</em></p><hr id="20cd8c27-6c67-8088-821e-e3360520885f"/><h2 id="20cd8c27-6c67-80f9-9634-f427461bc308" class="">Linguaggio PHP - Fondamenti</h2><h3 id="20cd8c27-6c67-8077-9e0d-f3a71d5e78dc" class="">Toggle: 4. PHP - Fondamenti 🐘</h3><ul id="20cd8c27-6c67-80ba-a0a2-d5436fd0243f" class="bulleted-list"><li style="list-style-type:disc"><strong>Sintassi di Base:</strong><ul id="20cd8c27-6c67-80f5-887d-d3ca04fe929e" class="bulleted-list"><li style="list-style-type:circle">Tag: <code>&lt;?php ... ?&gt;</code>. Il tag di chiusura <code>?&gt;</code> è opzionale se il file contiene solo codice PHP. <code>&lt;?= $variabile ?&gt;</code> è una scorciatoia per <code>&lt;?php echo $variabile; ?&gt;</code>.</li></ul><ul id="20cd8c27-6c67-80c2-a45c-c5b8bce0858e" class="bulleted-list"><li style="list-style-type:circle">Commenti: <code>// Commento su linea singola</code>, <code># Anche questo</code>, <code>/* Commento su più linee */</code>.</li></ul><ul id="20cd8c27-6c67-802a-af59-cfeedaf4ce8d" class="bulleted-list"><li style="list-style-type:circle">Case Sensitivity: I nomi delle variabili (<code>$miaVar</code> è diverso da <code>$miavar</code>) sono case-sensitive. I nomi di funzioni, classi e metodi no (<code>miaFunzione()</code> e <code>MIAFUNZIONE()</code> sono la stessa cosa).</li></ul></li></ul><ul id="20cd8c27-6c67-809e-a3cc-db398c42ec55" class="bulleted-list"><li style="list-style-type:disc"><strong>Variabili e Tipi di Dati:</strong><ul id="20cd8c27-6c67-8019-b128-e36e7d64406f" class="bulleted-list"><li style="list-style-type:circle">Iniziano con <code>$</code> (es. <code>$nome = &quot;Mario&quot;;</code>).</li></ul><ul id="20cd8c27-6c67-80f5-8152-ffa36aba68fc" class="bulleted-list"><li style="list-style-type:circle"><strong>Tipizzazione Debole (o Dinamica):</strong> Il tipo di una variabile non è dichiarato esplicitamente ma viene determinato a runtime dal valore che contiene.</li></ul><ul id="20cd8c27-6c67-80b1-a282-ed02a726a742" class="bulleted-list"><li style="list-style-type:circle"><strong>Tipi Scalari:</strong><ul id="20cd8c27-6c67-80c8-ace0-f21d045c4870" class="bulleted-list"><li style="list-style-type:square"><code>integer</code> (int): <code>10, -5</code></li></ul><ul id="20cd8c27-6c67-807a-b56b-feea8332a3a0" class="bulleted-list"><li style="list-style-type:square"><code>float</code> (double): <code>3.14, -0.5</code></li></ul><ul id="20cd8c27-6c67-80e9-9fc8-da91d8e427e5" class="bulleted-list"><li style="list-style-type:square"><code>string</code>: <code>&quot;Ciao&quot;</code>, <code>&#x27;Mondo&#x27;</code></li></ul><ul id="20cd8c27-6c67-80aa-9c82-fcf1c45fbd8d" class="bulleted-list"><li style="list-style-type:square"><code>boolean</code> (bool): <code>true</code>, <code>false</code></li></ul></li></ul><ul id="20cd8c27-6c67-803c-b84c-c42f7707b835" class="bulleted-list"><li style="list-style-type:circle"><strong>Tipi Composti:</strong><ul id="20cd8c27-6c67-80e6-9fc0-f8a01991e52b" class="bulleted-list"><li style="list-style-type:square"><code>array</code>: Contenitore ordinato di valori.</li></ul><ul id="20cd8c27-6c67-808f-bf44-caeea59d85a7" class="bulleted-list"><li style="list-style-type:square"><code>object</code>: Istanza di una classe.</li></ul></li></ul><ul id="20cd8c27-6c67-80ea-a73e-c6328f37bc17" class="bulleted-list"><li style="list-style-type:circle"><strong>Tipi Speciali:</strong><ul id="20cd8c27-6c67-8031-b4a4-c821be027d66" class="bulleted-list"><li style="list-style-type:square"><code>null</code>: Rappresenta una variabile senza valore.</li></ul><ul id="20cd8c27-6c67-8024-91fa-d58b49f81a6f" class="bulleted-list"><li style="list-style-type:square"><code>resource</code>: Riferimento a una risorsa esterna (es. connessione a DB, handle di un file).</li></ul></li></ul></li></ul><ul id="20cd8c27-6c67-8081-9096-f6a98665ca0a" class="bulleted-list"><li style="list-style-type:disc"><strong>Operatori:</strong><ul id="20cd8c27-6c67-8018-9a9a-d9c12edac26f" class="bulleted-list"><li style="list-style-type:circle"><strong>Aritmetici:</strong> <code>+</code>, , , <code>/</code>, <code>%</code> (modulo), <code>*</code> (esponenziale).</li></ul><ul id="20cd8c27-6c67-802d-8450-cc15e42136ac" class="bulleted-list"><li style="list-style-type:circle"><strong>Assegnazione:</strong> <code>=</code>, <code>+=</code>, <code>=</code>, <code>.</code> (concatenazione e assegnazione).</li></ul><ul id="20cd8c27-6c67-80f4-85d5-dc6a03e2e4a9" class="bulleted-list"><li style="list-style-type:circle"><strong>Confronto:</strong><ul id="20cd8c27-6c67-802b-94e6-cbf8d436bf37" class="bulleted-list"><li style="list-style-type:square"><code>==</code> (Uguale): Confronta solo il valore (dopo conversione di tipo). Es: <code>&quot;5&quot; == 5</code> è <code>true</code>.</li></ul><ul id="20cd8c27-6c67-8012-a210-eba26b9c1cb4" class="bulleted-list"><li style="list-style-type:square"><code>===</code> (Identico): Confronta sia il valore che il tipo. Es: <code>&quot;5&quot; === 5</code> è <code>false</code>. <strong>Da preferire per evitare errori.</strong></li></ul><ul id="20cd8c27-6c67-80ee-b007-f38564c1dcb3" class="bulleted-list"><li style="list-style-type:square"><code>!=</code> o <code>&lt;&gt;</code> (Diverso valore), <code>!==</code> (Diverso valore O diverso tipo).</li></ul></li></ul><ul id="20cd8c27-6c67-80f3-a35f-f57edd99491c" class="bulleted-list"><li style="list-style-type:circle"><strong>Logici:</strong> <code>&amp;&amp;</code> (and), <code>||</code> (or), <code>!</code> (not).</li></ul><ul id="20cd8c27-6c67-80eb-9f00-db7d025452be" class="bulleted-list"><li style="list-style-type:circle"><strong>Ternario:</strong> <code>(condizione) ? valore_se_true : valore_se_false;</code></li></ul><ul id="20cd8c27-6c67-80ab-bf7b-d31ce27b35b8" class="bulleted-list"><li style="list-style-type:circle"><strong>Null Coalescing (PHP 7+):</strong> <code>$username = $_GET[&#x27;user&#x27;] ?? &#x27;Ospite&#x27;;</code> (assegna &#x27;Ospite&#x27; solo se <code>$_GET[&#x27;user&#x27;]</code> non esiste o è <code>null</code>).</li></ul></li></ul><ul id="20cd8c27-6c67-80cb-8d5b-e8663094c942" class="bulleted-list"><li style="list-style-type:disc"><strong>Strutture di Controllo:</strong><ul id="20cd8c27-6c67-80eb-8749-c40b60ebed4f" class="bulleted-list"><li style="list-style-type:circle"><strong>Condizionali:</strong> <code>if (condizione) { ... } elseif (altra_condizione) { ... } else { ... }</code></li></ul><ul id="20cd8c27-6c67-806e-8b99-cb8f33463f10" class="bulleted-list"><li style="list-style-type:circle"><strong>Switch:</strong> <code>switch ($variabile) { case valore1: ...; break; default: ...; }</code></li></ul><ul id="20cd8c27-6c67-8058-8ce5-df32c65bf662" class="bulleted-list"><li style="list-style-type:circle"><strong>Match (PHP 8+):</strong> Più moderno e potente. Fa un confronto stretto (<code>===</code>), è un&#x27;espressione (restituisce un valore) e non richiede <code>break</code>.<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="20cd8c27-6c67-802d-ae9f-c7a7325cea87" class="code"><code class="language-PHP" style="white-space:pre-wrap;word-break:break-all">$messaggio = match ($http_code) {
+    200, 201 =&gt; &#x27;Successo&#x27;,
+    404 =&gt; &#x27;Non Trovato&#x27;,
+    default =&gt; &#x27;Errore Sconosciuto&#x27;,
+};
+</code></pre></li></ul><ul id="20cd8c27-6c67-8086-abfa-c8109fd4ecee" class="bulleted-list"><li style="list-style-type:circle"><strong>Cicli:</strong><ul id="20cd8c27-6c67-8003-a71d-d74b23cf9eb7" class="bulleted-list"><li style="list-style-type:square"><code>while (condizione) { ... }</code></li></ul><ul id="20cd8c27-6c67-8083-9a6c-f952297f7a53" class="bulleted-list"><li style="list-style-type:square"><code>do { ... } while (condizione);</code></li></ul><ul id="20cd8c27-6c67-8011-b36c-fe0b0a6e5a75" class="bulleted-list"><li style="list-style-type:square"><code>for ($i = 0; $i &lt; 10; $i++) { ... }</code></li></ul><ul id="20cd8c27-6c67-80bf-ae49-edd659e474f1" class="bulleted-list"><li style="list-style-type:square"><code>foreach ($array as $chiave =&gt; $valore) { ... }</code> (il modo migliore per iterare un array).</li></ul></li></ul></li></ul><ul id="20cd8c27-6c67-809f-ad6d-e2d7a2c8fe7e" class="bulleted-list"><li style="list-style-type:disc"><strong>Funzioni:</strong><ul id="20cd8c27-6c67-80de-9b0e-ea1a5ddc3015" class="bulleted-list"><li style="list-style-type:circle"><strong>Definizione:</strong> <code>function somma(int $a, int $b): int { return $a + $b; }</code> (con type hinting per parametri e valore di ritorno).</li></ul><ul id="20cd8c27-6c67-80b3-af00-ea8a1994bcf8" class="bulleted-list"><li style="list-style-type:circle"><strong>Scope Variabili:</strong><ul id="20cd8c27-6c67-806a-9ad7-f5dd4c807945" class="bulleted-list"><li style="list-style-type:square"><strong>Locale:</strong> Visibile solo dentro la funzione.</li></ul><ul id="20cd8c27-6c67-802f-8989-eab777879b1a" class="bulleted-list"><li style="list-style-type:square"><strong>Globale:</strong> Per usarla dentro una funzione: <code>global $mia_var_globale;</code> o <code>$GLOBALS[&#x27;mia_var_globale&#x27;]</code>. (Pratica sconsigliata, meglio passare le variabili come parametri).</li></ul><ul id="20cd8c27-6c67-8067-ae17-cf85809d6823" class="bulleted-list"><li style="list-style-type:square"><strong>Static:</strong> <code>static $contatore = 0; $contatore++;</code> (la variabile mantiene il suo valore tra le chiamate alla stessa funzione).</li></ul></li></ul></li></ul><ul id="20cd8c27-6c67-80d6-ac48-f0f2aac41c97" class="bulleted-list"><li style="list-style-type:disc"><strong>Array:</strong><ul id="20cd8c27-6c67-8063-a00d-ec6dde50b519" class="bulleted-list"><li style="list-style-type:circle"><strong>Creazione:</strong> <code>$arr = [1, 2, &quot;test&quot;];</code> (sintassi moderna).</li></ul><ul id="20cd8c27-6c67-8039-8be6-d133416e784d" class="bulleted-list"><li style="list-style-type:circle"><strong>Indicizzati Numericamente:</strong> <code>echo $arr[0]; // 1</code></li></ul><ul id="20cd8c27-6c67-80ef-a760-d128ed4e5f51" class="bulleted-list"><li style="list-style-type:circle"><strong>Associativi (chiave-valore):</strong> <code>$persona = [&quot;nome&quot; =&gt; &quot;Mario&quot;, &quot;eta&quot; =&gt; 30]; echo $persona[&quot;nome&quot;]; // Mario</code></li></ul><ul id="20cd8c27-6c67-8026-873d-fcec1b400574" class="bulleted-list"><li style="list-style-type:circle"><strong>Funzioni Utili:</strong> <code>count()</code>, <code>in_array()</code>, <code>array_keys()</code>, <code>array_push()</code>, <code>sort()</code>, <code>implode(&#x27; &#x27;, $array)</code> (unisce elementi in una stringa), <code>explode(&#x27; &#x27;, $stringa)</code> (divide una stringa in un array).<figure id="20dd8c27-6c67-804c-8b57-fb7bd0d5fce9" class="link-to-page"><a href="Maybach%20208d8c276c6780f0af0ae28f4b68d6b4/%F0%9F%93%98%20Array%20Associativi%2020dd8c276c67804c8b57fb7bd0d5fce9.html">📘 Array Associativi </a></figure></li></ul></li></ul><ul id="20cd8c27-6c67-807b-bebd-d00f57c7d9b7" class="bulleted-list"><li style="list-style-type:disc"><strong>Stringhe:</strong><ul id="20cd8c27-6c67-8020-ab09-fee028491781" class="bulleted-list"><li style="list-style-type:circle"><strong>Apici Singoli (</strong><code><strong>&#x27;&#x27;</strong></code><strong>):</strong> Interpretano il testo letteralmente. <code>echo &#x27;Ciao $nome&#x27;;</code> stampa <code>Ciao $nome</code>.</li></ul><ul id="20cd8c27-6c67-805e-99ce-eee728c75360" class="bulleted-list"><li style="list-style-type:circle"><strong>Apici Doppi (</strong><code><strong>&quot;&quot;</strong></code><strong>):</strong> Interpretano (interpolano) le variabili. <code>echo &quot;Ciao $nome&quot;;</code> stampa <code>Ciao Mario</code>.</li></ul><ul id="20cd8c27-6c67-80a0-a162-d2628298076e" class="bulleted-list"><li style="list-style-type:circle"><strong>Funzioni Utili:</strong> <code>strlen()</code>, <code>str_replace()</code>, <code>substr()</code>, <code>strtolower()</code>, <code>strtoupper()</code>, <code>trim()</code> (rimuove spazi bianchi all&#x27;inizio e alla fine), <code>htmlspecialchars()</code> (FONDAMENTALE per la sicurezza).</li></ul></li></ul><ul id="20cd8c27-6c67-8078-b5f9-e0fc6dad9bae" class="bulleted-list"><li style="list-style-type:disc"><strong>OOP (Object-Oriented Programming):</strong><ul id="20cd8c27-6c67-80ec-9070-cf3ec9cb367b" class="bulleted-list"><li style="list-style-type:circle"><code><strong>class</strong></code><strong>:</strong> Un modello per creare oggetti.</li></ul><ul id="20cd8c27-6c67-804c-b0bf-f06183f730b3" class="bulleted-list"><li style="list-style-type:circle"><code><strong>object</strong></code><strong>:</strong> Un&#x27;istanza di una classe (<code>$utente1 = new Utente();</code>).</li></ul><ul id="20cd8c27-6c67-8043-be0c-e14068ae009a" class="bulleted-list"><li style="list-style-type:circle"><strong>Proprietà:</strong> Variabili della classe (<code>public $nome;</code>).</li></ul><ul id="20cd8c27-6c67-8092-8a3e-f3d9335cabaf" class="bulleted-list"><li style="list-style-type:circle"><strong>Metodi:</strong> Funzioni della classe (<code>public function saluta() { ... }</code>).</li></ul><ul id="20cd8c27-6c67-8079-84c0-f62c716662d5" class="bulleted-list"><li style="list-style-type:circle"><code><strong>$this</strong></code><strong>:</strong> Riferimento all&#x27;istanza corrente all&#x27;interno di un metodo (<code>$this-&gt;nome</code>).</li></ul><ul id="20cd8c27-6c67-8002-89d3-d926ca9c238b" class="bulleted-list"><li style="list-style-type:circle"><strong>Costruttore:</strong> <code>public function __construct($nome) { $this-&gt;nome = $nome; }</code>. Eseguito automaticamente quando si crea un oggetto.</li></ul><ul id="20cd8c27-6c67-80d6-a9bd-c61c4d7d29eb" class="bulleted-list"><li style="list-style-type:circle"><strong>Incapsulamento:</strong> <code>public</code> (accessibile ovunque), <code>protected</code> (accessibile nella classe e nelle classi figlie), <code>private</code> (accessibile solo nella classe).</li></ul><ul id="20cd8c27-6c67-8001-8537-e14d76ff0849" class="bulleted-list"><li style="list-style-type:circle"><strong>Ereditarietà:</strong> <code>class Admin extends Utente { ... }</code>. La classe <code>Admin</code> eredita proprietà e metodi pubblici/protetti da <code>Utente</code>.</li></ul><figure id="20dd8c27-6c67-8012-a459-df5af38072b7" class="link-to-page"><a href="Maybach%20208d8c276c6780f0af0ae28f4b68d6b4/Programmazione%20a%20Oggetti%2020dd8c276c678012a459df5af38072b7.html">Programmazione a Oggetti</a></figure></li></ul><hr id="20cd8c27-6c67-8028-92ba-d259c1a5e8d5"/><h2 id="20cd8c27-6c67-80a7-a720-ca4846b68846" class="">Programmazione Web - HTML &amp; PHP</h2><h3 id="20cd8c27-6c67-804b-95c6-f45a3d413eec" class="">Toggle: 5. HTML e PHP per il Web 🖥️↔️🐘</h3><ul id="20cd8c27-6c67-80b2-afe1-e3757fd44c8a" class="bulleted-list"><li style="list-style-type:disc"><strong>Flusso di una Richiesta Web:</strong></li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="20dd8c27-6c67-8033-b163-c99c42fb7a85" class="code"><code class="language-Mermaid">sequenceDiagram
+    participant Browser
+    participant WebServer
+    participant PHPInterpreter
+    participant Database
+    Browser-&gt;&gt;WebServer: GET /pagina.php
+    WebServer-&gt;&gt;PHPInterpreter: esegui pagina.php
+    PHPInterpreter-&gt;&gt;Database: query SQL
+    Database--&gt;&gt;PHPInterpreter: risultati
+    PHPInterpreter--&gt;&gt;WebServer: HTML generato
+    WebServer--&gt;&gt;Browser: HTML response
+</code></pre><ol type="1" id="20cd8c27-6c67-80dc-8887-ee542e36d219" class="numbered-list" start="1"><li><strong>Client (Browser):</strong> L&#x27;utente digita un URL (es. <code>http://miosito.com/pagina.php</code>). Il browser invia una <strong>richiesta HTTP GET</strong> al server.</li></ol><ol type="1" id="20cd8c27-6c67-8002-aaee-d520f7cb1e1d" class="numbered-list" start="2"><li><strong>Server (Web Server + PHP):</strong> Il web server (es. Apache) riceve la richiesta. Riconosce che il file è <code>.php</code> e lo passa all&#x27;interprete PHP.</li></ol><ol type="1" id="20cd8c27-6c67-802d-b1c7-c5a2207e32d3" class="numbered-list" start="3"><li><strong>PHP:</strong> Lo script PHP viene eseguito. Può connettersi a un database, leggere file, eseguire calcoli.</li></ol><ol type="1" id="20cd8c27-6c67-8048-941f-c1a42d51a36b" class="numbered-list" start="4"><li><strong>Output:</strong> Lo script PHP genera un output, solitamente una <strong>pagina HTML</strong>.</li></ol><ol type="1" id="20cd8c27-6c67-801f-9055-cbf053a621b2" class="numbered-list" start="5"><li><strong>Server:</strong> Il web server prende l&#x27;output HTML generato e lo invia indietro al client come <strong>risposta HTTP</strong>.</li></ol><ol type="1" id="20cd8c27-6c67-80c0-9e3a-c7b426e11b98" class="numbered-list" start="6"><li><strong>Client (Browser):</strong> Il browser riceve l&#x27;HTML, lo interpreta e renderizza la pagina visibile all&#x27;utente.</li></ol><ul id="20cd8c27-6c67-809b-a9fd-db5db468b418" class="bulleted-list"><li style="list-style-type:disc"><strong>Gestione Form con PHP:</strong><ul id="20cd8c27-6c67-80a5-8525-f4bf9688c2c6" class="bulleted-list"><li style="list-style-type:circle"><strong>HTML Form:</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="20cd8c27-6c67-80c4-9535-eb7d52f6b5f1" class="code"><code class="language-HTML" style="white-space:pre-wrap;word-break:break-all">&lt;form action=&quot;processa.php&quot; method=&quot;POST&quot;&gt;
+    &lt;label for=&quot;nome_utente&quot;&gt;Nome:&lt;/label&gt;
+    &lt;input type=&quot;text&quot; id=&quot;nome_utente&quot; name=&quot;username&quot; required&gt;
+    &lt;label for=&quot;commento_utente&quot;&gt;Commento:&lt;/label&gt;
+    &lt;textarea id=&quot;commento_utente&quot; name=&quot;commento&quot;&gt;&lt;/textarea&gt;
+    &lt;button type=&quot;submit&quot;&gt;Invia&lt;/button&gt;
+&lt;/form&gt;
+</code></pre></li></ul><ul id="20cd8c27-6c67-80a3-b170-dc719b03f81b" class="bulleted-list"><li style="list-style-type:circle"><strong>Metodi HTTP:</strong><ul id="20cd8c27-6c67-8067-b133-d8c98b2d9bc5" class="bulleted-list"><li style="list-style-type:square"><code><strong>$_GET</strong></code><strong>:</strong> Dati inviati nell&#x27;URL (<code>...processa.php?username=Mario</code>). Visibili, limitati in lunghezza. Usare per ricerche, filtri, link.</li></ul><ul id="20cd8c27-6c67-8096-97eb-fdec706660bf" class="bulleted-list"><li style="list-style-type:square"><code><strong>$_POST</strong></code><strong>:</strong> Dati inviati nel corpo della richiesta HTTP. Invisibili nell&#x27;URL, più sicuri per dati sensibili (password, dati personali), limiti di dimensione maggiori. Usare per creare o modificare dati.</li></ul></li></ul><ul id="20cd8c27-6c67-80fd-b2fe-c94fd99913f0" class="bulleted-list"><li style="list-style-type:circle"><strong>Script PHP (</strong><code><strong>processa.php</strong></code><strong>):</strong><ul id="20cd8c27-6c67-8048-8202-e41b02ca7e84" class="bulleted-list"><li style="list-style-type:square"><strong>Validazione Server-Side (FONDAMENTALE):</strong> Non fidarsi mai dei dati dal client.</li></ul><ul id="20cd8c27-6c67-801c-bca7-e0bbd23d90db" class="bulleted-list"><li style="list-style-type:square"><strong>Sanitizzazione dell&#x27;Output (FONDAMENTALE):</strong> Previene attacchi XSS (Cross-Site Scripting).</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="20cd8c27-6c67-8035-8dff-d6b78f961ea0" class="code"><code class="language-PHP" style="white-space:pre-wrap;word-break:break-all">&lt;?php
+if ($_SERVER[&quot;REQUEST_METHOD&quot;] == &quot;POST&quot;) {
+    // 1. Validazione
+    $username = trim($_POST[&#x27;username&#x27;] ?? &#x27;&#x27;); // Rimuove spazi e usa null coalescing
+    $commento = trim($_POST[&#x27;commento&#x27;] ?? &#x27;&#x27;);
+
+    if (empty($username)) {
+        echo &quot;Il nome utente è obbligatorio.&quot;;
+    } else {
+        // 2. Elaborazione (es. salvataggio su DB)
+        // ...
+
+        // 3. Sanitizzazione dell&#x27;output prima di stamparlo
+        echo &quot;&lt;h1&gt;Grazie, &quot; . htmlspecialchars($username) . &quot;!&lt;/h1&gt;&quot;;
+        echo &quot;&lt;p&gt;Abbiamo ricevuto il tuo commento:&lt;/p&gt;&quot;;
+        echo &quot;&lt;blockquote&gt;&quot; . htmlspecialchars($commento) . &quot;&lt;/blockquote&gt;&quot;;
+    }
+}
+?&gt;
+</code></pre></li></ul></li></ul><ul id="20cd8c27-6c67-803a-a8a9-c5f6036cb108" class="bulleted-list"><li style="list-style-type:disc"><strong>Sessioni e Cookie (Mantenere lo Stato):</strong><ul id="20cd8c27-6c67-807f-8715-fd925f5f362a" class="bulleted-list"><li style="list-style-type:circle">HTTP è un protocollo <em>stateless</em> (senza memoria). Sessioni e cookie servono a &quot;ricordare&quot; l&#x27;utente tra una pagina e l&#x27;altra.</li></ul><ul id="20cd8c27-6c67-8055-8e64-c634811cdec4" class="bulleted-list"><li style="list-style-type:circle"><strong>Cookie (</strong><code><strong>$_COOKIE</strong></code><strong>):</strong> File di testo salvati sul <strong>client</strong>. Il server li imposta con <code>setcookie()</code>. Utili per preferenze (es. tema scuro/chiaro).</li></ul><ul id="20cd8c27-6c67-8094-aa43-c19b69c692ac" class="bulleted-list"><li style="list-style-type:circle"><strong>Sessioni (</strong><code><strong>$_SESSION</strong></code><strong>):</strong> Dati salvati sul <strong>server</strong>. Al client viene inviato solo un cookie con un ID di sessione univoco. Molto più sicure per dati sensibili (es. ID utente loggato, contenuto carrello).<ul id="20cd8c27-6c67-801e-84e5-deae3a0ffb94" class="bulleted-list"><li style="list-style-type:square"><strong>Flusso di Lavoro Sessione:</strong><ol type="1" id="20cd8c27-6c67-804c-bf9b-c1a7b2213382" class="numbered-list" start="1"><li><code>session_start();</code> all&#x27;inizio di ogni pagina che deve usare la sessione (PRIMA di qualsiasi output).</li></ol><ol type="1" id="20cd8c27-6c67-805c-aa6e-f4acd3413180" class="numbered-list" start="2"><li>PHP controlla se esiste un cookie di sessione. Se no, ne crea uno nuovo.</li></ol><ol type="1" id="20cd8c27-6c67-80a7-8f4b-d2c5cf75a0b5" class="numbered-list" start="3"><li>I dati vengono letti/scritti nell&#x27;array superglobale <code>$_SESSION</code>. Es: <code>$_SESSION[&#x27;user_id&#x27;] = 123;</code></li></ol><ol type="1" id="20cd8c27-6c67-806b-b17a-c18884008f0a" class="numbered-list" start="4"><li>Alla fine dello script, PHP salva l&#x27;array <code>$_SESSION</code> sul server.</li></ol><ol type="1" id="20cd8c27-6c67-8043-96ec-f98d7b07f1ff" class="numbered-list" start="5"><li>Per fare logout: <code>session_unset();</code> (svuota l&#x27;array) e <code>session_destroy();</code> (elimina la sessione).</li></ol></li></ul></li></ul></li></ul><ul id="20cd8c27-6c67-8060-a379-df3681598dbc" class="bulleted-list"><li style="list-style-type:disc"><strong>Inclusione File:</strong><ul id="20cd8c27-6c67-8045-9f18-caf27859219b" class="bulleted-list"><li style="list-style-type:circle">Per organizzare il codice e riutilizzare componenti (header, footer, funzioni).</li></ul><ul id="20cd8c27-6c67-8026-9596-e4a94799a9ca" class="bulleted-list"><li style="list-style-type:circle"><code>include &#x27;file.php&#x27;;</code> -&gt; Se il file non c&#x27;è, produce un Warning ma lo script continua.</li></ul><ul id="20cd8c27-6c67-803a-be57-d2304640cd04" class="bulleted-list"><li style="list-style-type:circle"><code>require &#x27;file.php&#x27;;</code> -&gt; Se il file non c&#x27;è, produce un Fatal Error e lo script si ferma.</li></ul><ul id="20cd8c27-6c67-80ae-b0e4-cb5a58da4fa4" class="bulleted-list"><li style="list-style-type:circle"><code>require_once &#x27;file.php&#x27;;</code> -&gt; <strong>La scelta più comune e sicura.</strong> Fa la stessa cosa di <code>require</code>, ma si assicura che il file venga incluso una sola volta, anche se richiamato più volte.</li></ul></li></ul><ul id="20cd8c27-6c67-80e0-9916-cc04f452b58b" class="bulleted-list"><li style="list-style-type:disc"><strong>Connessione a Database con PHP (PDO - Best Practice):</strong><ul id="20cd8c27-6c67-80c6-8954-fd70ee659a13" class="bulleted-list"><li style="list-style-type:circle"><strong>PDO (PHP Data Objects):</strong> Fornisce un&#x27;interfaccia di astrazione consistente per accedere a diversi tipi di database.</li></ul><ul id="20cd8c27-6c67-80cf-841f-d170a8a0e480" class="bulleted-list"><li style="list-style-type:circle"><strong>Prepared Statements:</strong> Il metodo più sicuro per eseguire query, prevenendo <strong>SQL Injection</strong>. I dati dell&#x27;utente non vengono mai mescolati con la query SQL, ma inviati separatamente.</li></ul><ul id="20cd8c27-6c67-8030-8595-d781943c82c7" class="bulleted-list"><li style="list-style-type:circle"><strong>Esempio Completo (Connessione e Query Preparata):</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="20cd8c27-6c67-80c0-81dd-d9057907f134" class="code"><code class="language-PHP" style="white-space:pre-wrap;word-break:break-all">&lt;?php
+$host = &#x27;127.0.0.1&#x27;; // o localhost
+$db   = &#x27;mio_database&#x27;;
+$user = &#x27;root&#x27;;
+$pass = &#x27;password&#x27;;
+$charset = &#x27;utf8mb4&#x27;;
+
+// DSN (Data Source Name) - Stringa di connessione
+$dsn = &quot;mysql:host=$host;dbname=$db;charset=$charset&quot;;
+
+$options = [
+    PDO::ATTR_ERRMODE            =&gt; PDO::ERRMODE_EXCEPTION, // Lancia eccezioni in caso di errore
+    PDO::ATTR_DEFAULT_FETCH_MODE =&gt; PDO::FETCH_ASSOC,       // Restituisce array associativi
+    PDO::ATTR_EMULATE_PREPARES   =&gt; false,                  // Usa prepared statements nativi del DB
+];
+
+try {
+     $pdo = new PDO($dsn, $user, $pass, $options);
+} catch (\\PDOException $e) {
+     // In un&#x27;app reale: logga l&#x27;errore e mostra un messaggio generico all&#x27;utente
+     throw new \\PDOException($e-&gt;getMessage(), (int)$e-&gt;getCode());
+}
+
+// Esempio: SELECT per trovare un utente tramite email (input utente!)
+$email_utente = $_POST[&#x27;email&#x27;]; // DATO PROVENIENTE DA UN FORM
+
+// NON FARE MAI QUESTO (VULNERABILE A SQL INJECTION):
+// $stmt = $pdo-&gt;query(&quot;SELECT * FROM utenti WHERE email = &#x27;$email_utente&#x27;&quot;);
+
+// FARE QUESTO (SICURO):
+$stmt = $pdo-&gt;prepare(&quot;SELECT id, username, email FROM utenti WHERE email = :email_placeholder&quot;);
+$stmt-&gt;execute([&#x27;email_placeholder&#x27; =&gt; $email_utente]);
+$utente = $stmt-&gt;fetch(); // fetch() per una riga, fetchAll() per più righe
+
+if ($utente) {
+    echo &quot;Benvenuto, &quot; . htmlspecialchars($utente[&#x27;username&#x27;]);
+} else {
+    echo &quot;Utente non trovato.&quot;;
+}
+
+// Esempio: INSERT con Prepared Statement
+$nuovo_username = &quot;Pippo&quot;;
+$nuova_email = &quot;pippo@example.com&quot;;
+$password_hash = password_hash(&quot;password123&quot;, PASSWORD_DEFAULT); // MAI salvare password in chiaro!
+
+$stmt_insert = $pdo-&gt;prepare(&quot;INSERT INTO utenti (username, email, password) VALUES (?, ?, ?)&quot;);
+$stmt_insert-&gt;execute([$nuovo_username, $nuova_email, $password_hash]);
+
+echo &quot;Nuovo utente inserito con ID: &quot; . $pdo-&gt;lastInsertId();
+
+?&gt;
+</code></pre></li></ul><ul id="20cd8c27-6c67-80b0-9d92-c06d7dd5e215" class="bulleted-list"><li style="list-style-type:circle"><strong>Sicurezza:</strong><ul id="20cd8c27-6c67-804a-b127-c72192fcb74e" class="bulleted-list"><li style="list-style-type:square"><strong>SQL Injection:</strong> Evitata usando <strong>Prepared Statements</strong>.</li></ul><ul id="20cd8c27-6c67-80fc-855c-c2a3c45ae2bf" class="bulleted-list"><li style="list-style-type:square"><strong>XSS (Cross-Site Scripting):</strong> Evitata usando <code>htmlspecialchars()</code> su ogni dato proveniente dall&#x27;utente prima di stamparlo in HTML.</li></ul><ul id="20cd8c27-6c67-80d7-9ef1-c5181df22c09" class="bulleted-list"><li style="list-style-type:square"><strong>Password Hashing:</strong> Mai memorizzare password in chiaro. Usare <code>password_hash()</code> per crearle e <code>password_verify()</code> per controllarle.</li></ul><figure id="20dd8c27-6c67-8013-9833-da89a315c4cc" class="link-to-page"><a href="Maybach%20208d8c276c6780f0af0ae28f4b68d6b4/Sicurezza%20Php%2020dd8c276c6780139833da89a315c4cc.html">Sicurezza Php </a></figure></li></ul></li></ul><hr id="20cd8c27-6c67-805a-8d8d-c3fdfaa47d49"/><p id="20cd8c27-6c67-807e-83ed-e6e52f66e4da" class=""><strong>Consigli Finali per l&#x27;Esame:</strong></p><ul id="20cd8c27-6c67-803a-8654-c01c851ae5dc" class="bulleted-list"><li style="list-style-type:disc"><strong>Concetti Chiave:</strong> Ripassa bene le <strong>Fasi di Progettazione</strong>, le <strong>Regole di Traduzione ER-Relazionale</strong>, la <strong>Normalizzazione</strong> e le proprietà <strong>ACID</strong>. Sono le fondamenta.</li></ul><ul id="20cd8c27-6c67-800b-8299-fccfca51c390" class="bulleted-list"><li style="list-style-type:disc"><strong>Pratica SQL:</strong> Allenati a scrivere query SQL complesse, soprattutto <code>JOIN</code>, <code>GROUP BY</code> con <code>HAVING</code> e subquery. Sono quasi sempre presenti nelle prove.</li></ul><ul id="20cd8c27-6c67-8026-af83-effbb8b7aa24" class="bulleted-list"><li style="list-style-type:disc"><strong>Flusso Web e Sicurezza:</strong> Comprendi il ciclo richiesta/risposta HTTP e la differenza tra <code>$_GET</code> e <code>$_POST</code>. Saper spiegare cosa sono e come prevenire <strong>SQL Injection</strong> e <strong>XSS</strong> è un requisito minimo.</li></ul><ul id="20cd8c27-6c67-80f8-b19a-fa11a3a082c1" class="bulleted-list"><li style="list-style-type:disc"><strong>PDO è il tuo amico:</strong> Se ti viene chiesto di interagire con un DB da PHP, usa PDO con prepared statements. Dimostra conoscenza delle best practice moderne.</li></ul><p id="20cd8c27-6c67-804e-9c2b-d1c3163921da" class="">In bocca al lupo! 🍀</p><table id="20dd8c27-6c67-807f-bb55-c26bdffc6809" class="simple-table"><tbody><tr id="20dd8c27-6c67-80da-b0ad-d903afa8f353"><td id="HoyD" class="">Forma Normale</td><td id="BVUo" class="">Requisiti principali</td><td id="[na@" class="">Obiettivo</td></tr><tr id="20dd8c27-6c67-80eb-a8ed-edfe41308215"><td id="HoyD" class="">1NF</td><td id="BVUo" class="">Attributi atomici, niente gruppi ripetuti</td><td id="[na@" class="">Eliminare ripetizioni di celle</td></tr><tr id="20dd8c27-6c67-80e5-a59a-c43415395dbc"><td id="HoyD" class="">2NF</td><td id="BVUo" class="">1NF + ogni attributo non-chiave dipende dall’intera PK</td><td id="[na@" class="">Eliminare dipendenze parziali</td></tr><tr id="20dd8c27-6c67-80b9-92a7-c5ae535d0687"><td id="HoyD" class="">3NF</td><td id="BVUo" class="">2NF + nessuna dipendenza transitiva tra attributi non-chiave</td><td id="[na@" class="">Eliminare dipendenze transitive</td></tr><tr id="20dd8c27-6c67-80f4-88a4-da070969f968"><td id="HoyD" class="">BCNF</td><td id="BVUo" class="">Ogni dipendenza non banale X → Y, X deve essere una superchiave</td><td id="[na@" class="">Risolvere anomalie non coperte da 3NF</td></tr></tbody></table><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="20dd8c27-6c67-800e-9f9f-d9f79d9eec43"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><p id="20dd8c27-6c67-8013-97df-cd387cd9db3e" class=""><strong>Checklist Essenziale</strong></p><ul id="20dd8c27-6c67-8051-8380-df68a8d86896" class="bulleted-list"><li style="list-style-type:disc">Traduzione ER → relazionale (1:N, N:M, 1:1, multivalore)</li></ul><ul id="20dd8c27-6c67-800d-ae5e-c8bba462da45" class="bulleted-list"><li style="list-style-type:disc">Normalizzazione (1NF, 2NF, 3NF, BCNF)</li></ul><ul id="20dd8c27-6c67-80fd-92b2-f0640a344672" class="bulleted-list"><li style="list-style-type:disc">Proprietà ACID e livelli di isolamento</li></ul><ul id="20dd8c27-6c67-80b3-89ba-e5c672fbfe31" class="bulleted-list"><li style="list-style-type:disc">Ordine logico di esecuzione di una <code>SELECT</code></li></ul><ul id="20dd8c27-6c67-802c-81b8-f687925847c1" class="bulleted-list"><li style="list-style-type:disc">Differenza tra <code>INNER JOIN</code> e <code>LEFT JOIN</code></li></ul><ul id="20dd8c27-6c67-8023-820a-c0447e24664f" class="bulleted-list"><li style="list-style-type:disc">Uso di <code>prepare()</code> / <code>bind_param()</code> (MySQLi) o PDO</li></ul><ul id="20dd8c27-6c67-80c1-8fad-f47c5d343d16" class="bulleted-list"><li style="list-style-type:disc">Sanitizzazione output con <code>htmlspecialchars()</code></li></ul><ul id="20dd8c27-6c67-8003-89d7-c272a2ab9db7" class="bulleted-list"><li style="list-style-type:disc">Hashing password con <code>password_hash()</code> / <code>verify()</code></li></ul></div></figure><p id="20dd8c27-6c67-8046-929e-ffd7b230fe42" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"><hr/><details open="" style="padding-top:1em"><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Inline comments</summary><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background">erDiagram<br/>    STUDENTE {<br/>        INT Matricola PK<br/>        STRING Nome<br/>        STRING Cognome<br/>    }<br/>    CORSO {<br/>        INT IDCorso PK<br/>        STRING Titolo<br/>    }<br/>    STUDENTE ||--o{ SOSTIENE : &quot;sostiene&quot;<br/>    CORSO    ||--o{ SOSTIENE : &quot;è sostenuto in&quot;<br/>    SOSTIENE {<br/>        INT Voto<br/>        DATE Data<br/>    }<br/><br/></mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><img src="https://lh3.googleusercontent.com/a/ACg8ocJTHpXoVvz7u8iAdsms3rO-wqUZl6HrkN_HgKltqqWxt_O9PL5z=s100" class="icon user-icon"/><span><b>pablo escobar</b> <time style="font-size:0.8em">Jun 9, 2025, 2:56 PM</time></span></span></div><div style="padding:0.2em">“Ogni studente può sostenere più esami (N:M), tracciati nella tabella associativa <code>SOSTIENE</code> con i suoi attributi.”</div><div style="padding:0.3em"></div></li></ul></div><hr/></div></details></span></body></html>
